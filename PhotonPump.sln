@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SunflowSharp", "SunflowSharp\SunflowSharp.csproj", "{A6F840FB-74C5-4F9F-9106-B8AE359AB0CB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SunflowSharp.Gui", "SunflowSharp.Gui\SunflowSharp.Gui.csproj", "{15FC09D6-0066-4D43-A7B5-59D99BF7B443}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SunflowSharp.Test", "SunflowSharp.Test\SunflowSharp.Test.csproj", "{0D4A4CCF-CEB7-48CF-9BD1-E68733369DDD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0BD12596-7BE0-4616-A8E5-3A7EE12968AB}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D4A4CCF-CEB7-48CF-9BD1-E68733369DDD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0D4A4CCF-CEB7-48CF-9BD1-E68733369DDD}.Debug|x86.Build.0 = Debug|Any CPU
+		{0D4A4CCF-CEB7-48CF-9BD1-E68733369DDD}.Release|x86.ActiveCfg = Release|Any CPU
+		{0D4A4CCF-CEB7-48CF-9BD1-E68733369DDD}.Release|x86.Build.0 = Release|Any CPU
+		{15FC09D6-0066-4D43-A7B5-59D99BF7B443}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{15FC09D6-0066-4D43-A7B5-59D99BF7B443}.Debug|x86.Build.0 = Debug|Any CPU
+		{15FC09D6-0066-4D43-A7B5-59D99BF7B443}.Release|x86.ActiveCfg = Release|Any CPU
+		{15FC09D6-0066-4D43-A7B5-59D99BF7B443}.Release|x86.Build.0 = Release|Any CPU
+		{A6F840FB-74C5-4F9F-9106-B8AE359AB0CB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A6F840FB-74C5-4F9F-9106-B8AE359AB0CB}.Debug|x86.Build.0 = Debug|Any CPU
+		{A6F840FB-74C5-4F9F-9106-B8AE359AB0CB}.Release|x86.ActiveCfg = Release|Any CPU
+		{A6F840FB-74C5-4F9F-9106-B8AE359AB0CB}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = SunflowSharp.Test\SunflowSharp.Test.csproj
+	EndGlobalSection
+EndGlobal
