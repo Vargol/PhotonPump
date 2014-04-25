@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A6F840FB-74C5-4F9F-9106-B8AE359AB0CB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SunflowSharp</RootNamespace>
+    <AssemblyName>SunflowSharp</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Benchmark.cs" />
+    <Compile Include="Core\AccelerationStructure.cs" />
+    <Compile Include="Core\AccelerationStructureFactory.cs" />
+    <Compile Include="Core\Accel\BoundingIntervalHierarchy.cs" />
+    <Compile Include="Core\Accel\KDTree.cs" />
+    <Compile Include="Core\Accel\NullAccelerator.cs" />
+    <Compile Include="Core\Accel\UniformGrid.cs" />
+    <Compile Include="Core\BucketOrder.cs" />
+    <Compile Include="Core\Bucket\BucketOrderFactory.cs" />
+    <Compile Include="Core\Bucket\ColumnBucketOrder.cs" />
+    <Compile Include="Core\Bucket\DiagonalBucketOrder.cs" />
+    <Compile Include="Core\Bucket\HilbertBucketOrder.cs" />
+    <Compile Include="Core\Bucket\InvertedBucketOrder.cs" />
+    <Compile Include="Core\Bucket\RandomBucketOrder.cs" />
+    <Compile Include="Core\Bucket\RowBucketOrder.cs" />
+    <Compile Include="Core\Bucket\SpiralBucketOrder.cs" />
+    <Compile Include="Core\CameraBase.cs" />
+    <Compile Include="Core\CameraLens.cs" />
+    <Compile Include="Core\Camera\FisheyeLens.cs" />
+    <Compile Include="Core\Camera\PinholeLens.cs" />
+    <Compile Include="Core\Camera\SphericalLens.cs" />
+    <None Include="Core\Display\FastDisplay.cs" />
+    <Compile Include="Core\CausticPhotonMapInterface.cs" />
+    <Compile Include="Core\Display\FileDisplay.cs" />
+    <None Include="Core\Display\FrameDisplay.cs" />
+    <None Include="Core\Display\ImgPipeDisplay.cs" />
+    <Compile Include="Core\Filter\BlackmanHarrisFilter.cs" />
+    <Compile Include="Core\Filter\BoxFilter.cs" />
+    <Compile Include="Core\Filter\CatmullRomFilter.cs" />
+    <Compile Include="Core\Filter\GaussianFilter.cs" />
+    <Compile Include="Core\Filter\LanczosFilter.cs" />
+    <Compile Include="Core\Filter\MitchellFilter.cs" />
+    <Compile Include="Core\Filter\SincFilter.cs" />
+    <Compile Include="Core\Filter\TriangleFilter.cs" />
+    <Compile Include="Core\Geometry.cs" />
+    <Compile Include="Core\GIEngine.cs" />
+    <Compile Include="Core\Gi\AmbientOcclusionGIEngine.cs" />
+    <Compile Include="Core\Gi\FakeGIEngine.cs" />
+    <Compile Include="Core\Gi\InstantGI.cs" />
+    <Compile Include="Core\Gi\IrradianceCacheGIEngine.cs" />
+    <Compile Include="Core\Gi\PathTracingGIEngine.cs" />
+    <Compile Include="Core\GlobalPhotonMapInterface.cs" />
+    <Compile Include="Core\IDisplay.cs" />
+    <Compile Include="Core\IFilter.cs" />
+    <Compile Include="Core\ImageSampler.cs" />
+    <Compile Include="Core\Instance.cs" />
+    <Compile Include="Core\InstanceList.cs" />
+    <Compile Include="Core\IntersectionState.cs" />
+    <Compile Include="Core\IShader.cs" />
+    <Compile Include="Core\ITesselatable.cs" />
+    <Compile Include="Core\LightSample.cs" />
+    <Compile Include="Core\LightServer.cs" />
+    <Compile Include="Core\LightSource.cs" />
+    <Compile Include="Core\Light\DirectionalSpotlight.cs" />
+    <Compile Include="Core\Light\ImageBasedLight.cs" />
+    <Compile Include="Core\Light\PointLight.cs" />
+    <Compile Include="Core\Light\SphereLight.cs" />
+    <Compile Include="Core\Light\SunSkyLight.cs" />
+    <Compile Include="Core\Light\TriangleMeshLight.cs" />
+    <Compile Include="Core\Modifier.cs" />
+    <Compile Include="Core\Modifiers\BumpMappingModifier.cs" />
+    <Compile Include="Core\Modifiers\NormalMapModifier.cs" />
+    <Compile Include="Core\Options.cs" />
+    <Compile Include="Core\ParameterList.cs" />
+    <Compile Include="Core\Parser\RA2Parser.cs" />
+    <Compile Include="Core\Parser\RA3Parser.cs" />
+    <Compile Include="Core\Parser\SceneParserBase.cs" />
+    <Compile Include="Core\Parser\ScGzParser.cs" />
+    <Compile Include="Core\Parser\SCParser.cs" />
+    <Compile Include="Core\Parser\ShaveRibParser.cs" />
+    <Compile Include="Core\Parser\TriParser.cs" />
+    <Compile Include="Core\PhotonMap\CausticPhotonMap.cs" />
+    <Compile Include="Core\PhotonMap\GlobalPhotonMap.cs" />
+    <Compile Include="Core\PhotonMap\GridPhotonMap.cs" />
+    <Compile Include="Core\PhotonStore.cs" />
+    <Compile Include="Core\PrimitiveList.cs" />
+    <Compile Include="Core\Primitive\Background.cs" />
+    <Compile Include="Core\Primitive\BanchoffSurface.cs" />
+    <Compile Include="Core\Primitive\Box.cs" />
+    <Compile Include="Core\Primitive\CornellBox.cs" />
+    <Compile Include="Core\Primitive\CubeGrid.cs" />
+    <Compile Include="Core\Primitive\Hair.cs" />
+    <Compile Include="Core\Primitive\JuliaFractal.cs" />
+    <Compile Include="Core\Primitive\ParticleSurface.cs" />
+    <Compile Include="Core\Primitive\Plane.cs" />
+    <Compile Include="Core\Primitive\QuadMesh.cs" />
+    <Compile Include="Core\Primitive\Sphere.cs" />
+    <Compile Include="Core\Primitive\Torus.cs" />
+    <Compile Include="Core\Primitive\TriangleMesh.cs" />
+    <Compile Include="Core\Ray.cs" />
+    <Compile Include="Core\Renderer\BucketRenderer.cs" />
+    <Compile Include="Core\Renderer\ProgressiveRenderer.cs" />
+    <Compile Include="Core\Renderer\SimpleRenderer.cs" />
+    <Compile Include="Core\RenderObject.cs" />
+    <Compile Include="Core\Scene.cs" />
+    <Compile Include="Core\SceneParser.cs" />
+    <Compile Include="Core\Shader\AmbientOcclusionShader.cs" />
+    <Compile Include="Core\Shader\AnisotropicWardShader.cs" />
+    <Compile Include="Core\Shader\ConstantShader.cs" />
+    <Compile Include="Core\Shader\DiffuseShader.cs" />
+    <Compile Include="Core\Shader\GlassShader.cs" />
+    <Compile Include="Core\Shader\IDShader.cs" />
+    <Compile Include="Core\Shader\MirrorShader.cs" />
+    <Compile Include="Core\Shader\NormalShader.cs" />
+    <Compile Include="Core\Shader\PhongShader.cs" />
+    <Compile Include="Core\Shader\PrimIDShader.cs" />
+    <Compile Include="Core\Shader\QuickGrayShader.cs" />
+    <Compile Include="Core\Shader\ShinyDiffuseShader.cs" />
+    <Compile Include="Core\Shader\SimpleShader.cs" />
+    <Compile Include="Core\Shader\TexturedAmbientOcclusionShader.cs" />
+    <Compile Include="Core\Shader\TexturedDiffuseShader.cs" />
+    <Compile Include="Core\Shader\TexturedPhongShader.cs" />
+    <Compile Include="Core\Shader\TexturedShinyDiffuseShader.cs" />
+    <Compile Include="Core\Shader\TexturedWardShader.cs" />
+    <Compile Include="Core\Shader\UberShader.cs" />
+    <Compile Include="Core\Shader\UVShader.cs" />
+    <Compile Include="Core\Shader\ViewCausticsShader.cs" />
+    <Compile Include="Core\Shader\ViewGlobalPhotonsShader.cs" />
+    <Compile Include="Core\Shader\ViewIrradianceShader.cs" />
+    <Compile Include="Core\Shader\WireframeShader.cs" />
+    <Compile Include="Core\ShadingState.cs" />
+    <Compile Include="Core\StringConsts.cs" />
+    <Compile Include="Core\Tesselatable\BezierMesh.cs" />
+    <Compile Include="Core\Tesselatable\FileMesh.cs" />
+    <Compile Include="Core\Tesselatable\Gumbo.cs" />
+    <Compile Include="Core\Tesselatable\Teapot.cs" />
+    <Compile Include="Core\Texture.cs" />
+    <Compile Include="Core\TextureCache.cs" />
+    <Compile Include="Image\BlackbodySpectrum.cs" />
+    <Compile Include="Image\ChromaticitySpectrum.cs" />
+    <Compile Include="Image\Color.cs" />
+    <Compile Include="Image\ConstantSpectralCurve.cs" />
+    <Compile Include="Image\IrregularSpectralCurve.cs" />
+    <Compile Include="Image\RegularSpectralCurve.cs" />
+    <Compile Include="Image\RGBSpace.cs" />
+    <Compile Include="Image\SpectralCurve.cs" />
+    <Compile Include="Image\XYZColor.cs" />
+    <Compile Include="Maths\BoundingBox.cs" />
+    <Compile Include="Maths\MathUtils.cs" />
+    <Compile Include="Maths\Matrix4.cs" />
+    <Compile Include="Maths\OrthoNormalBasis.cs" />
+    <Compile Include="Maths\PerlinScalar.cs" />
+    <Compile Include="Maths\PerlinVector.cs" />
+    <Compile Include="Maths\Point2.cs" />
+    <Compile Include="Maths\Point3.cs" />
+    <Compile Include="Maths\QMC.cs" />
+    <Compile Include="Maths\Solvers.cs" />
+    <Compile Include="Maths\Vector3.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RealtimeBenchmark.cs" />
+    <Compile Include="RenderObjectMap.cs" />
+    <Compile Include="SunflowAPI.cs" />
+    <Compile Include="Systems\BenchmarkFramework.cs" />
+    <Compile Include="Systems\BenchmarkTest.cs" />
+    <Compile Include="Systems\ByteUtil.cs" />
+    <None Include="Systems\ImagePanel.cs" />
+    <Compile Include="Systems\Memory.cs" />
+    <Compile Include="Systems\NanoTime.cs" />
+    <Compile Include="Systems\Parser.cs" />
+    <None Include="Systems\RenderGlobalsPanel.cs" />
+    <Compile Include="Systems\SearchPath.cs" />
+    <Compile Include="Systems\Timer.cs" />
+    <Compile Include="Systems\UI.cs" />
+    <Compile Include="Systems\Ui\ConsoleInterface.cs" />
+    <Compile Include="Systems\Ui\SilentInterface.cs" />
+    <Compile Include="Systems\UserInterface.cs" />
+    <Compile Include="Core\Modifiers\PerlinModifier.cs" />
+    <Compile Include="Maths\MovingMatrix4.cs" />
+    <Compile Include="Systems\Plugins.cs" />
+    <Compile Include="PluginRegistry.cs" />
+    <Compile Include="Core\ShadingCache.cs" />
+    <Compile Include="Core\Camera\ThinLens.cs">
+      <DependentUpon>SphericalLens.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Image\ColorFactory.cs" />
+    <Compile Include="Image\Formats\BitmapBlack.cs" />
+    <Compile Include="Image\Formats\BitmapG8.cs" />
+    <Compile Include="Image\Formats\BitmapG8A.cs" />
+    <Compile Include="Image\Formats\BitmapRGB8.cs" />
+    <Compile Include="Image\Formats\BitmapRGBA8.cs" />
+    <Compile Include="Image\Formats\BitmapRGBE.cs" />
+    <Compile Include="Image\Readers\HDRBitmapReader.cs" />
+    <Compile Include="Image\Readers\SystemBitmapReader.cs" />
+    <Compile Include="Image\Readers\TGABitmapReader.cs" />
+    <Compile Include="Image\BitmapReader.cs" />
+    <Compile Include="Image\BitmapWriter.cs" />
+    <Compile Include="Image\ColorEncoder.cs" />
+    <Compile Include="Image\Writers\EXRBitmapWriter.cs" />
+    <Compile Include="Image\Writers\HDRBitmapWriter.cs" />
+    <Compile Include="Image\Writers\TGABitmapWriter.cs" />
+    <Compile Include="Image\Writers\SystemBitmapWriter.cs" />
+    <Compile Include="Image\Formats\GenericBitmap.cs" />
+    <Compile Include="Systems\FileUtils.cs" />
+    <Compile Include="Image\Bitmap.cs" />
+    <Compile Include="Image\Formats\BitmapXYZ.cs" />
+    <Compile Include="IGIBitmapReader.cs" />
+    <Compile Include="Image\Writers\IGIBitmapWriter.cs" />
+    <Compile Include="Core\Primitive\Cylinder.cs" />
+    <Compile Include="Core\Primitive\SphereFlake.cs" />
+    <Compile Include="Core\Statistics.cs" />
+    <Compile Include="Core\Renderer\MultipassRenderer.cs" />
+    <Compile Include="Core\Filter\CubicBSpline.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <Folder Include="Image\Formats\" />
+    <Folder Include="Image\Readers\" />
+    <Folder Include="Image\Writers\" />
+  </ItemGroup>
+</Project>
