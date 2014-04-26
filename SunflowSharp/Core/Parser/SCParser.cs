@@ -679,8 +679,8 @@ namespace SunflowSharp.Core.Parser
             else if (p.peekNextToken("janino"))
             {
 				String typename = p.peekNextToken("typename") ? p.getNextToken() : PluginRegistry.shaderPlugins.generateUniqueName("janino_shader");
-//				if (!PluginRegistry.shaderPlugins.registerPlugin(typename, p.getNextCodeBlock()))
-//					return false;
+				if (!PluginRegistry.shaderPlugins.registerPlugin(typename, p.getNextCodeBlock()))
+					return false;
 				api.shader(name, typename);
             }
             else if (p.peekNextToken("id"))

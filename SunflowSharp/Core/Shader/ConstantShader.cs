@@ -1,4 +1,3 @@
-using System;
 using SunflowSharp.Core;
 using SunflowSharp.Image;
 
