@@ -205,7 +205,7 @@ namespace SunflowSharp.Core.Primitive
             state.getUV().set(0, (line + state.getV()) / numSegments);
         }
 
-        public bool update(ParameterList pl, SunflowAPI api)
+        public bool Update(ParameterList pl, SunflowAPI api)
         {
             numSegments = pl.getInt("segments", numSegments);
             if (numSegments < 1)
@@ -241,7 +241,7 @@ namespace SunflowSharp.Core.Primitive
             return true;
         }
 
-        public Color getRadiance(ShadingState state)
+        public Color GetRadiance(ShadingState state)
         {
             // don't use these - gather lights for sphere of directions
             // gather lights
@@ -272,7 +272,7 @@ namespace SunflowSharp.Core.Primitive
             return Color.blend(c, state.traceTransparency(), state.getV(), new Color());
         }
 
-        public void scatterPhoton(ShadingState state, Color power)
+        public void ScatterPhoton(ShadingState state, Color power)
         {
         }
 

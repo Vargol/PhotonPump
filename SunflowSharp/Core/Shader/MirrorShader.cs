@@ -15,13 +15,13 @@ namespace SunflowSharp.Core.Shader
             color = Color.WHITE;
         }
 
-        public bool update(ParameterList pl, SunflowAPI api)
+        public bool Update(ParameterList pl, SunflowAPI api)
         {
             color = pl.getColor("color", color);
             return true;
         }
 
-        public Color getRadiance(ShadingState state)
+        public Color GetRadiance(ShadingState state)
         {
             if (!state.includeSpecular)
                 return Color.BLACK;
@@ -45,7 +45,7 @@ namespace SunflowSharp.Core.Shader
             return ret.mul(state.traceReflection(refRay, 0));
         }
 
-        public void scatterPhoton(ShadingState state, Color power)
+        public void ScatterPhoton(ShadingState state, Color power)
         {
             float avg = color.getAverage();
             double rnd = state.getRandom(0, 0, 1);

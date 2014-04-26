@@ -18,7 +18,7 @@ namespace SunflowSharp.Core.Primitive
             bounds = new BoundingBox(1);
         }
 
-        public bool update(ParameterList pl, SunflowAPI api)
+        public bool Update(ParameterList pl, SunflowAPI api)
         {
             nx = pl.getInt("resolutionX", nx);
             ny = pl.getInt("resolutionY", ny);

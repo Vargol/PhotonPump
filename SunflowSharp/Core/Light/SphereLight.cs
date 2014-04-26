@@ -23,7 +23,7 @@ namespace SunflowSharp.Core.Light
             radius = r2 = 1;
         }
 
-        public bool update(ParameterList pl, SunflowAPI api)
+        public bool Update(ParameterList pl, SunflowAPI api)
         {
             radiance = pl.getColor("radiance", radiance);
             numSamples = pl.getInt("samples", numSamples);
@@ -136,7 +136,7 @@ namespace SunflowSharp.Core.Light
             return radiance.copy().mul((float)(Math.PI * Math.PI * 4 * r2)).getLuminance();
         }
 
-        public Color getRadiance(ShadingState state)
+        public Color GetRadiance(ShadingState state)
         {
             if (!state.includeLights)
                 return Color.BLACK;
@@ -145,7 +145,7 @@ namespace SunflowSharp.Core.Light
             return state.isBehind() ? Color.BLACK : radiance;
         }
 
-        public void scatterPhoton(ShadingState state, Color power)
+        public void ScatterPhoton(ShadingState state, Color power)
         {
             // do not scatter photons
         }

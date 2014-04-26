@@ -37,7 +37,7 @@ namespace SunflowSharp.Core.Light
             }
         }
 
-        public bool update(ParameterList pl, SunflowAPI api) {
+        public bool Update(ParameterList pl, SunflowAPI api) {
 	        updateBasis(pl.getVector("center", null), pl.getVector("up", null));
 	        numSamples = pl.getInt("samples", numSamples);
 			numLowSamples = pl.getInt("lowsamples", numLowSamples);
@@ -244,7 +244,7 @@ namespace SunflowSharp.Core.Light
         {
         }
 
-        public Color getRadiance(ShadingState state)
+        public Color GetRadiance(ShadingState state)
         {
             // lookup texture based on ray direction
             return state.includeLights ? getColor(basis.untransform(state.getRay().getDirection(), new Vector3())) : Color.BLACK;
@@ -275,7 +275,7 @@ namespace SunflowSharp.Core.Light
             return dest;
         }
 
-        public void scatterPhoton(ShadingState state, Color power)
+        public void ScatterPhoton(ShadingState state, Color power)
         {
         }
 

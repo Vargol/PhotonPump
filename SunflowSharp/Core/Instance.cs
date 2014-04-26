@@ -12,7 +12,7 @@ namespace SunflowSharp.Core
      * maps object space to world space and maintains a list of shaders and
      * modifiers attached to the surface.
      */
-    public class Instance : RenderObject
+    public class Instance : IRenderObject
     {
 		private MovingMatrix4 o2w;
 		private MovingMatrix4 w2o;
@@ -44,7 +44,7 @@ namespace SunflowSharp.Core
 			return i;
 		}
 
-        public bool update(ParameterList pl, SunflowAPI api)
+        public bool Update(ParameterList pl, SunflowAPI api)
         {
             string geometryName = pl.getstring("geometry", null);
             if (geometry == null || geometryName != null)

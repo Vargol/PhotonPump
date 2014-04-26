@@ -182,7 +182,7 @@ namespace SunflowSharp.Core.Light
             jacobian = (float)(2 * Math.PI * Math.PI) / (w * h);
         }
 
-        public bool update(ParameterList pl, SunflowAPI api)
+        public bool Update(ParameterList pl, SunflowAPI api)
         {
             Vector3 up = pl.getVector("up", null);
             Vector3 east = pl.getVector("east", null);
@@ -319,12 +319,12 @@ namespace SunflowSharp.Core.Light
                 state.setShader(this);
         }
 
-        public Color getRadiance(ShadingState state)
+        public Color GetRadiance(ShadingState state)
         {
             return getSkyRGB(basis.untransform(state.getRay().getDirection())).constrainRGB();
         }
 
-        public void scatterPhoton(ShadingState state, Color power)
+        public void ScatterPhoton(ShadingState state, Color power)
         {
             // let photon escape
         }

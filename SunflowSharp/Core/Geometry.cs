@@ -14,7 +14,7 @@ namespace SunflowSharp.Core
      * This class performs all the bookkeeping needed for on-demand tesselation and
      * acceleration structure building.
      */
-    public class Geometry : RenderObject
+    public class Geometry : IRenderObject
     {
         private ITesselatable tesselatable;
         private PrimitiveList primitives;
@@ -54,7 +54,7 @@ namespace SunflowSharp.Core
             builtTess = 1; // already tesselated
         }
 
-        public bool update(ParameterList pl, SunflowAPI api)
+        public bool Update(ParameterList pl, SunflowAPI api)
         {
             acceltype = pl.getstring("accel", acceltype);
             // clear up old tesselation if it exists
@@ -67,9 +67,9 @@ namespace SunflowSharp.Core
             accel = null;
             builtAccel = 0;
             if (tesselatable != null)
-                return tesselatable.update(pl, api);
+                return tesselatable.Update(pl, api);
             // update primitives
-            return primitives.update(pl, api);
+            return primitives.Update(pl, api);
         }
 
         public int getNumPrimitives()

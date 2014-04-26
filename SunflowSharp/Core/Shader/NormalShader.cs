@@ -8,12 +8,12 @@ namespace SunflowSharp.Core.Shader
 
     public class NormalShader : IShader
     {
-        public bool update(ParameterList pl, SunflowAPI api)
+        public bool Update(ParameterList pl, SunflowAPI api)
         {
             return true;
         }
 
-        public Color getRadiance(ShadingState state)
+        public Color GetRadiance(ShadingState state)
         {
             Vector3 n = state.getNormal();
             if (n == null)
@@ -24,7 +24,7 @@ namespace SunflowSharp.Core.Shader
             return new Color(r, g, b);
         }
 
-        public void scatterPhoton(ShadingState state, Color power)
+        public void ScatterPhoton(ShadingState state, Color power)
         {
         }
     }

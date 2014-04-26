@@ -26,7 +26,7 @@ namespace SunflowSharp.Core.Camera
             lensRotation = lensRotationRadians = 0; // this rotates polygonal lenses
         }
 
-        public bool update(ParameterList pl, SunflowAPI api)
+        public bool Update(ParameterList pl, SunflowAPI api)
         {
             // get parameters
             fov = pl.getFloat("fov", fov);
@@ -37,11 +37,11 @@ namespace SunflowSharp.Core.Camera
             lensRadius = pl.getFloat("lens.radius", lensRadius);
             lensSides = pl.getInt("lens.sides", lensSides);
             lensRotation = pl.getFloat("lens.rotation", lensRotation);
-            update();
+            Update();
             return true;
         }
 
-        private void update()
+        private void Update()
         {
             au = (float)Math.Tan(MathUtils.toRadians(fov * 0.5f)) * focusDistance;
             av = au / aspect;

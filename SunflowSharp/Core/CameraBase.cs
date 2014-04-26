@@ -11,7 +11,7 @@ namespace SunflowSharp.Core
      * camera space to world space, as well as the mounting of {@link CameraLens}
      * objects which compute the actual projection.
      */
-    public class CameraBase : RenderObject
+    public class CameraBase : IRenderObject
     {
         private CameraLens lens;
 		private float shutterOpen;
@@ -28,7 +28,7 @@ namespace SunflowSharp.Core
 			shutterOpen = shutterClose = 0;
 		}
 
-        public bool update(ParameterList pl, SunflowAPI api)
+        public bool Update(ParameterList pl, SunflowAPI api)
         {
 			shutterOpen = pl.getFloat("shutter.open", shutterOpen);
 			shutterClose = pl.getFloat("shutter.close", shutterClose);
@@ -38,7 +38,7 @@ namespace SunflowSharp.Core
 				UI.printWarning(UI.Module.CAM, "Unable to compute camera's inverse transform");
 				return false;
 			}
-            return lens.update(pl, api);
+            return lens.Update(pl, api);
         }
 
 		/**

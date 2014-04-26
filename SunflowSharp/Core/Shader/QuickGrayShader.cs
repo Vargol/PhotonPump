@@ -12,18 +12,18 @@ namespace SunflowSharp.Core.Shader
         {
         }
 
-        public bool update(ParameterList pl, SunflowAPI api)
+        public bool Update(ParameterList pl, SunflowAPI api)
         {
             return true;
         }
 
-        public Color getRadiance(ShadingState state)
+        public Color GetRadiance(ShadingState state)
         {
             if (state.getNormal() == null)
             {
                 // if this shader has been applied to an infinite instance because of shader overrides
                 // run the default shader, otherwise, just shade black
-                return state.getShader() != this ? state.getShader().getRadiance(state) : Color.BLACK;
+                return state.getShader() != this ? state.getShader().GetRadiance(state) : Color.BLACK;
             }
             // make sure we are on the right side of the material
             state.faceforward();
@@ -33,7 +33,7 @@ namespace SunflowSharp.Core.Shader
             return state.diffuse(Color.GRAY);
         }
 
-        public void scatterPhoton(ShadingState state, Color power)
+        public void ScatterPhoton(ShadingState state, Color power)
         {
             Color diffuse;
             // make sure we are on the right side of the material

@@ -156,7 +156,7 @@ namespace SunflowSharp.Gui
 
             public override Image.Color getFillColor(ShadingState state)
             {
-                return ambocc ? state.occlusion(16, 6.0f) : state.getShader().getRadiance(state);
+                return ambocc ? state.occlusion(16, 6.0f) : state.getShader().GetRadiance(state);
             }
         }
     }

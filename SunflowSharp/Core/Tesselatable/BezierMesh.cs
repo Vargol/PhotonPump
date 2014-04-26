@@ -212,12 +212,12 @@ namespace SunflowSharp.Core.Tesselatable
             if (smooth)
                 pl.addVectors("normals", ParameterList.InterpolationType.VERTEX, normals);
             PrimitiveList m = quads ? (PrimitiveList)new QuadMesh() : (PrimitiveList)new TriangleMesh();
-            m.update(pl, null);
+            m.Update(pl, null);
             pl.clear(true);
             return m;
         }
 
-        public bool update(ParameterList pl, SunflowAPI api)
+        public bool Update(ParameterList pl, SunflowAPI api)
         {
             subdivs = pl.getInt("subdivs", subdivs);
             smooth = pl.getbool("smooth", smooth);

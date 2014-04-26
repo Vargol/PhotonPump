@@ -12,7 +12,7 @@ namespace SunflowSharp.Core.Modifiers
         {
             normalMap = null;
         }
-        public bool update(ParameterList pl, SunflowAPI api)
+        public bool Update(ParameterList pl, SunflowAPI api)
         {
             string filename = pl.getstring("texture", null);
             if (filename != null)

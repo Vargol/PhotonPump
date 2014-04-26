@@ -16,7 +16,7 @@ namespace SunflowSharp.Core.Light
             power = Color.WHITE;
         }
 
-        public bool update(ParameterList pl, SunflowAPI api)
+        public bool Update(ParameterList pl, SunflowAPI api)
         {
             lightPoint = pl.getPoint("center", lightPoint);
             power = pl.getColor("power", power);

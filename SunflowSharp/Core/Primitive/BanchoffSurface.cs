@@ -6,7 +6,7 @@ namespace SunflowSharp.Core.Primitive
 {
     public class BanchoffSurface : PrimitiveList
     {
-        public bool update(ParameterList pl, SunflowAPI api)
+        public bool Update(ParameterList pl, SunflowAPI api)
         {
             return true;
         }

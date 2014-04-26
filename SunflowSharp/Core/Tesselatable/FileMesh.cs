@@ -218,14 +218,14 @@ namespace SunflowSharp.Core.Tesselatable
                 pl.addVectors("normals", ParameterList.InterpolationType.VERTEX, normals);
             }
             TriangleMesh m = new TriangleMesh();
-            if (m.update(pl, null))
+            if (m.Update(pl, null))
                 return m;
             // something failed in creating the mesh, the error message will be
             // printed by the mesh itself - no need to repeat it here
             return null;
         }
 
-        public bool update(ParameterList pl, SunflowAPI api)
+        public bool Update(ParameterList pl, SunflowAPI api)
         {
             string file = pl.getstring("filename", null);
             if (file != null)

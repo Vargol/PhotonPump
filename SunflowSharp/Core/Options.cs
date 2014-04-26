@@ -8,9 +8,9 @@ namespace SunflowSharp.Core
     /**
      * This holds rendering objects as key, value pairs.
      */
-    public class Options : ParameterList, RenderObject
+    public class Options : ParameterList, IRenderObject
     {
-        public bool update(ParameterList pl, SunflowAPI api)
+        public bool Update(ParameterList pl, SunflowAPI api)
         {
             // take all attributes, and update them into the current set
             foreach (KeyValuePair<string, Parameter> e in pl.list)

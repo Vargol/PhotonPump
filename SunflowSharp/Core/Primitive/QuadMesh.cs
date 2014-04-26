@@ -43,7 +43,7 @@ namespace SunflowSharp.Core.Primitive
             }
         }
 
-        public bool update(ParameterList pl, SunflowAPI api)
+        public bool Update(ParameterList pl, SunflowAPI api)
         {
             {
                 int[] quads1 = pl.getIntArray("quads");

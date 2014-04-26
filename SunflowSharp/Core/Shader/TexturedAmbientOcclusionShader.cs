@@ -14,12 +14,12 @@ namespace SunflowSharp.Core.Shader
             tex = null;
         }
 
-        public override bool update(ParameterList pl, SunflowAPI api)
+        public override bool Update(ParameterList pl, SunflowAPI api)
         {
             string filename = pl.getstring("texture", null);
             if (filename != null)
                 tex = TextureCache.getTexture(api.resolveTextureFilename(filename), false);
-            return tex != null && base.update(pl, api);
+            return tex != null && base.Update(pl, api);
         }
 
         public override Color getBrightColor(ShadingState state)

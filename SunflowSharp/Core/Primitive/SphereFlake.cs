@@ -51,7 +51,7 @@ namespace SunflowSharp.Core.Primitive
 			}
 		}
 		
-		public bool update(ParameterList pl, SunflowAPI api) {
+		public bool Update(ParameterList pl, SunflowAPI api) {
 			level = MathUtils.clamp(pl.getInt("level", level), 0, 20);
 			axis = pl.getVector("axis", axis);
 			axis.normalize();

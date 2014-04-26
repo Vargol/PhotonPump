@@ -21,7 +21,7 @@ namespace SunflowSharp.Core.Shader
             numRays = 4;
         }
 
-        public virtual bool update(ParameterList pl, SunflowAPI api)
+        public virtual bool Update(ParameterList pl, SunflowAPI api)
         {
             diff = pl.getColor("diffuse", diff);
             spec = pl.getColor("specular", spec);
@@ -35,7 +35,7 @@ namespace SunflowSharp.Core.Shader
             return diff;
         }
 
-        public Color getRadiance(ShadingState state)
+        public Color GetRadiance(ShadingState state)
         {
             // make sure we are on the right side of the material
             state.faceforward();
@@ -46,7 +46,7 @@ namespace SunflowSharp.Core.Shader
             return state.diffuse(getDiffuse(state)).add(state.specularPhong(spec, power, numRays));
         }
 
-        public void scatterPhoton(ShadingState state, Color power)
+        public void ScatterPhoton(ShadingState state, Color power)
         {
             // make sure we are on the right side of the material
             state.faceforward();

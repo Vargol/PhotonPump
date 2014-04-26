@@ -48,7 +48,7 @@ namespace SunflowSharp.Core.Gi
                 {
                     temp.getInstance().prepareShadingState(temp);
                     if (temp.getShader() != null)
-                        irr.add(temp.getShader().getRadiance(temp));
+                        irr.add(temp.getShader().GetRadiance(temp));
                 }
             }
             irr.mul((float)Math.PI / n);

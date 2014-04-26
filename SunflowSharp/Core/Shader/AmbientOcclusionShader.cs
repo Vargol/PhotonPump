@@ -26,7 +26,7 @@ namespace SunflowSharp.Core.Shader
             maxDist = d;
         }
 
-        public virtual bool update(ParameterList pl, SunflowAPI api)
+        public virtual bool Update(ParameterList pl, SunflowAPI api)
         {
             bright = pl.getColor("bright", bright);
             dark = pl.getColor("dark", dark);
@@ -42,12 +42,12 @@ namespace SunflowSharp.Core.Shader
             return bright;
         }
 
-        public Color getRadiance(ShadingState state)
+        public Color GetRadiance(ShadingState state)
         {
             return state.occlusion(samples, maxDist, getBrightColor(state), dark);
         }
 
-        public void scatterPhoton(ShadingState state, Color power)
+        public void ScatterPhoton(ShadingState state, Color power)
         {
         }
     }

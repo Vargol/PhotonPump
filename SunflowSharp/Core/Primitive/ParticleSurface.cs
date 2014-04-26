@@ -86,7 +86,7 @@ namespace SunflowSharp.Core.Primitive
             state.setBasis(OrthoNormalBasis.makeFromW(state.getNormal()));
         }
 
-        public bool update(ParameterList pl, SunflowAPI api)
+        public bool Update(ParameterList pl, SunflowAPI api)
         {
             ParameterList.FloatParameter p = pl.getPointArray("particles");
             if (p != null)

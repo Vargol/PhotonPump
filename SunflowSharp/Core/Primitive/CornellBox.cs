@@ -58,7 +58,7 @@ namespace SunflowSharp.Core.Primitive
             area = (lxmax - lxmin) * (lymax - lymin);
         }
 
-        public bool update(ParameterList pl, SunflowAPI api)
+        public bool Update(ParameterList pl, SunflowAPI api)
         {
             Point3 corner0 = pl.getPoint("corner0", null);
             Point3 corner1 = pl.getPoint("corner1", null);
@@ -288,7 +288,7 @@ namespace SunflowSharp.Core.Primitive
             }
         }
 
-        public Color getRadiance(ShadingState state)
+        public Color GetRadiance(ShadingState state)
         {
             int side = state.getPrimitiveID();
             Color kd = null;
@@ -325,7 +325,7 @@ namespace SunflowSharp.Core.Primitive
             return state.diffuse(kd);
         }
 
-        public void scatterPhoton(ShadingState state, Color power)
+        public void ScatterPhoton(ShadingState state, Color power)
         {
             int side = state.getPrimitiveID();
             Color kd = null;

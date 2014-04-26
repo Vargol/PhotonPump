@@ -53,7 +53,7 @@ namespace SunflowSharp.Core.Gi
             if (globalPhotonMap == null)
             {
                 if (state.getShader() != null)
-                    return state.getShader().getRadiance(state);
+                    return state.getShader().GetRadiance(state);
                 else
                     return Color.BLACK;
             }

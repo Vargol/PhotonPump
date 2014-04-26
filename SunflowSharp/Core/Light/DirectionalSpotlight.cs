@@ -25,7 +25,7 @@ namespace SunflowSharp.Core.Light
             radiance = Color.WHITE;
         }
 
-        public bool update(ParameterList pl, SunflowAPI api)
+        public bool Update(ParameterList pl, SunflowAPI api)
         {
             src = pl.getPoint("source", src);
             dir = pl.getVector("dir", dir);

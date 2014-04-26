@@ -132,7 +132,7 @@ namespace SunflowSharp.Core.Gi
                             float g = (cosTheta * cosThetaY) / r2;
                             // was this path accounted for yet?
                             if (g > b)
-                                irr.madd(scale * (g - b) / g, temp.getShader().getRadiance(temp));
+                                irr.madd(scale * (g - b) / g, temp.getShader().GetRadiance(temp));
                         }
                     }
                 }

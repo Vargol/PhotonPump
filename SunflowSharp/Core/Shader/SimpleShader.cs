@@ -7,17 +7,17 @@ namespace SunflowSharp.Core.Shader
 
     public class SimpleShader : IShader
     {
-        public bool update(ParameterList pl, SunflowAPI api)
+        public bool Update(ParameterList pl, SunflowAPI api)
         {
             return true;
         }
 
-        public Color getRadiance(ShadingState state)
+        public Color GetRadiance(ShadingState state)
         {
             return new Color(Math.Abs(state.getRay().dot(state.getNormal())));
         }
 
-        public void scatterPhoton(ShadingState state, Color power)
+        public void ScatterPhoton(ShadingState state, Color power)
         {
         }
     }

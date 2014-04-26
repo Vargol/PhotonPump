@@ -21,11 +21,11 @@ namespace SunflowSharp.Core.Light
             numSamples = 4;
         }
 
-        public override bool update(ParameterList pl, SunflowAPI api)
+        public override bool Update(ParameterList pl, SunflowAPI api)
         {
             radiance = pl.getColor("radiance", radiance);
             numSamples = pl.getInt("samples", numSamples);
-			if (base.update(pl, api)) {
+			if (base.Update(pl, api)) {
 				// precompute triangle areas and normals
 				areas = new float[getNumPrimitives()];
 				ngs = new Vector3[getNumPrimitives()];
@@ -87,7 +87,7 @@ namespace SunflowSharp.Core.Light
 			return true;
 		}
 
-		public Color getRadiance(ShadingState state) {
+		public Color GetRadiance(ShadingState state) {
 			if (!state.includeLights)
 				return Color.BLACK;
 			state.faceforward();
@@ -95,7 +95,7 @@ namespace SunflowSharp.Core.Light
 			return state.isBehind() ? Color.BLACK : radiance;
 		}
 		
-		public void scatterPhoton(ShadingState state, Color power) {
+		public void ScatterPhoton(ShadingState state, Color power) {
 			// do not scatter photons
 		}
 		

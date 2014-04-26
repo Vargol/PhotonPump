@@ -26,7 +26,7 @@ namespace SunflowSharp.Core.Shader
             numSamples = 4;
         }
 
-        public bool update(ParameterList pl, SunflowAPI api)
+        public bool Update(ParameterList pl, SunflowAPI api)
         {
             diff = pl.getColor("diffuse", diff);
             spec = pl.getColor("specular", spec);
@@ -54,7 +54,7 @@ namespace SunflowSharp.Core.Shader
             return specmap == null ? spec : Color.blend(spec, specmap.getPixel(state.getUV().x, state.getUV().y), specBlend);
         }
 
-        public Color getRadiance(ShadingState state)
+        public Color GetRadiance(ShadingState state)
         {
             // make sure we are on the right side of the material
             state.faceforward();
@@ -90,7 +90,7 @@ namespace SunflowSharp.Core.Shader
                 return lr.add(state.specularPhong(getSpecular(state), 2 / glossyness, numSamples));
         }
 
-        public void scatterPhoton(ShadingState state, Color power)
+        public void ScatterPhoton(ShadingState state, Color power)
         {
             Color diffuse, specular;
             // make sure we are on the right side of the material

@@ -22,7 +22,7 @@ namespace SunflowSharp.Core.Shader
             absorptionColor = Color.GRAY; // 50% absorption
         }
 
-        public bool update(ParameterList pl, SunflowAPI api)
+        public bool Update(ParameterList pl, SunflowAPI api)
         {
             color = pl.getColor("color", color);
             eta = pl.getFloat("eta", eta);
@@ -33,7 +33,7 @@ namespace SunflowSharp.Core.Shader
             return true;
         }
 
-        public Color getRadiance(ShadingState state)
+        public Color GetRadiance(ShadingState state)
         {
             if (!state.includeSpecular)
                 return Color.BLACK;
@@ -91,7 +91,7 @@ namespace SunflowSharp.Core.Shader
             return absorption != null ? ret.mul(absorption) : ret;
         }
 
-        public void scatterPhoton(ShadingState state, Color power)
+        public void ScatterPhoton(ShadingState state, Color power)
         {
             Color refr = Color.mul(1 - f0, color);
             Color refl = Color.mul(f0, color);

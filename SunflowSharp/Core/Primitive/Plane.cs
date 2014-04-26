@@ -22,7 +22,7 @@ namespace SunflowSharp.Core.Primitive
             cnu = cnv = cnd = 0;
         }
 
-        public bool update(ParameterList pl, SunflowAPI api)
+        public bool Update(ParameterList pl, SunflowAPI api)
         {
             center = pl.getPoint("center", center);
             Point3 b = pl.getPoint("point1", null);

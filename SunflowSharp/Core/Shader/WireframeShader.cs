@@ -23,7 +23,7 @@ namespace SunflowSharp.Core.Shader
             cosWidth = (float)Math.Cos(width);
         }
 
-        public bool update(ParameterList pl, SunflowAPI api)
+        public bool Update(ParameterList pl, SunflowAPI api)
         {
             lineColor = pl.getColor("line", lineColor);
             fillColor = pl.getColor("fill", fillColor);
@@ -42,7 +42,7 @@ namespace SunflowSharp.Core.Shader
             return lineColor;
         }
 
-        public Color getRadiance(ShadingState state)
+        public Color GetRadiance(ShadingState state)
         {
             Point3[] p = new Point3[3];
             if (!state.getTrianglePoints(p))
@@ -75,7 +75,7 @@ namespace SunflowSharp.Core.Shader
             return getFillColor(state);
         }
 
-        public void scatterPhoton(ShadingState state, Color power)
+        public void ScatterPhoton(ShadingState state, Color power)
         {
         }
     }

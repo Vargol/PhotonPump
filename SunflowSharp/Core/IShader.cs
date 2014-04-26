@@ -7,7 +7,7 @@ namespace SunflowSharp.Core
 /**
  * A shader represents a particular light-surface interaction.
  */
-    public interface IShader : RenderObject
+    public interface IShader : IRenderObject
     {
         /**
          * Gets the radiance for a specified rendering state. When this method is
@@ -17,7 +17,7 @@ namespace SunflowSharp.Core
          * @param state current render state
          * @return color emitted or reflected by the shader
          */
-        Color getRadiance(ShadingState state);
+        Color GetRadiance(ShadingState state);
 
         /**
          * Scatter a photon with the specied power. Incoming photon direction is
@@ -28,6 +28,6 @@ namespace SunflowSharp.Core
          * @param state current state
          * @param power power of the incoming photon.
          */
-        void scatterPhoton(ShadingState state, Color power);
+        void ScatterPhoton(ShadingState state, Color power);
     }
 }

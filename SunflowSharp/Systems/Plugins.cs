@@ -147,9 +147,10 @@ namespace SunflowSharp.Systems
 			Type compiledType = null;
 
 
-			foreach (Type tmp in results.CompiledAssembly.GetTypes()) {
-				foreach (Type interfaceType in tmp.GetInterfaces()) {
-					Console.WriteLine(interfaceType.ToString());
+			foreach (Type tmp in results.CompiledAssembly.GetTypes()) 
+			{
+				foreach (Type interfaceType in tmp.GetInterfaces()) 
+				{
 					if (interfaceType == typeof(T))
 						compiledType = tmp;
 				}

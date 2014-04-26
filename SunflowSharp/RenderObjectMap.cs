@@ -287,7 +287,7 @@ namespace SunflowSharp
 
         public class RenderObjectHandle
         {
-            public RenderObject obj;
+            public IRenderObject obj;
             public RenderObjectType type;
 
             public RenderObjectHandle(IShader shader)
@@ -340,7 +340,7 @@ namespace SunflowSharp
 
             public bool update(ParameterList pl, SunflowAPI api)
             {
-                return obj.update(pl, api);
+                return obj.Update(pl, api);
             }
 
             public string typeName()

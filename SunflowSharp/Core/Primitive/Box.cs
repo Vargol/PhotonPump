@@ -16,7 +16,7 @@ namespace SunflowSharp.Core.Primitive
             maxX = maxY = maxZ = +1;
         }
 
-        public bool update(ParameterList pl, SunflowAPI api)
+        public bool Update(ParameterList pl, SunflowAPI api)
         {
             ParameterList.FloatParameter pts = pl.getPointArray("points");
             if (pts != null)

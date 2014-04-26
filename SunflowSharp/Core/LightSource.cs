@@ -8,7 +8,7 @@ namespace SunflowSharp.Core
      * This interface is used to represent any light emitting primitive. It permits
      * efficient sampling of direct illumination and photon shooting.
      */
-    public interface LightSource : RenderObject
+    public interface LightSource : IRenderObject
     {
         /**
          * Get the maximum number of samples that can be taken from this light

@@ -54,7 +54,7 @@ namespace SunflowSharp.Core.Primitive
             }
         }
 
-        public virtual bool update(ParameterList pl, SunflowAPI api)
+        public virtual bool Update(ParameterList pl, SunflowAPI api)
         {
             bool updatedTopology = false;
             {
@@ -866,7 +866,7 @@ namespace SunflowSharp.Core.Primitive
                 state.setShader(parent.getShader(shaderIndex));
             }
 
-            public bool update(ParameterList pl, SunflowAPI api)
+            public bool Update(ParameterList pl, SunflowAPI api)
             {
                 return true;
             }

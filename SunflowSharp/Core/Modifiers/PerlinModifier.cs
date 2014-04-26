@@ -10,7 +10,7 @@ namespace SunflowSharp.Core.Modifiers {
 		private float scale = 50;
 		private float size = 1;
 
-		public bool update(ParameterList pl, SunflowAPI api) {
+		public bool Update(ParameterList pl, SunflowAPI api) {
 			function = pl.getInt("function", function);
 			size = pl.getFloat("size", size);
 			scale = pl.getFloat("scale", scale);

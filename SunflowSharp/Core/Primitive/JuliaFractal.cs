@@ -241,7 +241,7 @@ namespace SunflowSharp.Core.Primitive
             return (float)Math.Sqrt(w * w + x * x + y * y + z * z);
         }
 
-        public bool update(ParameterList pl, SunflowAPI api)
+        public bool Update(ParameterList pl, SunflowAPI api)
         {
             maxIterations = pl.getInt("iterations", maxIterations);
             epsilon = pl.getFloat("epsilon", epsilon);

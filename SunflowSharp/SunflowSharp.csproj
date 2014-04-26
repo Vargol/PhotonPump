@@ -137,7 +137,6 @@
     <Compile Include="Core\Renderer\BucketRenderer.cs" />
     <Compile Include="Core\Renderer\ProgressiveRenderer.cs" />
     <Compile Include="Core\Renderer\SimpleRenderer.cs" />
-    <Compile Include="Core\RenderObject.cs" />
     <Compile Include="Core\Scene.cs" />
     <Compile Include="Core\SceneParser.cs" />
     <Compile Include="Core\Shader\AmbientOcclusionShader.cs" />
@@ -246,6 +245,7 @@
     <Compile Include="Core\Statistics.cs" />
     <Compile Include="Core\Renderer\MultipassRenderer.cs" />
     <Compile Include="Core\Filter\CubicBSpline.cs" />
+    <Compile Include="Core\IRenderObject.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

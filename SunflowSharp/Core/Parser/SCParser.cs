@@ -676,7 +676,7 @@ namespace SunflowSharp.Core.Parser
                 api.parameter("color", null,  parseColor().getRGB());
                 api.shader(name, "constant");
             }
-            else if (p.peekNextToken("janino"))
+            else if (p.peekNextToken("csharp"))
             {
 				String typename = p.peekNextToken("typename") ? p.getNextToken() : PluginRegistry.shaderPlugins.generateUniqueName("janino_shader");
 				if (!PluginRegistry.shaderPlugins.registerPlugin(typename, p.getNextCodeBlock()))

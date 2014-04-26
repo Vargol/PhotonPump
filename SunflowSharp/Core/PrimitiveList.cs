@@ -7,7 +7,7 @@ namespace SunflowSharp.Core
     /**
      * This class represents an object made up of many primitives.
      */
-    public interface PrimitiveList : RenderObject
+    public interface PrimitiveList : IRenderObject
     {
         /**
          * Compute a bounding box of this object in world space, using the specified

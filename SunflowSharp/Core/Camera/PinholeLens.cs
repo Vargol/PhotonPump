@@ -15,21 +15,21 @@ namespace SunflowSharp.Core.Camera
             fov = 90;
             aspect = 1;
 			shiftX = shiftY = 0;
-            update();
+            Update();
         }
 
-        public bool update(ParameterList pl, SunflowAPI api)
+        public bool Update(ParameterList pl, SunflowAPI api)
         {
             // get parameters
             fov = pl.getFloat("fov", fov);
             aspect = pl.getFloat("aspect", aspect);
 			shiftX = pl.getFloat("shift.x", shiftX);
 			shiftY = pl.getFloat("shift.y", shiftY);
-            update();
+            Update();
             return true;
         }
 
-        private void update()
+        private void Update()
         {
             au = (float)Math.Tan(MathUtils.toRadians(fov * 0.5f));
             av = au / aspect;

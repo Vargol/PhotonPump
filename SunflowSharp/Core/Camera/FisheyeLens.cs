@@ -5,7 +5,7 @@ namespace SunflowSharp.Core.Camera
 {
     public class FisheyeLens : CameraLens
     {
-        public bool update(ParameterList pl, SunflowAPI api)
+        public bool Update(ParameterList pl, SunflowAPI api)
         {
             return true;
         }

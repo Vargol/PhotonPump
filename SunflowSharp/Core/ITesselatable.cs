@@ -9,7 +9,7 @@ namespace SunflowSharp.Core
      * Represents an object which can be tesselated into a list of primitives such
      * as a {@link TriangleMesh}.
      */
-    public interface ITesselatable : RenderObject
+    public interface ITesselatable : IRenderObject
     {
         /**
          * Tesselate this object into a {@link PrimitiveList}. This may return

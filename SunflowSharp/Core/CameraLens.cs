@@ -7,7 +7,7 @@ namespace SunflowSharp.Core
      * Represents a mapping from the 3D scene onto the image. A camera lens is
      * responsible for determining what ray to cast through each pixel.
      */
-    public interface CameraLens : RenderObject
+    public interface CameraLens : IRenderObject
     {
         /**
          * Create a new {@link Ray ray}to be cast through pixel (x,y) on the image

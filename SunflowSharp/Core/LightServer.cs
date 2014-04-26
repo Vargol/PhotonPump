@@ -245,7 +245,7 @@ namespace SunflowSharp.Core
             IShader shader = getPhotonShader(state);
             // scatter photon
             if (shader != null)
-                shader.scatterPhoton(state, power);
+                shader.ScatterPhoton(state, power);
         }
 
         public void traceDiffusePhoton(ShadingState previous, Ray r, Color power)
@@ -319,7 +319,7 @@ namespace SunflowSharp.Core
 						return state;
 					}
 				}
-				state.setResult(shader.getRadiance(state));
+				state.setResult(shader.GetRadiance(state));
 				if (cache != null)
 					cache.add(state, shader, state.getResult());
 				checkNanInf(state.getResult());
@@ -339,7 +339,7 @@ namespace SunflowSharp.Core
         {
             IShader shader = getShader(state);
             if (shader != null)
-                state.setResult(shader.getRadiance(state));
+                state.setResult(shader.GetRadiance(state));
             else
                 state.setResult(Color.BLACK);
         }
@@ -348,7 +348,7 @@ namespace SunflowSharp.Core
         {
             state.getInstance().prepareShadingState(state);
             IShader shader = getShader(state);
-            return (shader != null) ? shader.getRadiance(state) : Color.BLACK;
+            return (shader != null) ? shader.GetRadiance(state) : Color.BLACK;
         }
 	
         public Color traceGlossy(ShadingState previous, Ray r, int i)

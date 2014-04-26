@@ -13,7 +13,7 @@ using SunflowSharp.Maths;
 namespace SunflowSharp.Core.Primitive
 {
 	public class Cylinder : PrimitiveList {
-		public bool update(ParameterList pl, SunflowAPI api) {
+		public bool Update(ParameterList pl, SunflowAPI api) {
 			return true;
 		}
 		

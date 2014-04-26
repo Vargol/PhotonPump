@@ -8,7 +8,7 @@ namespace SunflowSharp.Core
      * shading and can modify the shading state in arbitrary ways to provide effects
      * such as bump mapping.
      */
-    public interface Modifier : RenderObject
+    public interface Modifier : IRenderObject
     {
 
         /**

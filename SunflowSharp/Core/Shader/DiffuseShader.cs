@@ -14,7 +14,7 @@ namespace SunflowSharp.Core.Shader
             diff = Color.WHITE;
         }
 
-        public virtual bool update(ParameterList pl, SunflowAPI api)
+        public virtual bool Update(ParameterList pl, SunflowAPI api)
         {
             diff = pl.getColor("diffuse", diff);
             return true;
@@ -25,7 +25,7 @@ namespace SunflowSharp.Core.Shader
 			return diff;
         }
 
-        public Color getRadiance(ShadingState state)
+        public Color GetRadiance(ShadingState state)
         {
             // make sure we are on the right side of the material
             state.faceforward();
@@ -35,7 +35,7 @@ namespace SunflowSharp.Core.Shader
             return state.diffuse(getDiffuse(state));
         }
 
-        public void scatterPhoton(ShadingState state, Color power)
+        public void ScatterPhoton(ShadingState state, Color power)
         {
             Color diffuse;
             // make sure we are on the right side of the material
