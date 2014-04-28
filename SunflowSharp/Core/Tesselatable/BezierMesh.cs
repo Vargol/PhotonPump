@@ -13,10 +13,8 @@ namespace SunflowSharp.Core.Tesselatable
         private bool quads;
         protected float[][] patches;
 
-        public BezierMesh()
-        {
-            
-        }
+		public BezierMesh() : this(null) {
+		}
 
         public BezierMesh(float[][] patches)
         {
@@ -219,7 +217,13 @@ namespace SunflowSharp.Core.Tesselatable
 
         public bool Update(ParameterList pl, SunflowAPI api)
         {
-            subdivs = pl.getInt("subdivs", subdivs);
+            
+			Console.WriteLine("subdivs {0}", subdivs);
+
+			subdivs = pl.getInt("subdivs", subdivs);
+
+			Console.WriteLine("subdivs {0}", subdivs);
+
             smooth = pl.getbool("smooth", smooth);
             quads = pl.getbool("quads", quads);
             int nu = pl.getInt("nu", 0);

@@ -10,6 +10,20 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0BD12596-7BE0-4616-A8E5-3A7EE12968AB}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
+		examples\aliens_shiny.sc.gz = examples\aliens_shiny.sc.gz
+		examples\bump_demo.sc.gz = examples\bump_demo.sc.gz
+		examples\bunny_ibl.sc.gz = examples\bunny_ibl.sc.gz
+		examples\cornell_box_jensen.sc.gz = examples\cornell_box_jensen.sc.gz
+		examples\gumbo_and_teapot.sc.gz = examples\gumbo_and_teapot.sc.gz
+		examples\julia.sc.gz = examples\julia.sc.gz
+		examples\sky_small.hdr = examples\sky_small.hdr
+		examples\sphereflake.sc = examples\sphereflake.sc
+		examples\textures\brick_color.jpg = examples\textures\brick_color.jpg
+		examples\textures\brick_normal.jpg = examples\textures\brick_normal.jpg
+		examples\textures\dirty_bump.jpg = examples\textures\dirty_bump.jpg
+		examples\textures\reptileskin_bump.png = examples\textures\reptileskin_bump.png
+		examples\textures\shiphull_bump.png = examples\textures\shiphull_bump.png
+		examples\textures\slime_bump.jpg = examples\textures\slime_bump.jpg
 	EndProjectSection
 EndProject
 Global
