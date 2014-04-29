@@ -192,7 +192,8 @@ namespace SunflowSharp.Core.Renderer
 
             public void run()
             {
-                while (true)
+				ByteUtil.InitByteUtil();
+				while (true)
                 {
                     int bx, by;
                     lock (renderer)//synchronized (renderer) {

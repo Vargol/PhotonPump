@@ -52,7 +52,7 @@ namespace SunflowSharp.Test
 //            parameter("aa.max", 2);
 //            parameter("filter", "catmull-rom");//catmull-rom, blackman-harris
 //			parameter("sampler", "bucket");//ipr or fast or bucket
-//			parameter ("threads", 2);
+			parameter ("threads", 2);
             options(DEFAULT_OPTIONS);
         }
     }

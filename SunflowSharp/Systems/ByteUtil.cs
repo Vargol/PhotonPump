@@ -5,8 +5,28 @@ namespace SunflowSharp.Systems
 {
     public class ByteUtil
     {
-      //  private static BitMem bitMem = new BitMem();
-		private static BitMem bitMem = new BitMem();
+     
+		[ThreadStatic] 
+		private static BitMem bitMem;
+
+       [StructLayout(LayoutKind.Explicit)]
+        public class BitMem
+        {
+            [FieldOffset(0)]
+            public float f;
+            [FieldOffset(0)]
+            public int i;
+        }
+
+		/**
+         * ThreadStatic variables only get initialized for the first thread if
+         * created in the class body. This function should be called once from each thread
+         * so each has thread creates its own static BitMem instance.
+         */
+	    public static void InitByteUtil (){
+			bitMem = new BitMem();
+		}
+
 
         public static byte[] get2Bytes(int i)
         {
@@ -143,31 +163,24 @@ namespace SunflowSharp.Systems
             }
         }
 
-        [StructLayout(LayoutKind.Explicit)]
-        public class BitMem
-        {
-            [FieldOffset(0)]
-            public float f;
-            [FieldOffset(0)]
-            public int i;
-        }
-
         public static int floatToRawIntBits(float f)
         {
 //			lock(bitMem) {
-//			bitMem.f = f;
-  //          return bitMem.i;
+//			if (bitMem == null) bitMem = new BitMem();
+			bitMem.f = f;
+            return bitMem.i;
 	//		}
-			return BitConverter.ToInt32 (BitConverter.GetBytes (f), 0);
+//			return BitConverter.ToInt32 (BitConverter.GetBytes (f), 0);
         }
 
         public static float intBitsToFloat(int i)
         {
 //			lock(bitMem) {
-//				bitMem.i = i;
-//	            return bitMem.f;
+//			if (bitMem == null) bitMem = new BitMem();
+			bitMem.i = i;
+	        return bitMem.f;
 //			}
-			return BitConverter.ToSingle(BitConverter.GetBytes(i), 0);
+//			return BitConverter.ToSingle(BitConverter.GetBytes(i), 0);
         }
     }
 }

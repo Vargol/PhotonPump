@@ -96,7 +96,8 @@ namespace SunflowSharp.Core.Renderer
 
             public void run()
             {
-                while (true)
+				ByteUtil.InitByteUtil();
+				while (true)
                 {
                     int n = renderer.progressiveRenderNext(istate);
                     lock (renderer)// synchronized (ProgressiveRenderer.this) {
