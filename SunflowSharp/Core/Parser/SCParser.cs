@@ -997,14 +997,17 @@ namespace SunflowSharp.Core.Parser
                 api.parameter("points", "point", "vertex", parseFloatArray(p.getNextInt()));
                 api.geometry(name, "hair");
             }
-            else if (type == "janino-tesselatable")
+            else if (type == "csharp-tesselatable")
             {
                 UI.printInfo(UI.Module.API, "Reading procedural primitive: {0} ... ", name);
-                string code = p.getNextCodeBlock();
+				string code = p.getNextCodeBlock();
                 try
                 {
-//                    ITesselatable tess = null;//fixme:(Tesselatable) ClassBodyEvaluator.createFastClassBodyEvaluator(new Scanner(null, new stringReader(code)), Tesselatable.class, ClassLoader.getSystemClassLoader());
-//                    api.geometry(name, tess);
+					String typename = p.peekNextToken("typename") ? p.getNextToken() : PluginRegistry.tesselatablePlugins.generateUniqueName(name);
+					if (!PluginRegistry.tesselatablePlugins.registerPlugin(typename, code))
+						return;
+					api.geometry(name, typename);
+
                 }
                 catch (Exception e)
                 {
