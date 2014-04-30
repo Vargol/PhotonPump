@@ -35,13 +35,15 @@ namespace SunflowSharp.Image.Writers
 			color = ColorEncoder.unlinearize(color); // gamma correction
 			byte[] tileData = ColorEncoder.quantizeRGBA8(color, alpha);
 
-			for (int j = 0, index = 0; j < h; j++) {
-				for (int i = 0; i < w; i++, index += 4) {
-					data.SetPixel(x + i, y + j, System.Drawing.Color.FromArgb(tileData[index + 3], 
-					                                                          tileData[index], 
-					                                                          tileData[index + 1], 
-					                                                          tileData[index + 2]));
+			lock(data) {
+				for (int j = 0, index = 0; j < h; j++) {
+					for (int i = 0; i < w; i++, index += 4) {
+						data.SetPixel(x + i, y + j, System.Drawing.Color.FromArgb(tileData[index + 3], 
+						                                                          tileData[index], 
+						                                                          tileData[index + 1], 
+						                                                          tileData[index + 2]));
 
+					}
 				}
 			}
 		}
