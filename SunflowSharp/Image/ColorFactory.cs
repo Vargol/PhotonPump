@@ -77,7 +77,7 @@ namespace SunflowSharp.Image
 
 			int required = getRequiredDataValues(colorspace);
 			if (required == -2)
-				throw new ColorSpecificationException("unknown colorspace %s");
+				throw new ColorSpecificationException(string.Format("unknown colorspace {0}", colorspace));
 			if (required != -1 && required != data.Length)
 				throw new ColorSpecificationException(required, data.Length);
 			if (colorspace == null)
@@ -104,7 +104,7 @@ namespace SunflowSharp.Image
 					throw new ColorSpecificationException(string.Format("unable to parse spectrum wavelength range: {0}", e.Message));
 				}
 			}
-			throw new ColorSpecificationException(string.Format("Inconsistent code! Please report this error. (Input %s - %d)", colorspace, data.Length));
+			throw new ColorSpecificationException(string.Format("Inconsistent code! Please report this error. (Input {0} - {1})", colorspace, data.Length));
 		}
 		
 

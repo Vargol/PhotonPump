@@ -75,12 +75,12 @@ namespace SunflowSharp
             URL imageURL = getResource(string.Format("/resources/golden_{0}.png", resolution));//fixme: add padding zeros
             if (imageURL == null)
                 UI.printError(UI.Module.BENCH, "Unable to find reference frame!");
-            UI.printInfo(UI.Module.BENCH, "Loading reference image from: %s", imageURL);
+			UI.printInfo(UI.Module.BENCH, "Loading reference image from: {0}", imageURL);
             try
             {
                 BufferedImage bi = ImageIO.read(imageURL);
                 if (bi.getWidth() != resolution || bi.getHeight() != resolution)
-                    UI.printError(UI.Module.BENCH, "Reference image has invalid resolution! Expected %dx%d found %dx%d", resolution, resolution, bi.getWidth(), bi.getHeight());
+					UI.printError(UI.Module.BENCH, "Reference image has invalid resolution! Expected {0}x{1} found {2}x{3}", resolution, resolution, bi.getWidth(), bi.getHeight());
                 referenceImage = new int[resolution * resolution];
                 for (int y = 0, i = 0; y < resolution; y++)
                     for (int x = 0; x < resolution; x++, i++)
@@ -240,7 +240,7 @@ namespace SunflowSharp
                     diff += Math.Abs(((validationImage[i] >> 16) & 0xFF) - ((referenceImage[i] >> 16) & 0xFF));
                 }
                 if (diff > errorThreshold)
-                    UI.printError(UI.Module.BENCH, "Image check failed! - #errors: %d", diff);
+					UI.printError(UI.Module.BENCH, "Image check failed! - #errors: {0}", diff);
                 else
                     UI.printInfo(UI.Module.BENCH, "Image check passed!");
             }

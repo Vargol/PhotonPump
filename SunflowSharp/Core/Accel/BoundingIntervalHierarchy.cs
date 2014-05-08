@@ -40,10 +40,10 @@ namespace SunflowSharp.Core.Accel
             tree = tempTree.ToArray();
             // display stats
             stats.printStats();
-            UI.printDetailed(UI.Module.ACCEL, "  * Creation time:  %s", t);
-            UI.printDetailed(UI.Module.ACCEL, "  * Usage of init:  %{0,9:0.00)%", (double)(100 * tree.Length) / initialSize);
-            UI.printDetailed(UI.Module.ACCEL, "  * Tree memory:    %s", Memory.SizeOf(tree));
-            UI.printDetailed(UI.Module.ACCEL, "  * Indices memory: %s", Memory.SizeOf(objects));
+			UI.printDetailed(UI.Module.ACCEL, "  * Creation time:  {0}", t);
+			UI.printDetailed(UI.Module.ACCEL, "  * Usage of init:  {0,9:0.00}%", (double)(100 * tree.Length) / initialSize);
+			UI.printDetailed(UI.Module.ACCEL, "  * Tree memory:    {0}", Memory.SizeOf(tree));
+			UI.printDetailed(UI.Module.ACCEL, "  * Indices memory: {0}", Memory.SizeOf(objects));
         }
 
         public class BuildStats
@@ -127,22 +127,22 @@ namespace SunflowSharp.Core.Accel
             public void printStats()
             {
                 UI.printDetailed(UI.Module.ACCEL, "Tree stats:");
-                UI.printDetailed(UI.Module.ACCEL, "  * Nodes:          %d", numNodes);
-                UI.printDetailed(UI.Module.ACCEL, "  * Leaves:         %d", numLeaves);
-                UI.printDetailed(UI.Module.ACCEL, "  * Objects: min    %d", minObjects);
-                UI.printDetailed(UI.Module.ACCEL, "             avg    %.2f", (float)sumObjects / numLeaves);
-                UI.printDetailed(UI.Module.ACCEL, "           avg(n>0) %.2f", (float)sumObjects / (numLeaves - numLeaves0));
-                UI.printDetailed(UI.Module.ACCEL, "             max    %d", maxObjects);
-                UI.printDetailed(UI.Module.ACCEL, "  * Depth:   min    %d", minDepth);
-                UI.printDetailed(UI.Module.ACCEL, "             avg    %.2f", (float)sumDepth / numLeaves);
-                UI.printDetailed(UI.Module.ACCEL, "             max    %d", maxDepth);
-                UI.printDetailed(UI.Module.ACCEL, "  * Leaves w/: N=0  %3d%%", 100 * numLeaves0 / numLeaves);
-                UI.printDetailed(UI.Module.ACCEL, "               N=1  %3d%%", 100 * numLeaves1 / numLeaves);
-                UI.printDetailed(UI.Module.ACCEL, "               N=2  %3d%%", 100 * numLeaves2 / numLeaves);
-                UI.printDetailed(UI.Module.ACCEL, "               N=3  %3d%%", 100 * numLeaves3 / numLeaves);
-                UI.printDetailed(UI.Module.ACCEL, "               N=4  %3d%%", 100 * numLeaves4 / numLeaves);
-                UI.printDetailed(UI.Module.ACCEL, "               N>4  %3d%%", 100 * numLeaves4p / numLeaves);
-                UI.printDetailed(UI.Module.ACCEL, "  * BVH2 nodes:     %d (%3d%%)", numBVH2, 100 * numBVH2 / (numNodes + numLeaves - 2 * numBVH2));
+				UI.printDetailed(UI.Module.ACCEL, "  * Nodes:          {0}", numNodes);
+				UI.printDetailed(UI.Module.ACCEL, "  * Leaves:         {0}", numLeaves);
+				UI.printDetailed(UI.Module.ACCEL, "  * Objects: min    {0}", minObjects);
+				UI.printDetailed(UI.Module.ACCEL, "             avg    {0,6:0.00}", (float)sumObjects / numLeaves);
+				UI.printDetailed(UI.Module.ACCEL, "           avg(n>0) {0,6:0.00}", (float)sumObjects / (numLeaves - numLeaves0));
+				UI.printDetailed(UI.Module.ACCEL, "             max    {0}", maxObjects);
+				UI.printDetailed(UI.Module.ACCEL, "  * Depth:   min    {0}", minDepth);
+				UI.printDetailed(UI.Module.ACCEL, "             avg    {0,6:0.00}", (float)sumDepth / numLeaves);
+				UI.printDetailed(UI.Module.ACCEL, "             max    {0}", maxDepth);
+				UI.printDetailed(UI.Module.ACCEL, "  * Leaves w/: N=0  {0,3}%", 100 * numLeaves0 / numLeaves);
+				UI.printDetailed(UI.Module.ACCEL, "               N=1  {0,3}%", 100 * numLeaves1 / numLeaves);
+				UI.printDetailed(UI.Module.ACCEL, "               N=2  {0,3}%", 100 * numLeaves2 / numLeaves);
+				UI.printDetailed(UI.Module.ACCEL, "               N=3  {0,3}%", 100 * numLeaves3 / numLeaves);
+				UI.printDetailed(UI.Module.ACCEL, "               N=4  {0,3}%", 100 * numLeaves4 / numLeaves);
+				UI.printDetailed(UI.Module.ACCEL, "               N>4  {0,3}%", 100 * numLeaves4p / numLeaves);
+				UI.printDetailed(UI.Module.ACCEL, "  * BVH2 nodes:     {0} ({1}%)", numBVH2, 100 * numBVH2 / (numNodes + numLeaves - 2 * numBVH2));
             }
         }
 

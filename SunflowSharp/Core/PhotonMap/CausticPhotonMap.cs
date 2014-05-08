@@ -224,12 +224,12 @@ namespace SunflowSharp.Core.PhotonMap
             balance();
             t.end();
             UI.printInfo(UI.Module.LIGHT, "Caustic photon map:");
-            UI.printInfo(UI.Module.LIGHT, "  * Photons stored:   %d", storedPhotons);
-            UI.printInfo(UI.Module.LIGHT, "  * Photons/estimate: %d", gatherNum);
+			UI.printInfo(UI.Module.LIGHT, "  * Photons stored:   {0}", storedPhotons);
+			UI.printInfo(UI.Module.LIGHT, "  * Photons/estimate: {0}", gatherNum);
             maxRadius = 1.4f * (float)Math.Sqrt(maxPower * gatherNum);
-            UI.printInfo(UI.Module.LIGHT, "  * Estimate radius:  %.3f", gatherRadius);
-            UI.printInfo(UI.Module.LIGHT, "  * Maximum radius:   %.3f", maxRadius);
-            UI.printInfo(UI.Module.LIGHT, "  * Balancing time:   %s", t.ToString());
+			UI.printInfo(UI.Module.LIGHT, "  * Estimate radius:  {0,6:0.00}", gatherRadius);
+			UI.printInfo(UI.Module.LIGHT, "  * Maximum radius:   {0,6:0.00}", maxRadius);
+			UI.printInfo(UI.Module.LIGHT, "  * Balancing time:   {0}", t.ToString());
             if (gatherRadius > maxRadius)
                 gatherRadius = maxRadius;
         }

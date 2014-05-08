@@ -34,10 +34,10 @@ namespace SunflowSharp
             RenderObjectHandle obj = renderObjects[name];
             if (obj == null)
             {
-                UI.printWarning(UI.Module.API, "Unable to remove \"%s\" - object was not defined yet");
+				UI.printWarning(UI.Module.API, "Unable to remove \"{0}\" - object was not defined yet");
                 return;
             }
-            UI.printDetailed(UI.Module.API, "Removing object \"%s\"", name);
+			UI.printDetailed(UI.Module.API, "Removing object \"{0}\"", name);
             renderObjects.Remove(name);
             // scan through all objects to make sure we don't have any
             // references to the old object still around
@@ -50,7 +50,7 @@ namespace SunflowSharp
                         Instance i = e.Value.getInstance();
                         if (i != null)
                         {
-                            UI.printWarning(UI.Module.API, "Removing shader \"%s\" from instance \"%s\"", name, e.Key);
+						UI.printWarning(UI.Module.API, "Removing shader \"{0}\" from instance \"{1}\"", name, e.Key);
                             i.removeShader(s);
                         }
                     }
@@ -62,7 +62,7 @@ namespace SunflowSharp
                         Instance i = e.Value.getInstance();
                         if (i != null)
                         {
-                            UI.printWarning(UI.Module.API, "Removing modifier \"%s\" from instance \"%s\"", name, e.Key);
+						    UI.printWarning(UI.Module.API, "Removing modifier \"{0}\" from instance \"{1}\"", name, e.Key);
                             i.removeModifier(m);
                         }
                     }
@@ -75,7 +75,7 @@ namespace SunflowSharp
                             Instance i = e.Value.getInstance();
                             if (i != null && i.hasGeometry(g))
                             {
-                                UI.printWarning(UI.Module.API, "Removing instance \"%s\" because it referenced geometry \"%s\"", e.Key, name);
+						        UI.printWarning(UI.Module.API, "Removing instance \"{0}\" because it referenced geometry \"{1}\"", e.Key, name);
                                 remove(e.Key);
                             }
                         }

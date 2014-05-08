@@ -25,7 +25,7 @@ namespace SunflowSharp.Core.Tesselatable
             this.patches = patches;
         }
 
-        public BoundingBox getWorldBounds(Matrix4 o2w)
+        public BoundingBox GetWorldBounds(Matrix4 o2w)
         {
             BoundingBox bounds = new BoundingBox();
             if (o2w == null)
@@ -129,7 +129,7 @@ namespace SunflowSharp.Core.Tesselatable
             }
         }
 
-        public PrimitiveList tesselate()
+        public PrimitiveList Tesselate()
         {
             float[] vertices = new float[patches.Length * (subdivs + 1) * (subdivs + 1) * 3];
             float[] normals = smooth ? new float[patches.Length * (subdivs + 1) * (subdivs + 1) * 3] : null;

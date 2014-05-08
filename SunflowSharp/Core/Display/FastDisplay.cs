@@ -100,7 +100,7 @@ namespace SunflowSharp.Core.Display
                 if (seconds > 1)
                 {
                     // display average fps every second
-                    frame.setTitle(string.Format("Sunflow v%s - %.2f fps", SunflowAPI.VERSION, frames / seconds));
+					frame.setTitle(string.Format("Sunflow v{0} - {1} fps", SunflowAPI.VERSION, frames / seconds));
                     frames = 0;
                     seconds = 0;
                 }

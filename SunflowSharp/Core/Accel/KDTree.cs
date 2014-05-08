@@ -269,7 +269,7 @@ namespace SunflowSharp.Core.Accel
                     file.WriteLine(string.Format("v {0} {1} {2}", min.x, min.y, max.z));
                     file.WriteLine(string.Format("v {0} {1} {2}", min.x, max.y, max.z));
                     int v0 = vertOffset;
-                    file.WriteLine(string.Format("usemtl mtl%d", n));
+					file.WriteLine(string.Format("usemtl mtl{0}", n));
                     file.WriteLine("s off");
                     file.WriteLine(string.Format("f {0} {1} {2} {3}", v0 + 1, v0 + 2, v0 + 3, v0 + 4));
                     file.WriteLine(string.Format("f {0} {1} {2} {3}", v0 + 5, v0 + 8, v0 + 7, v0 + 6));

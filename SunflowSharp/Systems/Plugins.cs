@@ -179,11 +179,11 @@ namespace SunflowSharp.Systems
 		public bool registerPlugin(string name, Type pluginClass) {
 			// check that the given class is compatible with the base class
 				if (pluginClass.GetConstructor(Type.EmptyTypes) == null) {
-					UI.printError(UI.Module.API, "Plugin \"%s\" could not be declared - default constructor was not found", name);
+				    UI.printError(UI.Module.API, "Plugin \"{0}\" could not be declared - default constructor was not found", name);
 					return false;
 				}
 			if (pluginClasses.ContainsKey(name))
-				UI.printWarning(UI.Module.API, "Plugin \"%s\" was already defined - overwriting previous definition", name);
+				UI.printWarning(UI.Module.API, "Plugin \"{0}\" was already defined - overwriting previous definition", name);
 			pluginClasses.Add(name, pluginClass);
 			return true;
 		}

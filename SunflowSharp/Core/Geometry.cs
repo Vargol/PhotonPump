@@ -82,7 +82,7 @@ namespace SunflowSharp.Core
             if (primitives == null)
             {
 
-                BoundingBox b = tesselatable.getWorldBounds(o2w);
+                BoundingBox b = tesselatable.GetWorldBounds(o2w);
                 if (b != null)
                     return b;
                 if (builtTess == 0)
@@ -113,7 +113,7 @@ namespace SunflowSharp.Core
                 if (tesselatable != null && primitives == null)
                 {
                     UI.printInfo(UI.Module.GEOM, "Tesselating geometry ...");
-                    primitives = tesselatable.tesselate();
+                    primitives = tesselatable.Tesselate();
                     if (primitives == null)
                         UI.printError(UI.Module.GEOM, "Tesselation failed - geometry will be discarded");
                     else

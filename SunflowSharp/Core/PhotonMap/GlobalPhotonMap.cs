@@ -290,20 +290,20 @@ namespace SunflowSharp.Core.PhotonMap
             t.end();
             UI.taskStop();
             UI.printInfo(UI.Module.LIGHT, "Global photon map:");
-            UI.printInfo(UI.Module.LIGHT, "  * Photons stored:   %d", storedPhotons);
-            UI.printInfo(UI.Module.LIGHT, "  * Photons/estimate: %d", numGather);
-            UI.printInfo(UI.Module.LIGHT, "  * Estimate radius:  %.3f", gatherRadius);
+			UI.printInfo(UI.Module.LIGHT, "  * Photons stored:   {0}", storedPhotons);
+			UI.printInfo(UI.Module.LIGHT, "  * Photons/estimate: {0}", numGather);
+			UI.printInfo(UI.Module.LIGHT, "  * Estimate radius:  {0,6:0.00", gatherRadius);
             maxRadius = 1.4f * (float)Math.Sqrt(maxPower * numGather);
-            UI.printInfo(UI.Module.LIGHT, "  * Maximum radius:   %.3f", maxRadius);
-            UI.printInfo(UI.Module.LIGHT, "  * Balancing time:   %s", t.ToString());
+			UI.printInfo(UI.Module.LIGHT, "  * Maximum radius:   {0,6:0.00", maxRadius);
+			UI.printInfo(UI.Module.LIGHT, "  * Balancing time:   {0}", t.ToString());
             if (gatherRadius > maxRadius)
                 gatherRadius = maxRadius;
             t.start();
             precomputeRadiance();
             t.end();
-            UI.printInfo(UI.Module.LIGHT, "  * Precompute time:  %s", t.ToString());
-            UI.printInfo(UI.Module.LIGHT, "  * Radiance photons: %d", storedPhotons);
-            UI.printInfo(UI.Module.LIGHT, "  * Search radius:    %.3f", gatherRadius);
+			UI.printInfo(UI.Module.LIGHT, "  * Precompute time:  {0}", t.ToString());
+			UI.printInfo(UI.Module.LIGHT, "  * Radiance photons: {0}", storedPhotons);
+			UI.printInfo(UI.Module.LIGHT, "  * Search radius:    {0,6:0.00", gatherRadius);
         }
 
         public void precomputeRadiance()

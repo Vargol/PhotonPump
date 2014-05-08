@@ -123,8 +123,8 @@ namespace SunflowSharp.Core.PhotonMap
         public void init()
         {
             UI.printInfo(UI.Module.LIGHT, "Initializing photon grid ...");
-            UI.printInfo(UI.Module.LIGHT, "  * Photon hits:      %d", numStoredPhotons);
-            UI.printInfo(UI.Module.LIGHT, "  * hash size:  %d", cellHash.Length);
+			UI.printInfo(UI.Module.LIGHT, "  * Photon hits:      {0}", numStoredPhotons);
+			UI.printInfo(UI.Module.LIGHT, "  * hash size:  {0}", cellHash.Length);
             int cells = 0;
             for (int i = 0; i < cellHash.Length; i++)
             {
@@ -134,7 +134,7 @@ namespace SunflowSharp.Core.PhotonMap
                     cells++;
                 }
             }
-            UI.printInfo(UI.Module.LIGHT, "  * Num photon cells: %d", cells);
+			UI.printInfo(UI.Module.LIGHT, "  * Num photon cells: {0}", cells);
         }
 
         public void precomputeRadiance(bool includeDirect, bool includeCaustics)

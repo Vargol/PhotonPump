@@ -23,11 +23,11 @@ namespace SunflowSharp.Core.Parser
                 //FloatBuffer buffer = map.asFloatBuffer();
                 //int numVerts = ints.get(0);
                 //int numTris = ints.get(1);
-                //UI.printInfo(UI.Module.USER, "RA3 -   * Reading %d vertices ...", numVerts);
+				//UI.printInfo(UI.Module.USER, "RA3 -   * Reading {0} vertices ...", numVerts);
                 //float[] verts = new float[3 * numVerts];
                 //for (int i = 0; i < verts.Length; i++)
                 //    verts[i] = buffer.get(2 + i);
-                //UI.printInfo(UI.Module.USER, "RA3 -   * Reading %d triangles ...", numTris);
+				//UI.printInfo(UI.Module.USER, "RA3 -   * Reading {0} triangles ...", numTris);
                 //int[] tris = new int[3 * numTris];
                 //for (int i = 0; i < tris.Length; i++)
                 //    tris[i] = ints.get(2 + verts.Length + i);

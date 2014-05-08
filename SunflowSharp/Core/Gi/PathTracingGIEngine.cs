@@ -17,7 +17,7 @@ namespace SunflowSharp.Core.Gi
             samples = options.getInt("gi.path.samples", 16);
             samples = Math.Max(0, samples);
             UI.printInfo(UI.Module.LIGHT, "Path tracer settings:");
-            UI.printInfo(UI.Module.LIGHT, "  * Samples: %d", samples);
+			UI.printInfo(UI.Module.LIGHT, "  * Samples: {0}", samples);
             return true;
         }
 

@@ -28,7 +28,7 @@ namespace SunflowSharp.Systems
             long startTime = NanoTime.Now;
             for (int i = 0; i < timers.Length && ((NanoTime.Now - startTime) / 1000000000) < timeLimit; i++)
             {
-                UI.printInfo(UI.Module.BENCH, "Running iteration %d", (i + 1));
+				UI.printInfo(UI.Module.BENCH, "Running iteration {0}", (i + 1));
                 timers[i] = new Timer();
                 test.kernelBegin();
                 timers[i].start();
@@ -64,13 +64,13 @@ namespace SunflowSharp.Systems
             }
             stdDev = Math.Sqrt(stdDev / n);
             UI.printInfo(UI.Module.BENCH, "Benchmark results:");
-            UI.printInfo(UI.Module.BENCH, "  * Iterations: %d", n);
-            UI.printInfo(UI.Module.BENCH, "  * Average:    %s", Timer.tostring(avg));
-            UI.printInfo(UI.Module.BENCH, "  * Fastest:    %s", Timer.tostring(min));
-            UI.printInfo(UI.Module.BENCH, "  * Longest:    %s", Timer.tostring(max));
-            UI.printInfo(UI.Module.BENCH, "  * Deviation:  %s", Timer.tostring(stdDev));
+			UI.printInfo(UI.Module.BENCH, "  * Iterations: {0}", n);
+			UI.printInfo(UI.Module.BENCH, "  * Average:    {0}", Timer.tostring(avg));
+			UI.printInfo(UI.Module.BENCH, "  * Fastest:    {0}", Timer.tostring(min));
+			UI.printInfo(UI.Module.BENCH, "  * Longest:    {0}", Timer.tostring(max));
+			UI.printInfo(UI.Module.BENCH, "  * Deviation:  {0}", Timer.tostring(stdDev));
             for (int i = 0; i < timers.Length && timers[i] != null; i++)
-                UI.printDetailed(UI.Module.BENCH, "  * Iteration %d: %s", i + 1, timers[i]);
+				UI.printDetailed(UI.Module.BENCH, "  * Iteration {0}: {1}", i + 1, timers[i]);
         }
     }
 }

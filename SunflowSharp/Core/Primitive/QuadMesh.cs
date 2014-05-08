@@ -31,10 +31,10 @@ namespace SunflowSharp.Core.Primitive
                 StreamWriter file = new StreamWriter(File.OpenWrite(filename));
                 file.WriteLine(string.Format("o object"));
                 for (int i = 0; i < points.Length; i += 3)
-                    file.WriteLine(string.Format("v %g %g %g", points[i], points[i + 1], points[i + 2]));
+					file.WriteLine(string.Format("v {0} {1} {2}", points[i], points[i + 1], points[i + 2]));
                 file.WriteLine("s off");
                 for (int i = 0; i < quads.Length; i += 4)
-                    file.WriteLine(string.Format("f %d %d %d %d", quads[i] + 1, quads[i + 1] + 1, quads[i + 2] + 1, quads[i + 3] + 1));
+					file.WriteLine(string.Format("f {0} {1} {2} {3}", quads[i] + 1, quads[i + 1] + 1, quads[i + 2] + 1, quads[i + 3] + 1));
                 file.Close();
             }
             catch (Exception e)
@@ -64,7 +64,7 @@ namespace SunflowSharp.Core.Primitive
                 ParameterList.FloatParameter pointsP = pl.getPointArray("points");
                 if (pointsP != null)
                     if (pointsP.interp != ParameterList.InterpolationType.VERTEX)
-                        UI.printError(UI.Module.GEOM, "Point interpolation type must be set to \"vertex\" - was \"%s\"", pointsP.interp.ToString().ToLower());
+						UI.printError(UI.Module.GEOM, "Point interpolation type must be set to \"vertex\" - was \"{0}\"", pointsP.interp.ToString().ToLower());
                     else
                     {
                         points = pointsP.data;
@@ -91,7 +91,7 @@ namespace SunflowSharp.Core.Primitive
                 {
                     int v = faceShaders[i];
                     if (v > 255)
-                        UI.printWarning(UI.Module.GEOM, "Shader index too large on quad %d", i);
+						UI.printWarning(UI.Module.GEOM, "Shader index too large on quad {0}", i);
                     this.faceShaders[i] = (byte)(v & 0xFF);
                 }
             }

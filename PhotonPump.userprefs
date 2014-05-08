@@ -1,25 +1,19 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" ActiveRuntime="Mono 3.2.7" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="SunflowSharp/Core/Shader/GlassShader.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" ActiveRuntime="Mono 3.2.7" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="SunflowSharp/Core/Parser/SCParser.cs">
     <Files>
-      <File FileName="SunflowSharp/PluginRegistry.cs" Line="1" Column="1" />
-      <File FileName="SunflowSharp/Systems/Plugins.cs" Line="1" Column="1" />
-      <File FileName="SunflowSharp/SunflowAPI.cs" Line="1" Column="1" />
-      <File FileName="SunflowSharp/Core/Parser/SCParser.cs" Line="1" Column="1" />
-      <File FileName="SunflowSharp/Maths/Vector3.cs" Line="1" Column="1" />
-      <File FileName="SunflowSharp/Maths/Matrix4.cs" Line="251" Column="10" />
-      <File FileName="SunflowSharp/Core/Tesselatable/Gumbo.cs" Line="1" Column="1" />
-      <File FileName="SunflowSharp/Core/LightServer.cs" Line="325" Column="36" />
-      <File FileName="SunflowSharp/Core/Shader/GlassShader.cs" Line="45" Column="38" />
+      <File FileName="SunflowSharp/Core/Parser/SCParser.cs" Line="96" Column="2" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="SunflowSharp" expanded="True">
             <Node name="Core" expanded="True">
-              <Node name="Shader" expanded="True">
-                <Node name="AmbientOcclusionShader.cs" selected="True" />
+              <Node name="Parser" expanded="True">
+                <Node name="SCParser.cs" selected="True" />
               </Node>
+              <Node name="Renderer" expanded="True" />
+              <Node name="Shader" expanded="True" />
             </Node>
             <Node name="Maths" expanded="True" />
             <Node name="Systems" expanded="True" />

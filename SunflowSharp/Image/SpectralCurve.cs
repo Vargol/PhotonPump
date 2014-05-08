@@ -100,7 +100,7 @@ namespace SunflowSharp.Image
         //self check here?
         //static {
         //    if (WAVELENGTH_STEP * (CIE_xbar.Length - 1) != WAVELENGTH_MAX - WAVELENGTH_MIN) {
-        //        string err = string.Format("Internal error - spectrum static data is inconsistent!\n  * min = %d\n  * max = %d\n  * step = %d\n  * num = %d", WAVELENGTH_MIN, WAVELENGTH_MAX, WAVELENGTH_STEP, CIE_xbar.Length);
+		//        string err = string.Format("Internal error - spectrum static data is inconsistent!\n  * min = {0}\n  * max = {1}\n  * step = {2}\n  * num = {3}", WAVELENGTH_MIN, WAVELENGTH_MAX, WAVELENGTH_STEP, CIE_xbar.Length);
         //        throw new RuntimeException(err);
         //    }
         //}

@@ -14,14 +14,14 @@ namespace SunflowSharp.Core.Tesselatable
         private string filename = null;
         private bool smoothNormals = false;
 
-        public BoundingBox getWorldBounds(Matrix4 o2w)
+        public BoundingBox GetWorldBounds(Matrix4 o2w)
         {
             // world bounds can't be computed without reading file
             // return null so the mesh will be loaded right away
             return null;
         }
 
-        public PrimitiveList tesselate()
+        public PrimitiveList Tesselate()
         {
             if (filename.EndsWith(".ra3"))
             {
@@ -37,11 +37,11 @@ namespace SunflowSharp.Core.Tesselatable
                 //    FloatBuffer buffer = map.asFloatBuffer();
                 //    int numVerts = ints.get(0);
                 //    int numTris = ints.get(1);
-                //    UI.printInfo(UI.Module.GEOM, "RA3 -   * Reading %d vertices ...", numVerts);
+				//    UI.printInfo(UI.Module.GEOM, "RA3 -   * Reading {0} vertices ...", numVerts);
                 //    float[] verts = new float[3 * numVerts];
                 //    for (int i = 0; i < verts.Length; i++)
                 //        verts[i] = buffer.get(2 + i);
-                //    UI.printInfo(UI.Module.GEOM, "RA3 -   * Reading %d triangles ...", numTris);
+				//    UI.printInfo(UI.Module.GEOM, "RA3 -   * Reading {0} triangles ...", numTris);
                 //    int[] tris = new int[3 * numTris];
                 //    for (int i = 0; i < tris.Length; i++)
                 //        tris[i] = ints.get(2 + verts.Length + i);
@@ -52,12 +52,12 @@ namespace SunflowSharp.Core.Tesselatable
                 //catch (FileNotFoundException e)
                 //{
                 //    e.printStackTrace();
-                //    UI.printError(UI.Module.GEOM, "Unable to read mesh file \"%s\" - file not found", filename);
+				//    UI.printError(UI.Module.GEOM, "Unable to read mesh file \"{0}\" - file not found", filename);
                 //}
                 //catch (IOException e)
                 //{
                 //    e.printStackTrace();
-                //    UI.printError(UI.Module.GEOM, "Unable to read mesh file \"%s\" - I/O error occured", filename);
+				//    UI.printError(UI.Module.GEOM, "Unable to read mesh file \"{0}\" - I/O error occured", filename);
                 //}
             }
             else if (filename.EndsWith(".obj"))
@@ -65,7 +65,7 @@ namespace SunflowSharp.Core.Tesselatable
                 int lineNumber = 1;
                 try
                 {
-                    UI.printInfo(UI.Module.GEOM, "OBJ - Reading geometry: \"%s\" ...", filename);
+					UI.printInfo(UI.Module.GEOM, "OBJ - Reading geometry: \"{0}\" ...", filename);
                     List<float> verts = new List<float>();
                     List<int> tris = new List<int>();
                     //FileReader file = new FileReader(filename);
@@ -119,7 +119,7 @@ namespace SunflowSharp.Core.Tesselatable
             {
                 try
                 {
-                    UI.printInfo(UI.Module.GEOM, "STL - Reading geometry: \"%s\" ...", filename);
+					UI.printInfo(UI.Module.GEOM, "STL - Reading geometry: \"{0}\" ...", filename);
                     //FileInputStream file = new FileInputStream(filename);
                     //DataInputStream stream = new DataInputStream(new BufferedInputStream(file));
                     BinaryReader stream = new BinaryReader(File.OpenRead(filename));
@@ -130,7 +130,7 @@ namespace SunflowSharp.Core.Tesselatable
                     long filesize = stream.BaseStream.Length;
                     if (filesize != (84 + 50 * numTris))
                     {
-                        UI.printWarning(UI.Module.GEOM, "STL - Size of file mismatch (expecting %s, found %s)", Memory.bytesTostring(84 + 14 * numTris), Memory.bytesTostring(filesize));
+						UI.printWarning(UI.Module.GEOM, "STL - Size of file mismatch (expecting {0}, found {1})", Memory.bytesTostring(84 + 14 * numTris), Memory.bytesTostring(filesize));
                         return null;
                     }
                     int[] tris = new int[3 * numTris];

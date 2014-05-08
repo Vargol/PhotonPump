@@ -69,8 +69,8 @@ namespace SunflowSharp
             t.end();
             UI.set(new ConsoleInterface());
             UI.printInfo(UI.Module.BENCH, "Benchmark results:");
-            UI.printInfo(UI.Module.BENCH, "  * Average FPS:         %.2f", frames / t.seconds());
-            UI.printInfo(UI.Module.BENCH, "  * Total time:          %s", t);
+			UI.printInfo(UI.Module.BENCH, "  * Average FPS:         {0,6:0.00", frames / t.seconds());
+			UI.printInfo(UI.Module.BENCH, "  * Total time:          {0}", t);
         }
 
         private void createGeometry()

@@ -192,19 +192,19 @@ namespace SunflowSharp.Image
         public override string ToString()
         {
             string info = "Gamma function parameters:\n";
-            info += string.Format("  * Gamma:          %7.4f\n", gamma);
-            info += string.Format("  * Breakpoint:     %7.4f\n", breakPoint);
-            info += string.Format("  * Slope:          %7.4f\n", slope);
-            info += string.Format("  * Slope Match:    %7.4f\n", slopeMatch);
-            info += string.Format("  * Segment Offset: %7.4f\n", segmentOffset);
+			info += string.Format("  * Gamma:          {3,12:0.0000}\n", gamma);
+			info += string.Format("  * Breakpoint:     {3,12:0.0000}\n", breakPoint);
+			info += string.Format("  * Slope:          {3,12:0.0000}\n", slope);
+			info += string.Format("  * Slope Match:    {3,12:0.0000}\n", slopeMatch);
+			info += string.Format("  * Segment Offset: {3,12:0.0000}\n", segmentOffset);
             info += "XYZ -> RGB Matrix:\n";
-            info += string.Format("| %7.4f %7.4f %7.4f|\n", rx, ry, rz);
-            info += string.Format("| %7.4f %7.4f %7.4f|\n", gx, gy, gz);
-            info += string.Format("| %7.4f %7.4f %7.4f|\n", bx, by, bz);
+			info += string.Format("| {3,12:0.0000} {3,12:0.0000} {3,12:0.0000}|\n", rx, ry, rz);
+			info += string.Format("| {3,12:0.0000} {3,12:0.0000} {3,12:0.0000}|\n", gx, gy, gz);
+			info += string.Format("| {3,12:0.0000} {3,12:0.0000} {3,12:0.0000}|\n", bx, by, bz);
             info += "RGB -> XYZ Matrix:\n";
-            info += string.Format("| %7.4f %7.4f %7.4f|\n", xr, xg, xb);
-            info += string.Format("| %7.4f %7.4f %7.4f|\n", yr, yg, yb);
-            info += string.Format("| %7.4f %7.4f %7.4f|\n", zr, zg, zb);
+			info += string.Format("| {3,12:0.0000} {3,12:0.0000} {3,12:0.0000}|\n", xr, xg, xb);
+			info += string.Format("| {3,12:0.0000} {3,12:0.0000} {3,12:0.0000}|\n", yr, yg, yb);
+			info += string.Format("| {3,12:0.0000} {3,12:0.0000} {3,12:0.0000}|\n", zr, zg, zb);
             return info;
         }
 

@@ -34,10 +34,10 @@ namespace SunflowSharp.Core
             {
                 if (textures.ContainsKey(filename))
                 {
-                    UI.printInfo(UI.Module.TEX, "Using cached copy for file \"%s\" ...", filename);
+					UI.printInfo(UI.Module.TEX, "Using cached copy for file \"{0}\" ...", filename);
                     return textures[filename];
                 }
-                UI.printInfo(UI.Module.TEX, "Using file \"%s\" ...", filename);
+				UI.printInfo(UI.Module.TEX, "Using file \"{0}\" ...", filename);
                 Texture t = new Texture(filename, isLinear);
                 textures.Add(filename, t);
                 return t;

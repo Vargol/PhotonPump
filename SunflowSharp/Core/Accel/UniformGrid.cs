@@ -45,7 +45,7 @@ namespace SunflowSharp.Core.Accel
             invVoxelwx = 1 / voxelwx;
             invVoxelwy = 1 / voxelwy;
             invVoxelwz = 1 / voxelwz;
-            UI.printDetailed(UI.Module.ACCEL, "Creating grid: %dx%dx%d ...", nx, ny, nz);
+			UI.printDetailed(UI.Module.ACCEL, "Creating grid: {0}x{1}x{3} ...", nx, ny, nz);
             List<int>[] buildCells = new List<int>[nx * ny * nz];
             // add all objects into the grid cells they overlap
             int[] imin = new int[3];

@@ -171,7 +171,7 @@ namespace SunflowSharp
 			try {
 				parameterList.addColor(name, ColorFactory.createColor(colorspace, data));
 			} catch (ColorFactory.ColorSpecificationException e) {
-				UI.printError(UI.Module.API, "Unable to specify color: {0} - ignoring parameter \"%s\"", e.Message, name);
+				UI.printError(UI.Module.API, "Unable to specify color: {0} - ignoring parameter \"{1}\"", e.Message, name);
 			}
 		}
 
@@ -728,7 +728,7 @@ namespace SunflowSharp
 			else {
 				IShader shader = lookupShader(shaderOverrideName);
 				if (shader == null)
-					UI.printWarning(UI.Module.API, "Unable to find shader \"%s\" for override, disabling", shaderOverrideName);
+					UI.printWarning(UI.Module.API, "Unable to find shader \"{0}\" for override, disabling", shaderOverrideName);
 				scene.setShaderOverride(shader, overridePhotons);
 			}
 

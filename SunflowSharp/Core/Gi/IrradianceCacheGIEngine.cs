@@ -35,12 +35,12 @@ namespace SunflowSharp.Core.Gi
             maxSpacing = Math.Max(0.001f, maxSpacing);
             // display settings
             UI.printInfo(UI.Module.LIGHT, "Irradiance cache settings:");
-            UI.printInfo(UI.Module.LIGHT, "  * Samples: %d", samples);
+			UI.printInfo(UI.Module.LIGHT, "  * Samples: {0}", samples);
             if (tolerance <= 0)
                 UI.printInfo(UI.Module.LIGHT, "  * Tolerance: off");
             else
-                UI.printInfo(UI.Module.LIGHT, "  * Tolerance: %.3f", tolerance);
-            UI.printInfo(UI.Module.LIGHT, "  * Spacing: %.3f to %.3f", minSpacing, maxSpacing);
+				UI.printInfo(UI.Module.LIGHT, "  * Tolerance: {0,3}", tolerance);
+			UI.printInfo(UI.Module.LIGHT, "  * Spacing: {3,9:0.00} to {3,9:0.00}", minSpacing, maxSpacing);
             // prepare root node
             Vector3 ext = scene.getBounds().getExtents();
             root = new Node(scene.getBounds().getCenter(), 1.0001f * MathUtils.max(ext.x, ext.y, ext.z), this);
