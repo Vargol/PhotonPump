@@ -281,7 +281,7 @@ namespace SunflowSharp.Core.Primitive
             Point3 v0p = getPoint(index0);
             Point3 v1p = getPoint(index1);
             Point3 v2p = getPoint(index2);
-            Point3 v3p = getPoint(index2);
+            Point3 v3p = getPoint(index3);
             float tanux = (1 - v) * (v1p.x - v0p.x) + v * (v2p.x - v3p.x);
             float tanuy = (1 - v) * (v1p.y - v0p.y) + v * (v2p.y - v3p.y);
             float tanuz = (1 - v) * (v1p.z - v0p.z) + v * (v2p.z - v3p.z);

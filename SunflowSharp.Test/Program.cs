@@ -17,7 +17,7 @@ namespace SunflowSharp.Test
             {
                 test test = new test(args.Length > 0 ? args[0] : null);
                 test.build();
-                test.render("::options", new FileDisplay("output.png"));//new FileDisplay("output.tga"));
+                test.render("::options", new FileDisplay("output.hdr"));//new FileDisplay("output.tga"));
             }
             catch (Exception ex)
             {
@@ -52,7 +52,7 @@ namespace SunflowSharp.Test
 //            parameter("aa.max", 2);
 //            parameter("filter", "catmull-rom");//catmull-rom, blackman-harris
 //			parameter("sampler", "bucket");//ipr or fast or bucket
-			parameter ("threads", 2);
+			parameter ("threads", Environment.ProcessorCount);
             options(DEFAULT_OPTIONS);
         }
     }
