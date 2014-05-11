@@ -15,6 +15,10 @@ namespace SunflowSharp.Image.Writers
 		private string filename;
 		private int width, height;
 		private int[] data;
+
+		private const int MINELEN = 8;	    /* minimum scanline length for encoding */
+		private const int MAXELEN = 0x7fff;	/* maximum scanline length for encoding */
+		private const int MINRUN = 4;		/* minimum run length */
 		
 		public override void configure(string option, string value) {
 		}
@@ -39,28 +43,75 @@ namespace SunflowSharp.Image.Writers
 		public override void closeFile() {
 
 
-			FileStream f = new FileStream(filename, FileMode.OpenOrCreate);
-			byte[] buffer = System.Text.ASCIIEncoding.ASCII.GetBytes("#?RGBE\n");
+			FileStream f = new FileStream(filename, FileMode.Create);
+			byte[] buffer = System.Text.ASCIIEncoding.ASCII.GetBytes("#?RADIANCE\n");
 			f.Write(buffer, 0, buffer.Length);
-			//f.write("#?RGBE\n".getBytes());
 			buffer = System.Text.ASCIIEncoding.ASCII.GetBytes("FORMAT=32-bit_rle_rgbe\n\n");
 			f.Write(buffer, 0, buffer.Length);
-			//f.write("FORMAT=32-bit_rle_rgbe\n\n".getBytes());
 			buffer = System.Text.ASCIIEncoding.ASCII.GetBytes("-Y " + height + " +X " + width + "\n");
 			f.Write(buffer, 0, buffer.Length);
-			//f.write(("-Y " + height + " +X " + width + "\n").getBytes());
-			for (int y = height - 1; y >= 0; y--)
+			for (int y = 0; y  < height; y++)
 			{
-				for (int x = 0; x < width; x++)
-				{
-					int rgbe = data[(y * width) + x];
-					f.WriteByte((byte)(rgbe >> 24));
-					f.WriteByte((byte)(rgbe >> 16));
-					f.WriteByte((byte)(rgbe >> 8));
-					f.WriteByte((byte)rgbe);
-				}
+				WriteRLEScanLine(f, y * width);
 			}
 			f.Close();
+
+		}
+
+		private void WriteRLEScanLine(FileStream f, int scanlineOffset) {
+
+			int len, c2;
+			int j, cnt, beg;
+
+			uint[] MASK = {0xFF000000, 0x00FF0000, 0x0000FF00, 0x000000FF};
+
+
+			len = width;
+
+			f.WriteByte(2);
+			f.WriteByte(2);
+			f.WriteByte((byte)(width >> 8));
+			f.WriteByte((byte)(width & 255));
+
+			cnt = 0;
+
+			for (int i = 0; i < 4; i++) {  // each component is encoded seperately
+				for (j = 0; j < len; j += cnt) {	// find next run 
+
+					for (beg = j; beg < len; beg += cnt) {
+
+						for (cnt = 1; cnt < 127
+						              && beg+cnt < len 
+						     		  && (data[scanlineOffset+beg+cnt] & MASK[i]) == (data[scanlineOffset+beg] & MASK[i]) ; cnt++) {
+							;  // everything done in for statement
+						}
+					    if (cnt >= MINRUN) {
+							break;	// the run is long enough
+						}
+					}
+					if (beg-j > 1 && beg-j < MINRUN) {
+						c2 = j+1;
+						while ((data[scanlineOffset + (c2++)] & MASK[i]) == (data[scanlineOffset + j] & MASK[i]))
+						if (c2 == beg) {	/* short run */
+							f.WriteByte((byte)(128+beg-j));
+							f.WriteByte((byte)(data[scanlineOffset + j] >> ((3 - i) * 8)));
+							j = beg;
+							break;
+						}
+					}
+					while (j < beg) {		/* write out non-run */
+						if ((c2 = beg-j) > 128) c2 = 128;
+						f.WriteByte((byte)c2);
+						while (c2-- > 0)
+							f.WriteByte((byte)(data[scanlineOffset + (j++)] >> ((3 - i) * 8)));
+					}
+					if (cnt >= MINRUN) {		/* write out run */
+						f.WriteByte((byte)(128+cnt));
+						f.WriteByte((byte)(data[scanlineOffset + beg] >> ((3 - i) * 8)));
+					} else
+						cnt = 0;
+				}
+			}
 
 		}
 	}

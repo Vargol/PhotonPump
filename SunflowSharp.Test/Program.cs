@@ -17,7 +17,7 @@ namespace SunflowSharp.Test
             {
                 test test = new test(args.Length > 0 ? args[0] : null);
                 test.build();
-                test.render("::options", new FileDisplay("output.hdr"));//new FileDisplay("output.tga"));
+                test.render("::options", new FileDisplay("output.png"));//new FileDisplay("output.tga"));
             }
             catch (Exception ex)
             {
