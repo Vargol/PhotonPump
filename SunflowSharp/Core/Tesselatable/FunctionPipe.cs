@@ -23,10 +23,11 @@ namespace SunflowSharp.Core.Tesselatable
 
 
 		protected int pipeSegments = 10000;
-		protected int circleSegments = 8;
+//		protected int circleSegments = 8;
 		protected int knotsPerPipeSegment = 12;
 		protected float pipeRadius = 0.05f;
 		protected Vector3 startPosition = new Vector3(1.0f, 0.0f, 0.0f);
+		protected List<Point3> outlinePoints = new List<Point3>() ;
 
 		protected interface IFunctionPipeFunction {
 			 
@@ -82,13 +83,13 @@ namespace SunflowSharp.Core.Tesselatable
 			
 			List<Vector3> curvePoints = new List<Vector3>();
 			List<Vector3> attractorPoints = new List<Vector3>();
-			Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod());
-			
+
 			pipeFunction.InitParameters();
 
 			attractorPoints.Capacity = pipeSegments + 2;
 			curvePoints.Capacity = (pipeSegments + 2) * 5;
-			double thetaDelta = Math.PI * 2.0 / circleSegments;
+
+			int circleSegments = outlinePoints.Count;
 			float tDelta = 1.0f/(knotsPerPipeSegment-1);
 			
 			attractorPoints.Add(startPosition);
@@ -135,8 +136,13 @@ namespace SunflowSharp.Core.Tesselatable
 			int knotIndex = 0;
 			Vector3 splinePoint = new Vector3();
 			Vector3 tangent = new Vector3();
-			Vector3 normaly = new Vector3();
+			Vector3 normal = new Vector3();
 			Vector3 up = new Vector3(0f,1f,0f);
+			Point3 zero = new Point3(0f,0f,0f);
+			Point3 tangentAsPoint = new Point3();
+			Point3 rotatedPoint = new Point3();
+			Vector3 oldSplinePoint = new  Vector3();
+			Matrix4 rotateToTangent ;
 
 			int pipeIndex = 0;
 			int quadIndex = 0;
@@ -149,7 +155,6 @@ namespace SunflowSharp.Core.Tesselatable
 				// 	    		Console.WriteLine("attractorPoint: {0}" , tempv);
 			}
 			
-			Vector3 oldSplinePoint = new  Vector3();
 			oldSplinePoint.set(attractorPoints[0]);
 			
 			for (int i=0; i<=pipeSegments-1; i++) {
@@ -179,33 +184,33 @@ namespace SunflowSharp.Core.Tesselatable
 					t += tDelta;
 					
 					tangent = Vector3.sub(splinePoint, oldSplinePoint, tangent).normalize();
-					
-					normaly =  Vector3.cross(tangent,up,normaly).normalize().mul(pipeRadius);
-					
+					tangentAsPoint.set(tangent.x, tangent.y, tangent.z);
+
+					normal =  Vector3.cross(tangent,up,normal).normalize();
+
 					oldSplinePoint.set(splinePoint);
-					
-					double theta = 0;
-					
-					Vector3 A = new Vector3();
-					
-					
-					Matrix4 rotateAlongTangent = Matrix4.rotate(tangent.x, tangent.y, tangent.z, (float)thetaDelta);
-					A.set(normaly);
-					
-					
+
+//					Matrix4 rotateAlongTangent = Matrix4.rotate(tangent.x, tangent.y, tangent.z, (float)thetaDelta);
+
+					rotateToTangent = Matrix4.lookAt(zero, tangentAsPoint, up);//.inverse();
+
 					if(circleIndex == 0) 
 					{
+
+
 						
 						for (int circleSegement	= 0; circleSegement < circleSegments ; circleSegement++) {
 							
-							A =  rotateAlongTangent.transformV(A);
+//							pointOnOutline.set (pipeRadius * (float)Math.Cos(theta) ,pipeRadius * (float)Math.Sin(theta), 0f);
+
+							rotatedPoint =  rotateToTangent.transformP(outlinePoints[circleSegement]);
 							
-							bb.include(A.x + splinePoint.x, A.y + splinePoint.y,  A.z + splinePoint.z);
+							bb.include(rotatedPoint.x + splinePoint.x, rotatedPoint.y + splinePoint.y,  rotatedPoint.z + splinePoint.z);
 							
-							points[pipeIndex++] = A.x + splinePoint.x;
-							points[pipeIndex++] = A.y + splinePoint.y;
-							points[pipeIndex++] = A.z + splinePoint.z;
-							
+							points[pipeIndex++] = rotatedPoint.x + splinePoint.x;
+							points[pipeIndex++] = rotatedPoint.y + splinePoint.y;
+							points[pipeIndex++] = rotatedPoint.z + splinePoint.z;
+
 						}
 					} 
 					else
@@ -214,18 +219,13 @@ namespace SunflowSharp.Core.Tesselatable
 						int circleSegement;
 						for (circleSegement = 0; circleSegement < circleSegments; circleSegement++) {
 							
+							rotatedPoint =  rotateToTangent.transformP(outlinePoints[circleSegement]);
+							bb.include(rotatedPoint.x + splinePoint.x, rotatedPoint.y + splinePoint.y,  rotatedPoint.z + splinePoint.z);
 							
-							A =  rotateAlongTangent.transformV(A);
-							
-							//Console.WriteLine("A.tangent : {0}", Vector3.dot(A, tangent)); 
-							
-							//  	    						Console.WriteLine("pipeIndex : {0}", pipeIndex); 
-							bb.include(A.x + splinePoint.x, A.y + splinePoint.y,  A.z + splinePoint.z);
-							
-							points[pipeIndex++] = A.x + splinePoint.x;
-							points[pipeIndex++] = A.y + splinePoint.y;
-							points[pipeIndex++] = A.z + splinePoint.z;
-							
+							points[pipeIndex++] = rotatedPoint.x + splinePoint.x;
+							points[pipeIndex++] = rotatedPoint.y + splinePoint.y;
+							points[pipeIndex++] = rotatedPoint.z + splinePoint.z;
+
 							if (circleSegement + 1 < circleSegments)
 							{
 								//  	    						Console.WriteLine("quadIndex : {0}", quadIndex); 
@@ -288,6 +288,25 @@ namespace SunflowSharp.Core.Tesselatable
 		
 		new public bool Update(ParameterList pl, SunflowAPI api)
 		{
+
+			if (outlinePoints.Count == 0) {
+				
+				int circlePoints = 16;
+				double theta = 0;	 		
+				double thetaDelta = Math.PI * 2.0 / circlePoints;
+				
+				for (int i	= 0; i < circlePoints ; i++) {
+					
+					outlinePoints.Add(new Point3((float)(pipeRadius * Math.Cos(theta)) ,(float)(pipeRadius * Math.Sin(theta)), 0f));	
+					theta += thetaDelta;
+					
+				}
+			}
+
+			int circleSegments = outlinePoints.Count;
+
+			Console.WriteLine("circleSegments: {0}", circleSegments);
+
 			if (points == null) {
 				points = new float[ ((circleSegments * pipeSegments  * knotsPerPipeSegment) + circleSegments) * 3];
 				quads = new int[circleSegments * pipeSegments * (knotsPerPipeSegment-1) * 4];
