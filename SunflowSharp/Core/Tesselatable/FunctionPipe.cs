@@ -305,8 +305,6 @@ namespace SunflowSharp.Core.Tesselatable
 
 			int circleSegments = outlinePoints.Count;
 
-			Console.WriteLine("circleSegments: {0}", circleSegments);
-
 			if (points == null) {
 				points = new float[ ((circleSegments * pipeSegments  * knotsPerPipeSegment) + circleSegments) * 3];
 				quads = new int[circleSegments * pipeSegments * (knotsPerPipeSegment-1) * 4];
@@ -319,7 +317,6 @@ namespace SunflowSharp.Core.Tesselatable
 		
 		public BoundingBox GetWorldBounds(Matrix4 o2w) {
 			
-			Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod());
 			return bb;
 			
 		}
