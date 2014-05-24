@@ -216,69 +216,7 @@ namespace SunflowSharp.Core.PhotonMap
             photons[j] = tmp;
         }
 
-        public class Photon
-        {
-            public float x, y, z;
-            public short dir, normal;
-            public int data, power, flags;
 
-            public const int SPLIT_X = 0;
-            public const int SPLIT_Y = 1;
-            public const int SPLIT_Z = 2;
-            public const int SPLIT_MASK = 3;
-
-            public Photon(Point3 p, Vector3 n, Vector3 dir, Color power, Color diffuse)
-            {
-                x = p.x;
-                y = p.y;
-                z = p.z;
-                this.dir = dir.encode();
-                this.power = power.toRGBE();
-                flags = 0;
-                normal = n.encode();
-                data = diffuse.toRGB();
-            }
-
-            public void setSplitAxis(int axis)
-            {
-                flags &= ~SPLIT_MASK;
-                flags |= axis;
-            }
-
-            public float getCoord(int axis)
-            {
-                switch (axis)
-                {
-                    case SPLIT_X:
-                        return x;
-                    case SPLIT_Y:
-                        return y;
-                    default:
-                        return z;
-                }
-            }
-
-            public float getDist1(float px, float py, float pz)
-            {
-                switch (flags & SPLIT_MASK)
-                {
-                    case SPLIT_X:
-                        return px - x;
-                    case SPLIT_Y:
-                        return py - y;
-                    default:
-                        return pz - z;
-                }
-            }
-
-            public float getDist2(float px, float py, float pz)
-            {
-                float dx = x - px;
-                float dy = y - py;
-                float dz = z - pz;
-                return (dx * dx) + (dy * dy) + (dz * dz);
-            }
-        }
 
         public void init()
         {

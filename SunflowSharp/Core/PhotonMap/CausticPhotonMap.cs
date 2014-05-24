@@ -79,16 +79,22 @@ namespace SunflowSharp.Core.PhotonMap
                 return;
             photons = photonList.ToArray();
             photonList = null;
-            Photon[] temp = new Photon[storedPhotons + 1];
-            balanceSegment(temp, 1, 1, storedPhotons);
-            photons = temp;
-            halfStoredPhotons = storedPhotons / 2;
-            log2n = (int)Math.Ceiling(Math.Log(storedPhotons) / Math.Log(2.0));
+
+//			Photon[] temp = new Photon[storedPhotons + 1];
+//            balanceSegment(temp, 1, 1, storedPhotons);
+//            photons = temp;
+
+			halfStoredPhotons = storedPhotons / 2;
+			log2n = (int)Math.Ceiling(Math.Log(storedPhotons) / Math.Log(2.0));
+
         }
 
         private void balanceSegment(Photon[] temp, int index, int start, int end)
         {
-            int median = 1;
+            
+			Console.WriteLine(String.Format("index {0}, start {1}, end {2}", index, start, end));
+			 
+			int median = 1;
             while ((4 * median) <= (end - start + 1))
                 median += median;
             if ((3 * median) <= (end - start + 1))
@@ -98,6 +104,9 @@ namespace SunflowSharp.Core.PhotonMap
             }
             else
                 median = end - median + 1;
+
+			Console.WriteLine(String.Format("median {0}", median));
+
             int axis = Photon.SPLIT_Z;
             Vector3 extents = bounds.getExtents();
             if ((extents.x > extents.y) && (extents.x > extents.z))
@@ -365,70 +374,7 @@ namespace SunflowSharp.Core.PhotonMap
             }
         }
 
-        private class Photon
-        {
-            public float x;
-            public float y;
-            public float z;
-            public short dir;
-            public int power;
-            public int flags;
-
-            public const int SPLIT_X = 0;
-            public const int SPLIT_Y = 1;
-            public const int SPLIT_Z = 2;
-            public const int SPLIT_MASK = 3;
-
-            public Photon(Point3 p, Vector3 dir, Color power)
-            {
-                x = p.x;
-                y = p.y;
-                z = p.z;
-                this.dir = dir.encode();
-                this.power = power.toRGBE();
-                flags = SPLIT_X;
-            }
-
-            public void setSplitAxis(int axis)
-            {
-                flags &= ~SPLIT_MASK;
-                flags |= axis;
-            }
-
-            public float getCoord(int axis)
-            {
-                switch (axis)
-                {
-                    case SPLIT_X:
-                        return x;
-                    case SPLIT_Y:
-                        return y;
-                    default:
-                        return z;
-                }
-            }
-
-            public float getDist1(float px, float py, float pz)
-            {
-                switch (flags & SPLIT_MASK)
-                {
-                    case SPLIT_X:
-                        return px - x;
-                    case SPLIT_Y:
-                        return py - y;
-                    default:
-                        return pz - z;
-                }
-            }
-
-            public float getDist2(float px, float py, float pz)
-            {
-                float dx = x - px;
-                float dy = y - py;
-                float dz = z - pz;
-                return (dx * dx) + (dy * dy) + (dz * dz);
-            }
-        }
+  
 
         public bool allowDiffuseBounced()
         {
