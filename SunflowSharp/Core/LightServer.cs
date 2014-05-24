@@ -140,7 +140,8 @@ namespace SunflowSharp.Core
 
             public void Run()
             {
-                IntersectionState istate = new IntersectionState();
+				ByteUtil.InitByteUtil();
+				IntersectionState istate = new IntersectionState();
                 for (int i = start; i < end; i++)
                 {
                     lock (lockObj)
