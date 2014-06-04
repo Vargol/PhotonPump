@@ -11,9 +11,9 @@ namespace SunflowSharp.Core.Primitive
     {
         protected float[] points;
         protected int[] quads;
-        private SunflowSharp.Core.ParameterList.FloatParameter normals;
-        private SunflowSharp.Core.ParameterList.FloatParameter uvs;
-        private byte[] faceShaders;
+		protected SunflowSharp.Core.ParameterList.FloatParameter normals;
+		protected SunflowSharp.Core.ParameterList.FloatParameter uvs;
+		protected byte[] faceShaders;
 
         public QuadMesh()
         {

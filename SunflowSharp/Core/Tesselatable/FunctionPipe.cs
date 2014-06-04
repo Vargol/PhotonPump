@@ -22,6 +22,7 @@ namespace SunflowSharp.Core.Tesselatable
 	{
 
 
+		protected bool smooth = false ;
 		protected int pipeSegments = 10000;
 //		protected int circleSegments = 8;
 		protected int knotsPerPipeSegment = 12;
@@ -147,6 +148,7 @@ namespace SunflowSharp.Core.Tesselatable
 			int pipeIndex = 0;
 			int quadIndex = 0;
 			int circleIndex = 0;
+			int normalIndex = 0;
 			
 			float t=0f;
 			
@@ -186,7 +188,7 @@ namespace SunflowSharp.Core.Tesselatable
 					tangent = Vector3.sub(splinePoint, oldSplinePoint, tangent).normalize();
 					tangentAsPoint.set(tangent.x, tangent.y, tangent.z);
 
-					normal =  Vector3.cross(tangent,up,normal).normalize();
+//					normal =  Vector3.cross(tangent,up,normal).normalize();
 
 					oldSplinePoint.set(splinePoint);
 
@@ -211,6 +213,18 @@ namespace SunflowSharp.Core.Tesselatable
 							points[pipeIndex++] = rotatedPoint.y + splinePoint.y;
 							points[pipeIndex++] = rotatedPoint.z + splinePoint.z;
 
+							if(smooth) {
+								normal.x = rotatedPoint.x;
+								normal.y = rotatedPoint.y;
+								normal.z = rotatedPoint.z;
+
+								normal.normalize();
+
+								normals.data[normalIndex++] = normal.x;
+								normals.data[normalIndex++] = normal.y;
+								normals.data[normalIndex++] = normal.z;
+							}
+
 						}
 					} 
 					else
@@ -225,6 +239,18 @@ namespace SunflowSharp.Core.Tesselatable
 							points[pipeIndex++] = rotatedPoint.x + splinePoint.x;
 							points[pipeIndex++] = rotatedPoint.y + splinePoint.y;
 							points[pipeIndex++] = rotatedPoint.z + splinePoint.z;
+
+							if(smooth) {
+								normal.x = rotatedPoint.x;
+								normal.y = rotatedPoint.y;
+								normal.z = rotatedPoint.z;
+								
+								normal.normalize();
+								
+								normals.data[normalIndex++] = normal.x;
+								normals.data[normalIndex++] = normal.y;
+								normals.data[normalIndex++] = normal.z;
+							}
 
 							if (circleSegement + 1 < circleSegments)
 							{
@@ -308,6 +334,9 @@ namespace SunflowSharp.Core.Tesselatable
 			if (points == null) {
 				points = new float[ ((circleSegments * pipeSegments  * knotsPerPipeSegment) + circleSegments) * 3];
 				quads = new int[circleSegments * pipeSegments * (knotsPerPipeSegment-1) * 4];
+				if(smooth) {
+					normals = new ParameterList.FloatParameter(ParameterList.InterpolationType.VERTEX, new float[points.Length]);
+				}
 				//  	    	Console.WriteLine("mp: {0}", (circleSegments * (pipeSegments  * (knotsPerPipeSegment-1)) + circleSegments) * 3);
 				//  	    	Console.WriteLine("mq: {0}", circleSegments * pipeSegments * (knotsPerPipeSegment-1) * 4 );
 			}
