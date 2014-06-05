@@ -7,9 +7,9 @@ namespace SunflowSharp.Core.Primitive
 
     public class ParticleSurface : PrimitiveList
     {
-        private float[] particles;
-        private float r, r2;
-        private int n;
+        protected float[] particles;
+        protected float r, r2;
+		protected int n;
 
         public ParticleSurface()
         {

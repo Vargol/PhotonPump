@@ -345,9 +345,11 @@ namespace SunflowSharp.Core.Tesselatable
 		}
 		
 		public BoundingBox GetWorldBounds(Matrix4 o2w) {
-			
-			return bb;
-			
+
+			if (o2w == null)
+				return bb;
+			return o2w.transform(bb);
+
 		}
 		
 	}
