@@ -1,26 +1,35 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" ActiveRuntime="Mono 3.2.7" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" ActiveRuntime="Mono 3.2.7" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="SunflowSharp/Core/PhotonMap/CausticPhotonMap.cs">
     <Files>
-      <File FileName="SunflowSharp/Core/PhotonMap/GlobalPhotonMap.cs" Line="1" Column="1" />
-      <File FileName="SunflowSharp/Core/PhotonMap/Photon.cs" Line="1" Column="1" />
-      <File FileName="SunflowSharp/Core/PhotonMap/CausticPhotonMap.cs" Line="1" Column="1" />
-      <File FileName="SunflowSharp/Core/Tesselatable/FunctionPipe.cs" Line="1" Column="1" />
       <File FileName="SunflowSharp/Core/Primitive/QuadMesh.cs" Line="1" Column="1" />
-      <File FileName="SunflowSharp/Core/Parser/SCParser.cs" Line="274" Column="36" />
+      <File FileName="SunflowSharp/Core/Primitive/ParticleSurface.cs" Line="1" Column="1" />
+      <File FileName="SunflowSharp/Core/ITesselatable.cs" Line="1" Column="1" />
+      <File FileName="SunflowSharp/Maths/BoundingBox.cs" Line="1" Column="1" />
+      <File FileName="SunflowSharp/RenderObjectMap.cs" Line="1" Column="1" />
+      <File FileName="SunflowSharp/Core/Instance.cs" Line="1" Column="1" />
+      <File FileName="SunflowSharp/Core/Tesselatable/FunctionPipe.cs" Line="1" Column="1" />
+      <File FileName="SunflowSharp/Core/PhotonMap/Photon.cs" Line="1" Column="1" />
+      <File FileName="SunflowSharp/Core/PhotonMap/CausticPhotonMap.cs" Line="215" Column="26" />
+      <File FileName="SunflowSharp/Core/PhotonMap/GlobalPhotonMap.cs" Line="112" Column="54" />
+      <File FileName="SunflowSharp/Core/PhotonMap/GridPhotonMap.cs" Line="1" Column="1" />
+      <File FileName="SunflowSharp/Core/Parser/SCParser.cs" Line="319" Column="41" />
+      <File FileName="SunflowSharp/Core/Gi/IrradianceCacheGIEngine.cs" Line="43" Column="4" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="SunflowSharp" expanded="True">
             <Node name="Core" expanded="True">
+              <Node name="Gi" expanded="True" />
               <Node name="Parser" expanded="True" />
               <Node name="PhotonMap" expanded="True">
-                <Node name="Photon.cs" selected="True" />
+                <Node name="CausticPhotonMap.cs" selected="True" />
               </Node>
               <Node name="Primitive" expanded="True" />
               <Node name="Tesselatable" expanded="True" />
             </Node>
+            <Node name="Maths" expanded="True" />
           </Node>
           <Node name="SunflowSharp.Gui" expanded="True">
             <Node name="References" expanded="True" />

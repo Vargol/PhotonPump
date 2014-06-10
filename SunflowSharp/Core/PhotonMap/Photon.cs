@@ -9,6 +9,7 @@
 // ------------------------------------------------------------------------------
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 using SunflowSharp.Maths;
 using SunflowSharp.Image;
@@ -90,14 +91,26 @@ namespace SunflowSharp.Core.PhotonMap
 
 		public static Photon[] BalancePhotons (ref Photon[] unbalanced) {
 
-			Photon[] balanced = new Photon[8193];
-			BalancePhotons(ref balanced, 1, 1, unbalanced.Length-1, 1, ref unbalanced);
-			return balanced;
+			SortedList<Int64, Photon> balanced = new SortedList<Int64, Photon>();
+
+			BalancePhotons(balanced, 1, 1, unbalanced.Length-1, 1, ref unbalanced);
+
+			int index=0;
+
+			foreach(KeyValuePair<Int64, Photon> photon in balanced) {
+			
+				unbalanced[index++] = photon.Value;
+			
+			}
+
+			balanced = null;
+
+			return unbalanced;
 		}
 
-		private static void BalancePhotons (ref Photon[] balanced, int index, int start, int end, int level, ref Photon[] unbalanced) {
+		private static void BalancePhotons (SortedList<Int64, Photon> balanced, int index, int start, int end, int level, ref Photon[] unbalanced) {
 
-			Console.WriteLine("index {0},  start {1},  end {2},  level {3}",index,  start,  end,  level);
+//			Console.WriteLine("index {0},  start {1},  end {2},  level {3}",index,  start,  end,  level);
 
 			switch (level % 3) {
 				case Photon.SPLIT_X:
@@ -121,7 +134,7 @@ namespace SunflowSharp.Core.PhotonMap
 			{
 				if (start < (median - 1))
 				{
-					BalancePhotons(ref balanced, index * 2, start, median-1, level + 1, ref unbalanced);
+					BalancePhotons(balanced, index * 2, start, median-1, level + 1, ref unbalanced);
 				}
 				else
 				{
@@ -133,7 +146,7 @@ namespace SunflowSharp.Core.PhotonMap
 			{
 				if ((median + 1) < end)
 				{
-					BalancePhotons(ref balanced, index * 2 + 1, median+1, end, level + 1, ref unbalanced);
+					BalancePhotons(balanced, index * 2 + 1, median+1, end, level + 1, ref unbalanced);
 				}
 				else
 				{
@@ -176,7 +189,7 @@ namespace SunflowSharp.Core.PhotonMap
 			}
 			
 		}
-
+	
 		private class ZAxisCompare : IComparer  {
 			
 			// Calls CaseInsensitiveComparer.Compare with the parameters reversed.

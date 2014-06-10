@@ -40,7 +40,7 @@ namespace SunflowSharp.Core.Gi
                 UI.printInfo(UI.Module.LIGHT, "  * Tolerance: off");
             else
 				UI.printInfo(UI.Module.LIGHT, "  * Tolerance: {0,3}", tolerance);
-			UI.printInfo(UI.Module.LIGHT, "  * Spacing: {3,9:0.00} to {3,9:0.00}", minSpacing, maxSpacing);
+			UI.printInfo(UI.Module.LIGHT, "  * Spacing: {0,9:0.00} to {1,9:0.00}", minSpacing, maxSpacing);
             // prepare root node
             Vector3 ext = scene.getBounds().getExtents();
             root = new Node(scene.getBounds().getCenter(), 1.0001f * MathUtils.max(ext.x, ext.y, ext.z), this);
