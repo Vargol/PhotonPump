@@ -88,7 +88,7 @@ namespace SunflowSharp.Maths
             {
                 int p = PRIMES[i];
                 SIGMA[i] = new int[p];
-                Buffer.BlockCopy(table[p], 0, SIGMA[i], 0, p);
+                Buffer.BlockCopy(table[p], 0, SIGMA[i], 0, p*sizeof(int));
             }
 
 			UI.printInfo(UI.Module.QMC, "Initializing lattice tables ...");
