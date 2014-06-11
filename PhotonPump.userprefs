@@ -1,12 +1,25 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" ActiveRuntime="Mono 3.2.7" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="SunflowSharp/Core/Primitive/Sphere.cs">
+    <Files>
+      <File FileName="SunflowSharp/Core/InstanceList.cs" Line="1" Column="1" />
+      <File FileName="SunflowSharp/Core/Scene.cs" Line="218" Column="9" />
+      <File FileName="SunflowSharp/Core/Primitive/Sphere.cs" Line="70" Column="78" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="SunflowSharp.Test" expanded="True">
-            <Node name="References" selected="True" />
+          <Node name="SunflowSharp" expanded="True">
+            <Node name="Core" expanded="True">
+              <Node name="Parser" expanded="True" />
+              <Node name="Primitive" expanded="True">
+                <Node name="Sphere.cs" selected="True" />
+              </Node>
+            </Node>
+            <Node name="Maths" expanded="True" />
+            <Node name="Systems" expanded="True" />
           </Node>
+          <Node name="SunflowSharp.Test" expanded="True" />
         </State>
       </Pad>
     </Pads>

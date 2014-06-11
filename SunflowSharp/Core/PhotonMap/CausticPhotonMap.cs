@@ -80,11 +80,11 @@ namespace SunflowSharp.Core.PhotonMap
             photons = photonList.ToArray();
             photonList = null;
 
-//			Photon[] temp = new Photon[storedPhotons + 1];
-//            balanceSegment(temp, 1, 1, storedPhotons);
-//            photons = temp;
+			Photon[] temp = new Photon[storedPhotons + 1];
+            balanceSegment(temp, 1, 1, storedPhotons);
+            photons = temp;
 
-			photons = Photon.BalancePhotons(ref photons);
+//			photons = Photon.BalancePhotons(ref photons);
 
 
 			halfStoredPhotons = storedPhotons / 2;
@@ -94,21 +94,18 @@ namespace SunflowSharp.Core.PhotonMap
 
         private void balanceSegment(Photon[] temp, int index, int start, int end)
         {
-            
-			Console.WriteLine(String.Format("index {0}, start {1}, end {2}", index, start, end));
 			 
 			int median = 1;
             while ((4 * median) <= (end - start + 1))
                 median += median;
-            if ((3 * median) <= (end - start + 1))
+
+			if ((3 * median) <= (end - start + 1))
             {
-                median += median;
+				median *= 2;
                 median += (start - 1);
-            }
+			}
             else
                 median = end - median + 1;
-
-			Console.WriteLine(String.Format("median {0}", median));
 
             int axis = Photon.SPLIT_Z;
             Vector3 extents = bounds.getExtents();

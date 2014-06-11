@@ -67,7 +67,7 @@ namespace SunflowSharp.Core.Primitive
             // intersect in local space
             float qa = r.dx * r.dx + r.dy * r.dy + r.dz * r.dz;
             float qb = 2 * ((r.dx * r.ox) + (r.dy * r.oy) + (r.dz * r.oz));
-            float qc = ((r.ox * r.ox) + (r.oy * r.oy) + (r.oz * r.oz)) - 1;
+            float qc = ((r.ox * r.ox) + (r.oy * r.oy) + (r.oz * r.oz)) - 1.0f;
             double[] t = Solvers.solveQuadric(qa, qb, qc);
             if (t != null)
             {
