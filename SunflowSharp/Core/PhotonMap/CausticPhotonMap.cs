@@ -94,19 +94,14 @@ namespace SunflowSharp.Core.PhotonMap
 
         private void balanceSegment(Photon[] temp, int index, int start, int end)
         {
-			 
-			Console.WriteLine(String.Format("index {0}, start {1}, end {2}", index, start, end)); 
 
 			int median = 1;
             while ((4 * median) <= (end - start + 1))
                 median += median;
 
-			
-			Console.WriteLine(String.Format("4 median {0}", median));
-
 			if ((3 * median) <= (end - start + 1))
             {
-				median += median;
+				median *= 2;
                 median += (start - 1);
 				
 				Console.WriteLine(String.Format("3 median {0}", median));

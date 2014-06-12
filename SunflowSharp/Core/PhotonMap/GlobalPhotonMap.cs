@@ -96,11 +96,11 @@ namespace SunflowSharp.Core.PhotonMap
             photons = photonList.ToArray();
             photonList = null;
 
-			photons = Photon.BalancePhotons(ref photons);
+//			photons = Photon.BalancePhotons(ref photons);
 
- //           Photon[] temp = new Photon[storedPhotons + 1];
- //           balanceSegment(temp, 1, 1, storedPhotons);
- //           photons = temp;
+            Photon[] temp = new Photon[storedPhotons + 1];
+            balanceSegment(temp, 1, 1, storedPhotons);
+            photons = temp;
 
 			halfStoredPhotons = storedPhotons / 2;
             log2n = (int)Math.Ceiling(Math.Log(storedPhotons) / Math.Log(2.0));
