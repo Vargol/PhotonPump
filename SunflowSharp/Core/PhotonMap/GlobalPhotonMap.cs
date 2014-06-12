@@ -113,7 +113,7 @@ namespace SunflowSharp.Core.PhotonMap
                 median += median;
             if ((3 * median) <= (end - start + 1))
             {
-                median += median;
+                median *= 2;
                 median += (start - 1);
             }
             else
