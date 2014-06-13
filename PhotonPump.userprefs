@@ -1,37 +1,36 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" ActiveRuntime="Mono 3.2.7" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="SunflowSharp/Core/PhotonMap/CausticPhotonMap.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" ActiveRuntime="Mono 3.4.0" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="SunflowSharp/Core/Gi/IrradianceCacheGIEngine.cs">
     <Files>
       <File FileName="SunflowSharp/Core/InstanceList.cs" Line="1" Column="1" />
       <File FileName="SunflowSharp/Core/Scene.cs" Line="1" Column="1" />
-      <File FileName="SunflowSharp/Core/Primitive/Sphere.cs" Line="37" Column="30" />
-      <File FileName="SunflowSharp/Core/Shader/GlassShader.cs" Line="88" Column="14" />
-      <File FileName="SunflowSharp/Core/Shader/DiffuseShader.cs" Line="34" Column="22" />
-      <File FileName="SunflowSharp/Core/ShadingState.cs" Line="703" Column="26" />
-      <File FileName="SunflowSharp/Core/LightServer.cs" Line="421" Column="38" />
-      <File FileName="SunflowSharp/Core/PhotonMap/CausticPhotonMap.cs" Line="1" Column="1" />
+      <File FileName="SunflowSharp/Core/Primitive/Sphere.cs" Line="1" Column="1" />
+      <File FileName="SunflowSharp/Core/Shader/GlassShader.cs" Line="1" Column="1" />
+      <File FileName="SunflowSharp/Core/Shader/DiffuseShader.cs" Line="1" Column="1" />
+      <File FileName="SunflowSharp/Core/ShadingState.cs" Line="1" Column="1" />
+      <File FileName="SunflowSharp/Core/LightServer.cs" Line="1" Column="1" />
+      <File FileName="SunflowSharp/Core/PhotonMap/CausticPhotonMap.cs" Line="399" Column="2" />
+      <File FileName="SunflowSharp/Core/PhotonMap/GlobalPhotonMap.cs" Line="322" Column="13" />
+      <File FileName="SunflowSharp/Core/Gi/IrradianceCacheGIEngine.cs" Line="61" Column="39" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="SunflowSharp" expanded="True">
             <Node name="Core" expanded="True">
-              <Node name="PhotonMap" expanded="True">
-                <Node name="CausticPhotonMap.cs" selected="True" />
+              <Node name="Gi" expanded="True">
+                <Node name="IrradianceCacheGIEngine.cs" selected="True" />
               </Node>
-              <Node name="Primitive" expanded="True" />
-              <Node name="Shader" expanded="True" />
             </Node>
-            <Node name="Maths" expanded="True" />
-            <Node name="Systems" expanded="True" />
           </Node>
-          <Node name="SunflowSharp.Test" expanded="True" />
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/vargol/Projects/PhotonPump/SunflowSharp/Core/PhotonMap/GlobalPhotonMap.cs" line="322" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

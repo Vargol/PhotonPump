@@ -103,8 +103,6 @@ namespace SunflowSharp.Core.PhotonMap
             {
 				median *= 2;
                 median += (start - 1);
-				
-				Console.WriteLine(String.Format("3 median {0}", median));
 			}
             else
                 median = end - median + 1;

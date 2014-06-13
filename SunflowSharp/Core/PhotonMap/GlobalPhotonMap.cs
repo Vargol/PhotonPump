@@ -234,9 +234,9 @@ namespace SunflowSharp.Core.PhotonMap
             UI.printInfo(UI.Module.LIGHT, "Global photon map:");
 			UI.printInfo(UI.Module.LIGHT, "  * Photons stored:   {0}", storedPhotons);
 			UI.printInfo(UI.Module.LIGHT, "  * Photons/estimate: {0}", numGather);
-			UI.printInfo(UI.Module.LIGHT, "  * Estimate radius:  {0,6:0.00", gatherRadius);
+			UI.printInfo(UI.Module.LIGHT, "  * Estimate radius:  {0,6:0.00}", gatherRadius);
             maxRadius = 1.4f * (float)Math.Sqrt(maxPower * numGather);
-			UI.printInfo(UI.Module.LIGHT, "  * Maximum radius:   {0,6:0.00", maxRadius);
+			UI.printInfo(UI.Module.LIGHT, "  * Maximum radius:   {0,6:0.00}", maxRadius);
 			UI.printInfo(UI.Module.LIGHT, "  * Balancing time:   {0}", t.ToString());
             if (gatherRadius > maxRadius)
                 gatherRadius = maxRadius;
@@ -245,7 +245,7 @@ namespace SunflowSharp.Core.PhotonMap
             t.end();
 			UI.printInfo(UI.Module.LIGHT, "  * Precompute time:  {0}", t.ToString());
 			UI.printInfo(UI.Module.LIGHT, "  * Radiance photons: {0}", storedPhotons);
-			UI.printInfo(UI.Module.LIGHT, "  * Search radius:    {0,6:0.00", gatherRadius);
+			UI.printInfo(UI.Module.LIGHT, "  * Search radius:    {0,6:0.00}", gatherRadius);
         }
 
         public void precomputeRadiance()
@@ -319,7 +319,7 @@ namespace SunflowSharp.Core.PhotonMap
 
         public Color getRadiance(Point3 p, Vector3 n)
         {
-            if (!hasRadiance || (storedPhotons == 0))
+            if (!hasRadiance || (storedPhotons == 0) || p == null)
                 return Color.BLACK;
             float px = p.x;
             float py = p.y;
