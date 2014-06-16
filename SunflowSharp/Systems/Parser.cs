@@ -170,6 +170,11 @@ namespace SunflowSharp.Systems
             return float.Parse(getNextToken());
         }
 
+		public double getNextDouble()
+		{
+			return double.Parse(getNextToken());
+		}
+
         public void checkNextToken(string token)
         {
             string found = getNextToken();

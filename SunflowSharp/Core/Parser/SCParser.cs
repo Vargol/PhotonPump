@@ -1303,7 +1303,7 @@ namespace SunflowSharp.Core.Parser
                 p.checkNextToken("center");
                 api.parameter("center", parsePoint());
                 p.checkNextToken("radius");
-                api.parameter("radius", p.getNextFloat());
+                api.parameter("radius", p.getNextDouble());
                 p.checkNextToken("samples");
                 api.parameter("samples", p.getNextInt());
 				api.light (generateUniqueName("spherelight"), "sphere");
@@ -1489,15 +1489,24 @@ namespace SunflowSharp.Core.Parser
             return data;
         }
 
+		private double[] parseDoubleArray(int size)
+		{
+			double[] data = new double[size];
+			for (int i = 0; i < size; i++)
+				data[i] = p.getNextDouble();
+			return data;
+		}
+
+
         private Matrix4 parseMatrix()
         {
             if (p.peekNextToken("row"))
             {
-                return new Matrix4(parseFloatArray(16), true);
+                return new Matrix4(parseDoubleArray(16), true);
             }
             else if (p.peekNextToken("col"))
             {
-                return new Matrix4(parseFloatArray(16), false);
+				return new Matrix4(parseDoubleArray(16), false);
             }
             else
             {
@@ -1508,45 +1517,45 @@ namespace SunflowSharp.Core.Parser
                     Matrix4 t = null;
                     if (p.peekNextToken("translate"))
                     {
-                        float x = p.getNextFloat();
-                        float y = p.getNextFloat();
-                        float z = p.getNextFloat();
+						double x = p.getNextDouble();
+						double y = p.getNextDouble();
+						double z = p.getNextDouble();
                         t = Matrix4.translation(x, y, z);
                     }
                     else if (p.peekNextToken("scaleu"))
                     {
-                        float s = p.getNextFloat();
+						double s = p.getNextDouble();
                         t = Matrix4.scale(s);
                     }
                     else if (p.peekNextToken("scale"))
                     {
-                        float x = p.getNextFloat();
-                        float y = p.getNextFloat();
-                        float z = p.getNextFloat();
+						double x = p.getNextDouble();
+						double y = p.getNextDouble();
+						double z = p.getNextDouble();
                         t = Matrix4.scale(x, y, z);
                     }
                     else if (p.peekNextToken("rotatex"))
                     {
-                        float angle = p.getNextFloat();
-                        t = Matrix4.rotateX((float)MathUtils.toRadians(angle));
+						double angle = p.getNextDouble();
+                        t = Matrix4.rotateX(MathUtils.toRadians(angle));
                     }
                     else if (p.peekNextToken("rotatey"))
                     {
-                        float angle = p.getNextFloat();
-                        t = Matrix4.rotateY((float)MathUtils.toRadians(angle));
+						double angle = p.getNextDouble();
+                        t = Matrix4.rotateY(MathUtils.toRadians(angle));
                     }
                     else if (p.peekNextToken("rotatez"))
                     {
-                        float angle = p.getNextFloat();
-                        t = Matrix4.rotateZ((float)MathUtils.toRadians(angle));
+						double angle = p.getNextDouble();
+                        t = Matrix4.rotateZ(MathUtils.toRadians(angle));
                     }
                     else if (p.peekNextToken("rotate"))
                     {
-                        float x = p.getNextFloat();
-                        float y = p.getNextFloat();
-                        float z = p.getNextFloat();
-                        float angle = p.getNextFloat();
-                        t = Matrix4.rotate(x, y, z, (float)MathUtils.toRadians(angle));
+						double x = p.getNextDouble();
+						double y = p.getNextDouble();
+						double z = p.getNextDouble();
+						double angle = p.getNextDouble();
+                        t = Matrix4.rotate(x, y, z, MathUtils.toRadians(angle));
                     }
                     else
                         UI.printWarning(UI.Module.API, "Unrecognized transformation type: {0}", p.getNextToken());

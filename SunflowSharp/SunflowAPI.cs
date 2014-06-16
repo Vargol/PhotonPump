@@ -160,6 +160,18 @@ namespace SunflowSharp
             parameterList.addFloat(name, value);
         }
 
+		/**
+         * Declare a parameter with the specified name and value. This parameter
+         * will be added to the currently active parameter list.
+         * 
+         * @param name parameter name
+         * @param value parameter value
+         */
+		public void parameter(string name, double value)
+		{
+			parameterList.addDouble(name, value);
+		}
+
         /**
          * Declare a parameter with the specified name and value. This parameter
          * will be added to the currently active parameter list.
@@ -282,11 +294,40 @@ namespace SunflowSharp
                 parameterList.addVectors(name, interp, data);
             else if (type == "texcoord")
                 parameterList.addTexCoords(name, interp, data);
-            else if (type == "matrix")
-                parameterList.addMatrices(name, interp, data);
             else
                 UI.printError(UI.Module.API, "Unknown parameter type: {0} -- ignoring parameter \"{1}\"", type, name);
         }
+
+		/**
+         * Declare a parameter with the specified name. The type may be one of the
+         * follow: "float", "point", "vector", "texcoord", "matrix". The
+         * interpolation determines how the parameter is to be interpreted over
+         * surface (see {@link InterpolationType}). The data is specified in a
+         * flattened float array.
+         * 
+         * @param name parameter name
+         * @param type parameter data type
+         * @param interpolation parameter interpolation mode
+         * @param data raw floating point data
+         */
+		public void parameter(string name, string type, string interpolation, double[] data)
+		{
+			ParameterList.InterpolationType interp;
+			try
+			{
+				interp = (ParameterList.InterpolationType)Enum.Parse(typeof(ParameterList.InterpolationType), interpolation, true);
+			}
+			catch (Exception e)
+			{
+				UI.printError(UI.Module.API, "Unknown interpolation type: {0} -- ignoring parameter \"{1}\"", interpolation, name);
+				return;
+			}
+
+			if (type == "matrix")
+				parameterList.addMatrices(name, interp, data);
+			else
+				UI.printError(UI.Module.API, "Unknown parameter type: {0} -- ignoring parameter \"{1}\"", type, name);
+		}
 
         /**
          * Remove the specified render object. Note that this may cause the removal

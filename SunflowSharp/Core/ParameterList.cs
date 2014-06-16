@@ -20,7 +20,7 @@ namespace SunflowSharp.Core
 
         public enum ParameterType
         {
-            STRING, INT, BOOL, FLOAT, POINT, VECTOR, TEXCOORD, MATRIX, COLOR
+            STRING, INT, BOOL, FLOAT, POINT, VECTOR, TEXCOORD, MATRIX, COLOR, DOUBLE
         }
 
         public enum InterpolationType
@@ -137,6 +137,17 @@ namespace SunflowSharp.Core
             add(name, new Parameter(value));
         }
 
+		/**
+         * Add the specified double as a parameter. <code>null</code> values are
+         * not permitted.
+         * 
+         * @param name parameter name
+         * @param value parameter value
+         */
+		public void addDouble(string name, double value)
+		{
+			add(name, new Parameter(value));
+		}
         /**
          * Add the specified color as a parameter. <code>null</code> values are
          * not permitted.
@@ -260,7 +271,7 @@ namespace SunflowSharp.Core
          * @param interp interpolation type
          * @param data parameter value
          */
-        public void addMatrices(string name, InterpolationType interp, float[] data)
+        public void addMatrices(string name, InterpolationType interp, double[] data)
         {
             if (data == null || data.Length % 16 != 0)
             {
@@ -379,6 +390,23 @@ namespace SunflowSharp.Core
                     return p.getFloatValue();
             return defaultValue;
         }
+
+		/**
+         * Get the specified float parameter from this list.
+         * 
+         * @param name name of the parameter
+         * @param defaultValue value to return if not found
+         * @return the value of the parameter specified or default value if not
+         *         found
+         */
+		public double getDouble(string name, double defaultValue)
+		{
+			Parameter p;
+			if (list.TryGetValue(name, out p))
+				if (isValidParameter(name, ParameterType.DOUBLE, InterpolationType.NONE, 1, p))
+					return p.getDoubleValue();
+			return defaultValue;
+		}
 
         /**
          * Get the specified color parameter from this list.
@@ -678,6 +706,13 @@ namespace SunflowSharp.Core
                 Checked = false;
             }
 
+			public Parameter(double value)
+			{
+				type = ParameterType.DOUBLE;
+				interp = InterpolationType.NONE;
+				obj = new double[] { value };
+				Checked = false;
+			}
             public Parameter(int[] array)
             {
                 type = ParameterType.INT;
@@ -710,6 +745,14 @@ namespace SunflowSharp.Core
                 Checked = false;
             }
 
+			public Parameter(ParameterType type, InterpolationType interp, double[] data)
+			{
+				this.type = type;
+				this.interp = interp;
+				obj = data;
+				Checked = false;
+			}
+
             public int size()
             {
                 // number of elements
@@ -721,7 +764,9 @@ namespace SunflowSharp.Core
                         return ((int[])obj).Length;
                     case ParameterType.BOOL:
                         return 1;
-                    case ParameterType.FLOAT:
+					case ParameterType.DOUBLE:
+					return ((double[])obj).Length;
+					case ParameterType.FLOAT:
                         return ((float[])obj).Length;
                     case ParameterType.POINT:
                         return ((float[])obj).Length / 3;
@@ -730,7 +775,7 @@ namespace SunflowSharp.Core
                     case ParameterType.TEXCOORD:
                         return ((float[])obj).Length / 2;
                     case ParameterType.MATRIX:
-                        return ((float[])obj).Length / 16;
+                        return ((double[])obj).Length / 16;
                     case ParameterType.COLOR:
                         return 1;
                     default:
@@ -778,6 +823,11 @@ namespace SunflowSharp.Core
                 return ((float[])obj)[0];
             }
 
+			public double getDoubleValue()
+			{
+				return ((double[])obj)[0];
+			}
+
             public FloatParameter getFloats()
             {
                 return new FloatParameter(interp, (float[])obj);
@@ -803,8 +853,8 @@ namespace SunflowSharp.Core
 
             public Matrix4 getMatrix()
             {
-                float[] floats = (float[])obj;
-                return new Matrix4(floats, true);
+				double[] doubles = (double[])obj;
+				return new Matrix4(doubles, true);
             }
 
             public Color getColor()
