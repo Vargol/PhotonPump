@@ -1,6 +1,5 @@
 using System;
 using SunflowSharp.Maths;
-using SunflowSharp.Systems;
 
 namespace SunflowSharp.Core
 {
@@ -16,7 +15,7 @@ namespace SunflowSharp.Core
         public float dx, dy, dz;
         private float tMin;
         private float tMax;
-		private static float EPSILON = float.Epsilon;// 0.01f;
+        private static float EPSILON = 0;// 0.01f;
 
         private Ray()
         {

@@ -12,18 +12,18 @@ namespace SunflowSharp.Maths
     public class Matrix4
     {
         // matrix elements, m(row,col)
-        private double m00;
-        private double m01;
-        private double m02;
-        private double m03;
-        private double m10;
-        private double m11;
-        private double m12;
-        private double m13;
-        private double m20;
-        private double m21;
-        private double m22;
-        private double m23;
+        private float m00;
+        private float m01;
+        private float m02;
+        private float m03;
+        private float m10;
+        private float m11;
+        private float m12;
+        private float m13;
+        private float m20;
+        private float m21;
+        private float m22;
+        private float m23;
 
 
         // usefull constant matrices
@@ -53,7 +53,7 @@ namespace SunflowSharp.Maths
          * @param m22 value at row 2, col 2
          * @param m23 value at row 2, col 3
          */
-        public Matrix4(double m00, double m01, double m02, double m03, double m10, double m11, double m12, double m13, double m20, double m21, double m22, double m23)
+        public Matrix4(float m00, float m01, float m02, float m03, float m10, float m11, float m12, float m13, float m20, float m21, float m22, float m23)
         {
             this.m00 = m00;
             this.m01 = m01;
@@ -77,7 +77,7 @@ namespace SunflowSharp.Maths
          * @param rowMajor <code>true</code> if the array is in row major form,
          *            <code>false</code>if it is in column major form
          */
-        public Matrix4(double[] m, bool rowMajor)
+        public Matrix4(float[] m, bool rowMajor)
         {
             if (rowMajor)
             {
@@ -127,15 +127,15 @@ namespace SunflowSharp.Maths
 			return m00 == m.m00 && m01 == m.m01 && m02 == m.m02 && m03 == m.m03 && m10 == m.m10 && m11 == m.m11 && m12 == m.m12 && m13 == m.m13 && m20 == m.m20 && m21 == m.m21 && m22 == m.m22 && m23 == m.m23;
 		}
 
-        public double[] asRowMajor()
+        public float[] asRowMajor()
         {
-            return new double[] { m00, m01, m02, m03, m10, m11, m12, m13, m20, m21,
+            return new float[] { m00, m01, m02, m03, m10, m11, m12, m13, m20, m21,
                 m22, m23, 0, 0, 0, 1 };
         }
 
-        public double[] asColMajor()
+        public float[] asColMajor()
         {
-            return new double[] { m00, m10, m20, 0, m01, m11, m21, 0, m02, m12,
+            return new float[] { m00, m10, m20, 0, m01, m11, m21, 0, m02, m12,
                 m22, 0, m03, m13, m23, 1 };
         }
 
@@ -144,11 +144,11 @@ namespace SunflowSharp.Maths
          * 
          * @return determinant of this matrix
          */
-        public double determinant()
+        public float determinant()
         {
-            double A0 = m00 * m11 - m01 * m10;
-            double A1 = m00 * m12 - m02 * m10;
-            double A3 = m01 * m12 - m02 * m11;
+            float A0 = m00 * m11 - m01 * m10;
+            float A1 = m00 * m12 - m02 * m10;
+            float A3 = m01 * m12 - m02 * m11;
 
 			return A0 * m22 - A1 * m21 + A3 * m20;
         }
@@ -162,18 +162,18 @@ namespace SunflowSharp.Maths
          */
         public Matrix4 inverse()
         {
-			double A0 = m00 * m11 - m01 * m10;
-			double A1 = m00 * m12 - m02 * m10;
-			double A3 = m01 * m12 - m02 * m11;
-			double det = A0 * m22 - A1 * m21 + A3 * m20;
+			float A0 = m00 * m11 - m01 * m10;
+			float A1 = m00 * m12 - m02 * m10;
+			float A3 = m01 * m12 - m02 * m11;
+			float det = A0 * m22 - A1 * m21 + A3 * m20;
 
 			if (Math.Abs(det) < 1e-12f)
 				return null; // matrix is not invertible
 
-			double invDet = 1 / det;
-			double A2 = m00 * m13 - m03 * m10;
-			double A4 = m01 * m13 - m03 * m11;
-			double A5 = m02 * m13 - m03 * m12;
+			float invDet = 1 / det;
+			float A2 = m00 * m13 - m03 * m10;
+			float A4 = m01 * m13 - m03 * m11;
+			float A5 = m02 * m13 - m03 * m12;
 
 			Matrix4 inv = new Matrix4();
 			inv.m00 = (+m11 * m22 - m12 * m21) * invDet;
@@ -201,20 +201,20 @@ namespace SunflowSharp.Maths
         public Matrix4 multiply(Matrix4 m)
         {
             // matrix multiplication is m[r][c] = (row[r]).(col[c])
-			double rm00 = m00 * m.m00 + m01 * m.m10 + m02 * m.m20;
-			double rm01 = m00 * m.m01 + m01 * m.m11 + m02 * m.m21;
-			double rm02 = m00 * m.m02 + m01 * m.m12 + m02 * m.m22;
-			double rm03 = m00 * m.m03 + m01 * m.m13 + m02 * m.m23 + m03;
+			float rm00 = m00 * m.m00 + m01 * m.m10 + m02 * m.m20;
+			float rm01 = m00 * m.m01 + m01 * m.m11 + m02 * m.m21;
+			float rm02 = m00 * m.m02 + m01 * m.m12 + m02 * m.m22;
+			float rm03 = m00 * m.m03 + m01 * m.m13 + m02 * m.m23 + m03;
 			
-			double rm10 = m10 * m.m00 + m11 * m.m10 + m12 * m.m20;
-			double rm11 = m10 * m.m01 + m11 * m.m11 + m12 * m.m21;
-			double rm12 = m10 * m.m02 + m11 * m.m12 + m12 * m.m22;
-			double rm13 = m10 * m.m03 + m11 * m.m13 + m12 * m.m23 + m13;
+			float rm10 = m10 * m.m00 + m11 * m.m10 + m12 * m.m20;
+			float rm11 = m10 * m.m01 + m11 * m.m11 + m12 * m.m21;
+			float rm12 = m10 * m.m02 + m11 * m.m12 + m12 * m.m22;
+			float rm13 = m10 * m.m03 + m11 * m.m13 + m12 * m.m23 + m13;
 			
-			double rm20 = m20 * m.m00 + m21 * m.m10 + m22 * m.m20;
-			double rm21 = m20 * m.m01 + m21 * m.m11 + m22 * m.m21;
-			double rm22 = m20 * m.m02 + m21 * m.m12 + m22 * m.m22;
-			double rm23 = m20 * m.m03 + m21 * m.m13 + m22 * m.m23 + m23;
+			float rm20 = m20 * m.m00 + m21 * m.m10 + m22 * m.m20;
+			float rm21 = m20 * m.m01 + m21 * m.m11 + m22 * m.m21;
+			float rm22 = m20 * m.m02 + m21 * m.m12 + m22 * m.m22;
+			float rm23 = m20 * m.m03 + m21 * m.m13 + m22 * m.m23 + m23;
 			
 			return new Matrix4(rm00, rm01, rm02, rm03, rm10, rm11, rm12, rm13, rm20, rm21, rm22, rm23);
         }
@@ -250,9 +250,9 @@ namespace SunflowSharp.Maths
         public Vector3 transformV(Vector3 v)
         {
             Vector3 rv = new Vector3();
-            rv.x = (float)(m00 * v.x + m01 * v.y + m02 * v.z);
-			rv.y = (float)(m10 * v.x + m11 * v.y + m12 * v.z);
-			rv.z = (float)(m20 * v.x + m21 * v.y + m22 * v.z);
+            rv.x = m00 * v.x + m01 * v.y + m02 * v.z;
+            rv.y = m10 * v.x + m11 * v.y + m12 * v.z;
+            rv.z = m20 * v.x + m21 * v.y + m22 * v.z;
             return rv;
         }
 
@@ -266,9 +266,9 @@ namespace SunflowSharp.Maths
         public Vector3 transformTransposeV(Vector3 v)
         {
             Vector3 rv = new Vector3();
-			rv.x = (float)(m00 * v.x + m10 * v.y + m20 * v.z);
-			rv.y = (float)(m01 * v.x + m11 * v.y + m21 * v.z);
-			rv.z = (float)(m02 * v.x + m12 * v.y + m22 * v.z);
+            rv.x = m00 * v.x + m10 * v.y + m20 * v.z;
+            rv.y = m01 * v.x + m11 * v.y + m21 * v.z;
+            rv.z = m02 * v.x + m12 * v.y + m22 * v.z;
             return rv;
         }
 
@@ -282,9 +282,9 @@ namespace SunflowSharp.Maths
         public Point3 transformP(Point3 p)
         {
             Point3 rp = new Point3();
-			rp.x = (float)(m00 * p.x + m01 * p.y + m02 * p.z + m03);
-			rp.y = (float)(m10 * p.x + m11 * p.y + m12 * p.z + m13);
-			rp.z = (float)(m20 * p.x + m21 * p.y + m22 * p.z + m23);
+            rp.x = m00 * p.x + m01 * p.y + m02 * p.z + m03;
+            rp.y = m10 * p.x + m11 * p.y + m12 * p.z + m13;
+            rp.z = m20 * p.x + m21 * p.y + m22 * p.z + m23;
             return rp;
         }
 
@@ -296,9 +296,9 @@ namespace SunflowSharp.Maths
          * @param z z coordinate of the vector to multiply
          * @return x coordinate transformation result
          */
-		public float transformVX(double x, double y, double z)
+        public float transformVX(float x, float y, float z)
         {
-			return (float)(m00 * x + m01 * y + m02 * z);
+            return m00 * x + m01 * y + m02 * z;
         }
 
         /**
@@ -309,9 +309,9 @@ namespace SunflowSharp.Maths
          * @param z z coordinate of the vector to multiply
          * @return y coordinate transformation result
          */
-		public float transformVY(double x, double y, double z)
+        public float transformVY(float x, float y, float z)
         {
-			return (float)(m10 * x + m11 * y + m12 * z);
+            return m10 * x + m11 * y + m12 * z;
         }
 
         /**
@@ -322,9 +322,9 @@ namespace SunflowSharp.Maths
          * @param z z coordinate of the vector to multiply
          * @return z coordinate transformation result
          */
-		public float transformVZ(double x, double y, double z)
+        public float transformVZ(float x, float y, float z)
         {
-			return (float)(m20 * x + m21 * y + m22 * z);
+            return m20 * x + m21 * y + m22 * z;
         }
 
         /**
@@ -335,9 +335,9 @@ namespace SunflowSharp.Maths
          * @param z z coordinate of the vector to multiply
          * @return x coordinate transformation result
          */
-		public float transformTransposeVX(double x, double y, double z)
+        public float transformTransposeVX(float x, float y, float z)
         {
-			return (float)(m00 * x + m10 * y + m20 * z);
+            return m00 * x + m10 * y + m20 * z;
         }
 
         /**
@@ -348,9 +348,9 @@ namespace SunflowSharp.Maths
          * @param z z coordinate of the vector to multiply
          * @return y coordinate transformation result
          */
-		public float transformTransposeVY(double x, double y, double z)
+        public float transformTransposeVY(float x, float y, float z)
         {
-			return (float)(m01 * x + m11 * y + m21 * z);
+            return m01 * x + m11 * y + m21 * z;
         }
 
         /**
@@ -361,9 +361,9 @@ namespace SunflowSharp.Maths
          * @param z z coordinate of the vector to multiply
          * @return zcoordinate transformation result
          */
-		public float transformTransposeVZ(double x, double y, double z)
+        public float transformTransposeVZ(float x, float y, float z)
         {
-			return (float)(m02 * x + m12 * y + m22 * z);
+            return m02 * x + m12 * y + m22 * z;
         }
 
         /**
@@ -374,9 +374,9 @@ namespace SunflowSharp.Maths
          * @param z z coordinate of the vector to multiply
          * @return x coordinate transformation result
          */
-		public float transformPX(double x, double y, double z)
+        public float transformPX(float x, float y, float z)
         {
-			return (float)(m00 * x + m01 * y + m02 * z + m03);
+            return m00 * x + m01 * y + m02 * z + m03;
         }
 
         /**
@@ -387,9 +387,9 @@ namespace SunflowSharp.Maths
          * @param z z coordinate of the vector to multiply
          * @return y coordinate transformation result
          */
-		public float transformPY(double x, double y, double z)
+        public float transformPY(float x, float y, float z)
         {
-			return (float)(m10 * x + m11 * y + m12 * z + m13);
+            return m10 * x + m11 * y + m12 * z + m13;
         }
 
         /**
@@ -400,9 +400,9 @@ namespace SunflowSharp.Maths
          * @param z z coordinate of the vector to multiply
          * @return z coordinate transformation result
          */
-		public float transformPZ(double x, double y, double z)
+        public float transformPZ(float x, float y, float z)
         {
-			return (float)(m20 * x + m21 * y + m22 * z + m23);
+            return m20 * x + m21 * y + m22 * z + m23;
         }
 
         /**
@@ -413,7 +413,7 @@ namespace SunflowSharp.Maths
          * @param z z component of translation
          * @return a new Matrix4 object representing the translation
          */
-        public static Matrix4 translation(double x, double y, double z)
+        public static Matrix4 translation(float x, float y, float z)
         {
             Matrix4 m = new Matrix4();
             m.m00 = m.m11 = m.m22 = 1;
@@ -429,7 +429,7 @@ namespace SunflowSharp.Maths
          * @param theta angle to rotate about the X axis in radians
          * @return a new Matrix4 object representing the rotation
          */
-        public static Matrix4 rotateX(double theta)
+        public static Matrix4 rotateX(float theta)
         {
             Matrix4 m = new Matrix4();
             float s = (float)Math.Sin(theta);
@@ -447,7 +447,7 @@ namespace SunflowSharp.Maths
          * @param theta angle to rotate about the Y axis in radians
          * @return a new Matrix4 object representing the rotation
          */
-		public static Matrix4 rotateY(double theta)
+        public static Matrix4 rotateY(float theta)
         {
             Matrix4 m = new Matrix4();
             float s = (float)Math.Sin(theta);
@@ -465,7 +465,7 @@ namespace SunflowSharp.Maths
          * @param theta angle to rotate about the Z axis in radians
          * @return a new Matrix4 object representing the rotation
          */
-		public static Matrix4 rotateZ(double theta)
+        public static Matrix4 rotateZ(float theta)
         {
             Matrix4 m = new Matrix4();
             float s = (float)Math.Sin(theta);
@@ -487,29 +487,29 @@ namespace SunflowSharp.Maths
          * @param theta angle to rotate about the axis in radians
          * @return a new Matrix4 object representing the rotation
          */
-		public static Matrix4 rotate(double x, double y, double z, double theta)
+        public static Matrix4 rotate(float x, float y, float z, float theta)
         {
             Matrix4 m = new Matrix4();
-            double invLen = 1.0 / Math.Sqrt(x * x + y * y + z * z);
+            float invLen = 1 / (float)Math.Sqrt(x * x + y * y + z * z);
             x *= invLen;
             y *= invLen;
             z *= invLen;
-            double s = Math.Sin(theta);
-            double c = Math.Cos(theta);
-            double t = 1 - c;
+            float s = (float)Math.Sin(theta);
+            float c = (float)Math.Cos(theta);
+            float t = 1 - c;
             m.m00 = t * x * x + c;
             m.m11 = t * y * y + c;
             m.m22 = t * z * z + c;
-            double txy = t * x * y;
-            double sz = s * z;
+            float txy = t * x * y;
+            float sz = s * z;
             m.m01 = txy - sz;
             m.m10 = txy + sz;
-            double txz = t * x * z;
-            double sy = s * y;
+            float txz = t * x * z;
+            float sy = s * y;
             m.m02 = txz + sy;
             m.m20 = txz - sy;
-            double tyz = t * y * z;
-            double sx = s * x;
+            float tyz = t * y * z;
+            float sx = s * x;
             m.m12 = tyz - sx;
             m.m21 = tyz + sx;
             return m;
@@ -521,7 +521,7 @@ namespace SunflowSharp.Maths
          * @param s scale factor for all three axes
          * @return a new Matrix4 object representing the uniform scale
          */
-        public static Matrix4 scale(double s)
+        public static Matrix4 scale(float s)
         {
             Matrix4 m = new Matrix4();
             m.m00 = m.m11 = m.m22 = s;
@@ -536,7 +536,7 @@ namespace SunflowSharp.Maths
          * @param sz scale factor in the z dimension
          * @return a new Matrix4 object representing the non-uniform scale
          */
-		public static Matrix4 scale(double sx, double sy, double sz)
+        public static Matrix4 scale(float sx, float sy, float sz)
         {
             Matrix4 m = new Matrix4();
             m.m00 = sx;
@@ -582,7 +582,7 @@ namespace SunflowSharp.Maths
 			return Matrix4.translation(eye.x, eye.y, eye.z).multiply(m);
 		}
 
-		public static Matrix4 blend(Matrix4 m0, Matrix4 m1, double t)
+        public static Matrix4 blend(Matrix4 m0, Matrix4 m1, float t)
         {
             Matrix4 m = new Matrix4();
             m.m00 = (1 - t) * m0.m00 + t * m1.m00;

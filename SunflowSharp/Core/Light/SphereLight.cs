@@ -12,8 +12,8 @@ namespace SunflowSharp.Core.Light
         private Color radiance;
         private int numSamples;
         private Point3 center;
-        private double radius;
-        private double r2;
+        private float radius;
+        private float r2;
 
         public SphereLight()
         {
@@ -27,7 +27,7 @@ namespace SunflowSharp.Core.Light
         {
             radiance = pl.getColor("radiance", radiance);
             numSamples = pl.getInt("samples", numSamples);
-            radius = pl.getDouble("radius", radius);
+            radius = pl.getFloat("radius", radius);
             r2 = radius * radius;
             center = pl.getPoint("center", center);
             return true;
@@ -57,12 +57,12 @@ namespace SunflowSharp.Core.Light
             if (l2 <= r2)
                 return; // inside the sphere?
             // top of the sphere as viewed from the current shading point
-			float topX = (float)(wc.x + state.getNormal().x * radius);
-			float topY = (float)(wc.y + state.getNormal().y * radius);
-			float topZ = (float)(wc.z + state.getNormal().z * radius);
+            float topX = wc.x + state.getNormal().x * radius;
+            float topY = wc.y + state.getNormal().y * radius;
+            float topZ = wc.z + state.getNormal().z * radius;
             if (state.getNormal().dot(topX, topY, topZ) <= 0)
                 return; // top of the sphere is below the horizon
-            double cosThetaMax = Math.Sqrt(Math.Max(0, 1 - r2 / Vector3.dot(wc, wc)));
+            float cosThetaMax = (float)Math.Sqrt(Math.Max(0, 1 - r2 / Vector3.dot(wc, wc)));
             OrthoNormalBasis basis = OrthoNormalBasis.makeFromW(wc);
             int samples = state.getDiffuseDepth() > 0 ? 1 : getNumSamples();
             float scale = (float)(2 * Math.PI * (1 - cosThetaMax));
@@ -86,12 +86,12 @@ namespace SunflowSharp.Core.Light
                 if (cosNx <= 0)
                     continue;
 
-				double ocx = state.getPoint().x - center.x;
-				double ocy = state.getPoint().y - center.y;
-				double ocz = state.getPoint().z - center.z;
+                float ocx = state.getPoint().x - center.x;
+                float ocy = state.getPoint().y - center.y;
+                float ocz = state.getPoint().z - center.z;
                 float qa = Vector3.dot(dir, dir);
-                float qb = (float)(2.0 * ((dir.x * ocx) + (dir.y * ocy) + (dir.z * ocz)));
-				float qc = (float)(((ocx * ocx) + (ocy * ocy) + (ocz * ocz)) - r2);
+                float qb = 2 * ((dir.x * ocx) + (dir.y * ocy) + (dir.z * ocz));
+                float qc = ((ocx * ocx) + (ocy * ocy) + (ocz * ocz)) - r2;
                 double[] t = Solvers.solveQuadric(qa, qb, qc);
                 if (t == null)
                     continue;
@@ -109,23 +109,23 @@ namespace SunflowSharp.Core.Light
 
         public void getPhoton(double randX1, double randY1, double randX2, double randY2, Point3 p, Vector3 dir, Color power)
         {
-            double z = (1 - 2 * randX2);
-			double r = Math.Sqrt(Math.Max(0, 1 - z * z));
-			double phi = (2 * Math.PI * randY2);
-			double x = r * Math.Cos(phi);
-			double y = r * Math.Sin(phi);
-            p.x = (float)(center.x + x * radius);
-			p.y = (float)(center.y + y * radius);
-			p.z = (float)(center.z + z * radius);
-			OrthoNormalBasis basis = OrthoNormalBasis.makeFromW(new Vector3((float)x, (float)y, (float)z));
-            phi = (2 * Math.PI * randX1);
-			double cosPhi = Math.Cos(phi);
-			double sinPhi = Math.Sin(phi);
-			double sinTheta = Math.Sqrt(randY1);
-			double cosTheta = Math.Sqrt(1 - randY1);
-			dir.x = (float)(cosPhi * sinTheta);
-			dir.y = (float)(sinPhi * sinTheta);
-			dir.z = (float)(cosTheta);
+            float z = (float)(1 - 2 * randX2);
+            float r = (float)Math.Sqrt(Math.Max(0, 1 - z * z));
+            float phi = (float)(2 * Math.PI * randY2);
+            float x = r * (float)Math.Cos(phi);
+            float y = r * (float)Math.Sin(phi);
+            p.x = center.x + x * radius;
+            p.y = center.y + y * radius;
+            p.z = center.z + z * radius;
+            OrthoNormalBasis basis = OrthoNormalBasis.makeFromW(new Vector3(x, y, z));
+            phi = (float)(2 * Math.PI * randX1);
+            float cosPhi = (float)Math.Cos(phi);
+            float sinPhi = (float)Math.Sin(phi);
+            float sinTheta = (float)Math.Sqrt(randY1);
+            float cosTheta = (float)Math.Sqrt(1 - randY1);
+            dir.x = cosPhi * sinTheta;
+            dir.y = sinPhi * sinTheta;
+            dir.z = cosTheta;
             basis.transform(dir);
             power.set(radiance);
             power.mul((float)(Math.PI * Math.PI * 4 * r2));
