@@ -91,7 +91,7 @@ namespace SunflowSharp.Core.Shader
             return absorption != null ? ret.mul(absorption) : ret;
         }
 
-        public void ScatterPhoton(ShadingState state, Color power)
+		public void ScatterPhoton(ShadingState state, Color power)
         {
             Color refr = Color.mul(1 - f0, color);
             Color refl = Color.mul(f0, color);
@@ -103,8 +103,9 @@ namespace SunflowSharp.Core.Shader
                 state.faceforward();
                 // don't reflect internally
                 if (state.isBehind())
-                    return;
-                // photon is reflected
+					return;
+
+				// photon is reflected
                 float cos = state.getCosND();
                 power.mul(refl).mul(1.0f / avgR);
                 float dn = 2 * cos;
