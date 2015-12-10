@@ -15,39 +15,39 @@ namespace SunflowSharp.Core.Parser
      */
     public class SCParser : SceneParserBase
     {
-		private static int instanceCounter = 0;
-		private int instanceNumber;
-		private Systems.Parser p;
+    private static int instanceCounter = 0;
+    private int instanceNumber;
+    private Systems.Parser p;
         private int numLightSamples;
-		// used to generate unique names inside this parser
-		private Dictionary<string, int> objectNames;
+    // used to generate unique names inside this parser
+    private Dictionary<string, int> objectNames;
 
 
         public SCParser()
         {
-			objectNames = new Dictionary<string, int>();
-			instanceCounter++;
-			instanceNumber = instanceCounter;
-			ByteUtil.InitByteUtil();
+      objectNames = new Dictionary<string, int>();
+      instanceCounter++;
+      instanceNumber = instanceCounter;
+      ByteUtil.InitByteUtil();
         }
 
-		private string generateUniqueName(string prefix) {
-			
-			// generate a unique name for this class:
-			int index = 1;
+    private string generateUniqueName(string prefix) {
+      
+      // generate a unique name for this class:
+      int index = 1;
 
-			if (objectNames.ContainsKey(prefix)) {
-				index = objectNames[prefix];
-				objectNames[prefix] =  index + 1;
-			} else {
-				objectNames[prefix] =  index + 1;
-			}
-			
-			return string.Format("@sc_{0}::{1}_{2}", instanceNumber
-			                     				   , prefix
-			                     				   , index);
-			
-		}
+      if (objectNames.ContainsKey(prefix)) {
+        index = objectNames[prefix];
+        objectNames[prefix] =  index + 1;
+      } else {
+        objectNames[prefix] =  index + 1;
+      }
+      
+      return string.Format("@sc_{0}::{1}_{2}", instanceNumber
+                                     , prefix
+                                     , index);
+      
+    }
 
 
         public override bool parse(Stream stream, SunflowAPI api)
@@ -129,9 +129,9 @@ namespace SunflowSharp.Core.Parser
                     }
                     else if (token == "override")
                     {
-						api.parameter("override.shader", p.getNextToken());
-						api.parameter("override.photons", p.getNextbool());
-						api.options(SunflowAPI.DEFAULT_OPTIONS);
+            api.parameter("override.shader", p.getNextToken());
+            api.parameter("override.photons", p.getNextbool());
+            api.options(SunflowAPI.DEFAULT_OPTIONS);
                     }
                     else if (token == "object")
                     {
@@ -150,7 +150,7 @@ namespace SunflowSharp.Core.Parser
                         string path = p.getNextToken();
                         //if (!new File(path).isAbsolute())
                         //    path = localDir + File.separator + path;
-						api.searchpath("texture", Path.GetFullPath(path));
+            api.searchpath("texture", Path.GetFullPath(path));
                     }
                     else if (token == "includepath")
                     {
@@ -189,8 +189,8 @@ namespace SunflowSharp.Core.Parser
                 api.parameter("resolutionX", p.getNextInt());
                 api.parameter("resolutionY", p.getNextInt());
             }
-			if (p.peekNextToken("sampler"))
-				api.parameter("sampler", p.getNextToken());
+      if (p.peekNextToken("sampler"))
+        api.parameter("sampler", p.getNextToken());
             if (p.peekNextToken("aa"))
             {
                 api.parameter("aa.min", p.getNextInt());
@@ -209,8 +209,8 @@ namespace SunflowSharp.Core.Parser
                 UI.printWarning(UI.Module.API, "Deprecated: show-aa ignored");
                 p.getNextbool();
             }
-			if (p.peekNextToken("cache"))
-				api.parameter("aa.cache", p.getNextbool());
+      if (p.peekNextToken("cache"))
+        api.parameter("aa.cache", p.getNextbool());
             if (p.peekNextToken("output"))
             {
                 UI.printWarning(UI.Module.API, "Deprecated: output statement ignored");
@@ -319,7 +319,7 @@ namespace SunflowSharp.Core.Parser
                 p.checkNextToken("sky");
                 api.parameter("gi.fake.sky", null, parseColor().getRGB());
                 p.checkNextToken("ground");
-				api.parameter("gi.fake.ground", null, parseColor().getRGB());
+        api.parameter("gi.fake.ground", null, parseColor().getRGB());
             }
             else if (p.peekNextToken("igi"))
             {
@@ -338,9 +338,9 @@ namespace SunflowSharp.Core.Parser
             {
                 api.parameter("gi.engine", "ambocc");
                 p.checkNextToken("bright");
-				api.parameter("gi.ambocc.bright", null, parseColor().getRGB());
+        api.parameter("gi.ambocc.bright", null, parseColor().getRGB());
                 p.checkNextToken("dark");
-				api.parameter("gi.ambocc.dark", null, parseColor().getRGB());
+        api.parameter("gi.ambocc.dark", null, parseColor().getRGB());
                 p.checkNextToken("samples");
                 api.parameter("gi.ambocc.samples", p.getNextInt());
                 if (p.peekNextToken("maxdist"))
@@ -431,24 +431,24 @@ namespace SunflowSharp.Core.Parser
             p.checkNextToken("{");
             p.checkNextToken("type");
             string type = p.getNextToken();
-			UI.printInfo(UI.Module.API, "Reading {0} camera ...", type);
-			if (p.peekNextToken("shutter")) {
-				api.parameter("shutter.open", p.getNextFloat());
-				api.parameter("shutter.close", p.getNextFloat());
-			}
+      UI.printInfo(UI.Module.API, "Reading {0} camera ...", type);
+      if (p.peekNextToken("shutter")) {
+        api.parameter("shutter.open", p.getNextFloat());
+        api.parameter("shutter.close", p.getNextFloat());
+      }
             parseCameraTransform(api);
-			string name = generateUniqueName("camera");
+      string name = generateUniqueName("camera");
             if (type == "pinhole")
             {
                 p.checkNextToken("fov");
                 api.parameter("fov", p.getNextFloat());
                 p.checkNextToken("aspect");
                 api.parameter("aspect", p.getNextFloat());
-				if (p.peekNextToken("shift")) 
-				{
-					api.parameter("shift.x", p.getNextFloat());
-					api.parameter("shift.y", p.getNextFloat());
-	            }
+        if (p.peekNextToken("shift")) 
+        {
+          api.parameter("shift.x", p.getNextFloat());
+          api.parameter("shift.y", p.getNextFloat());
+              }
                 api.camera(name, "pinhole");
             }
             else if (type == "thinlens")
@@ -457,11 +457,11 @@ namespace SunflowSharp.Core.Parser
                 api.parameter("fov", p.getNextFloat());
                 p.checkNextToken("aspect");
                 api.parameter("aspect", p.getNextFloat());
-				if (p.peekNextToken("shift")) 
-				{
-					api.parameter("shift.x", p.getNextFloat());
-					api.parameter("shift.y", p.getNextFloat());
-				}
+        if (p.peekNextToken("shift")) 
+        {
+          api.parameter("shift.x", p.getNextFloat());
+          api.parameter("shift.y", p.getNextFloat());
+        }
                 p.checkNextToken("fdist");
                 api.parameter("focus.distance", p.getNextFloat());
                 p.checkNextToken("lensr");
@@ -498,20 +498,20 @@ namespace SunflowSharp.Core.Parser
 
         private void parseCameraTransform(SunflowAPI api)
         {
-			if (p.peekNextToken("steps")) {
-				// motion blur camera
-				int n = p.getNextInt();
-				api.parameter("transform.steps", n);
-				// parse time extents
-				p.checkNextToken("times");
-				float t0 = p.getNextFloat();
-				float t1 = p.getNextFloat();
-				api.parameter("transform.times", "float", "none", new float[] { t0,
-					t1 });
-				for (int i = 0; i < n; i++)
-					parseCameraMatrix(i, api);
-			} else
-				parseCameraMatrix(-1, api);
+      if (p.peekNextToken("steps")) {
+        // motion blur camera
+        int n = p.getNextInt();
+        api.parameter("transform.steps", n);
+        // parse time extents
+        p.checkNextToken("times");
+        float t0 = p.getNextFloat();
+        float t1 = p.getNextFloat();
+        api.parameter("transform.times", "float", "none", new float[] { t0,
+          t1 });
+        for (int i = 0; i < n; i++)
+          parseCameraMatrix(i, api);
+      } else
+        parseCameraMatrix(-1, api);
         }
 
         private void parseCameraMatrix(int index, SunflowAPI api)
@@ -520,20 +520,20 @@ namespace SunflowSharp.Core.Parser
             if (p.peekNextToken("transform"))
             {
                 // advanced camera
-				api.parameter(string.Format("transform{0}", offset), parseMatrix());
+        api.parameter(string.Format("transform{0}", offset), parseMatrix());
             }
             else
             {
                 if (index >= 0)
                     p.checkNextToken("{");
                 // regular camera specification
-				p.checkNextToken("eye");
-				Point3 eye = parsePoint();
-				p.checkNextToken("target");
-				Point3 target = parsePoint();
-				p.checkNextToken("up");
-				Vector3 up = parseVector();
-				api.parameter(string.Format("transform{0}", offset), Matrix4.lookAt(eye, target, up));
+        p.checkNextToken("eye");
+        Point3 eye = parsePoint();
+        p.checkNextToken("target");
+        Point3 target = parsePoint();
+        p.checkNextToken("up");
+        Vector3 up = parseVector();
+        api.parameter(string.Format("transform{0}", offset), Matrix4.lookAt(eye, target, up));
                 if (index >= 0)
                     p.checkNextToken("}");
             }
@@ -550,7 +550,7 @@ namespace SunflowSharp.Core.Parser
             {
                 if (p.peekNextToken("diff"))
                 {
-					api.parameter("diffuse",  null, parseColor().getRGB());
+          api.parameter("diffuse",  null, parseColor().getRGB());
                     api.shader(name, "diffuse");
                 }
                 else if (p.peekNextToken("texture"))
@@ -569,10 +569,10 @@ namespace SunflowSharp.Core.Parser
                 else
                 {
                     p.checkNextToken("diff");
-					api.parameter("diffuse", null, parseColor().getRGB());
+          api.parameter("diffuse", null, parseColor().getRGB());
                 }
                 p.checkNextToken("spec");
-				api.parameter("specular", null, parseColor().getRGB());
+        api.parameter("specular", null, parseColor().getRGB());
                 api.parameter("power", p.getNextFloat());
                 if (p.peekNextToken("samples"))
                     api.parameter("samples", p.getNextInt());
@@ -585,12 +585,12 @@ namespace SunflowSharp.Core.Parser
             {
                 string tex = null;
                 if (p.peekNextToken("diff") || p.peekNextToken("bright"))
-					api.parameter("bright", null, parseColor().getRGB());
+          api.parameter("bright", null, parseColor().getRGB());
                 else if (p.peekNextToken("texture"))
                     api.parameter("texture", tex = p.getNextToken());
                 if (p.peekNextToken("dark"))
                 {
-					api.parameter("dark", null, parseColor().getRGB());
+          api.parameter("dark", null, parseColor().getRGB());
                     p.checkNextToken("samples");
                     api.parameter("samples", p.getNextInt());
                     p.checkNextToken("dist");
@@ -599,12 +599,12 @@ namespace SunflowSharp.Core.Parser
                 if (tex == null)
                     api.shader(name, "ambient_occlusion");
                 else
-					api.shader(name, "textured_ambient_occlusion");
+          api.shader(name, "textured_ambient_occlusion");
             }
             else if (p.peekNextToken("mirror"))
             {
                 p.checkNextToken("refl");
-				api.parameter("color", null, parseColor().getRGB());
+        api.parameter("color", null, parseColor().getRGB());
                 api.shader(name, "mirror");
             }
             else if (p.peekNextToken("glass"))
@@ -612,11 +612,11 @@ namespace SunflowSharp.Core.Parser
                 p.checkNextToken("eta");
                 api.parameter("eta", p.getNextFloat());
                 p.checkNextToken("color");
-				api.parameter("color", null, parseColor().getRGB());
-				if (p.peekNextToken("absorption.distance") || p.peekNextToken("absorbtion.distance"))
-					api.parameter("absorption.distance", p.getNextFloat());
-				if (p.peekNextToken("absorption.color") || p.peekNextToken("absorbtion.color"))
-					api.parameter("absorption.color", null, parseColor().getRGB());
+        api.parameter("color", null, parseColor().getRGB());
+        if (p.peekNextToken("absorption.distance") || p.peekNextToken("absorbtion.distance"))
+          api.parameter("absorption.distance", p.getNextFloat());
+        if (p.peekNextToken("absorption.color") || p.peekNextToken("absorbtion.color"))
+          api.parameter("absorption.color", null, parseColor().getRGB());
                 api.shader(name, "glass");
             }
             else if (p.peekNextToken("shiny"))
@@ -634,7 +634,7 @@ namespace SunflowSharp.Core.Parser
                 if (tex == null)
                     api.shader(name, "shiny_diffuse");
                 else
-					api.shader(name, "textured_shiny_diffuse");
+          api.shader(name, "textured_shiny_diffuse");
             }
             else if (p.peekNextToken("ward"))
             {
@@ -664,11 +664,11 @@ namespace SunflowSharp.Core.Parser
             }
             else if (p.peekNextToken("view-irradiance"))
             {
-				api.shader(name, "view_irradiance");
+        api.shader(name, "view_irradiance");
             }
             else if (p.peekNextToken("view-global"))
             {
-				api.shader(name, "view_global");
+        api.shader(name, "view_global");
             }
             else if (p.peekNextToken("constant"))
             {
@@ -679,10 +679,10 @@ namespace SunflowSharp.Core.Parser
             }
             else if (p.peekNextToken("csharp"))
             {
-				String typename = p.peekNextToken("typename") ? p.getNextToken() : PluginRegistry.shaderPlugins.generateUniqueName("janino_shader");
-				if (!PluginRegistry.shaderPlugins.registerPlugin(typename, p.getNextCodeBlock()))
-					return false;
-				api.shader(name, typename);
+        String typename = p.peekNextToken("typename") ? p.getNextToken() : PluginRegistry.shaderPlugins.generateUniqueName("janino_shader");
+        if (!PluginRegistry.shaderPlugins.registerPlugin(typename, p.getNextCodeBlock()))
+          return false;
+        api.shader(name, typename);
             }
             else if (p.peekNextToken("id"))
             {
@@ -734,7 +734,7 @@ namespace SunflowSharp.Core.Parser
                 api.parameter("texture", p.getNextToken());
                 p.checkNextToken("scale");
                 api.parameter("scale", p.getNextFloat());
-                api.modifier(name, "bumb_map");
+                api.modifier(name, "bump_map");
             }
             else if (p.peekNextToken("normalmap"))
             {
@@ -742,16 +742,16 @@ namespace SunflowSharp.Core.Parser
                 api.parameter("texture", p.getNextToken());
                 api.modifier(name, "normal_map");
             }
-			else if (p.peekNextToken("perlin")) {
-				p.checkNextToken("function");
-				api.parameter("function", p.getNextInt());
-				p.checkNextToken("size");
-				api.parameter("size", p.getNextFloat());
-				p.checkNextToken("scale");
-				api.parameter("scale", p.getNextFloat());
-				api.modifier(name, "perlin");
-			} 
-			else 
+      else if (p.peekNextToken("perlin")) {
+        p.checkNextToken("function");
+        api.parameter("function", p.getNextInt());
+        p.checkNextToken("size");
+        api.parameter("size", p.getNextFloat());
+        p.checkNextToken("scale");
+        api.parameter("scale", p.getNextFloat());
+        api.modifier(name, "perlin");
+      } 
+      else 
             {
                 UI.printWarning(UI.Module.API, "Unrecognized modifier type: {0}", p.getNextToken());
             }
@@ -764,7 +764,7 @@ namespace SunflowSharp.Core.Parser
             p.checkNextToken("{");
             bool noInstance = false;
             Matrix4[] transform = null;
-			float transformTime0 = 0, transformTime1 = 0;
+      float transformTime0 = 0, transformTime1 = 0;
             string name = null;
             string[] shaders = null;
             string[] modifiers = null;
@@ -798,17 +798,17 @@ namespace SunflowSharp.Core.Parser
                 }
                 else if (p.peekNextToken("modifier"))
                     modifiers = new string[] { p.getNextToken() };
-				if (p.peekNextToken("transform")) {
-					if (p.peekNextToken("steps")) {
-						transform = new Matrix4[p.getNextInt()];
-						p.checkNextToken("times");
-						transformTime0 = p.getNextFloat();
-						transformTime1 = p.getNextFloat();
-						for (int i = 0; i < transform.Length; i++)
-							transform[i] = parseMatrix();	
-					} else
-						transform = new Matrix4[] { parseMatrix() };	
-				}
+        if (p.peekNextToken("transform")) {
+          if (p.peekNextToken("steps")) {
+            transform = new Matrix4[p.getNextInt()];
+            p.checkNextToken("times");
+            transformTime0 = p.getNextFloat();
+            transformTime1 = p.getNextFloat();
+            for (int i = 0; i < transform.Length; i++)
+              transform[i] = parseMatrix(); 
+          } else
+            transform = new Matrix4[] { parseMatrix() };  
+        }
             }
             if (p.peekNextToken("accel"))
                 api.parameter("accel", p.getNextToken());
@@ -817,7 +817,7 @@ namespace SunflowSharp.Core.Parser
             if (p.peekNextToken("name"))
                 name = p.getNextToken();
             else
-				name = generateUniqueName(type);
+        name = generateUniqueName(type);
             if (type == "mesh")
             {
                 UI.printWarning(UI.Module.API, "Deprecated object type: mesh");
@@ -886,12 +886,12 @@ namespace SunflowSharp.Core.Parser
                 api.parameter("triangles", triangles);
                 api.parameter("points", "point", "vertex", points);
                 api.parameter("uvs", "texcoord", "vertex", uvs);
-				api.geometry(name, "triangle_mesh");
+        api.geometry(name, "triangle_mesh");
             }
             else if (type == "sphere")
             {
                 UI.printInfo(UI.Module.API, "Reading sphere ...");
-				api.geometry(name, "sphere");
+        api.geometry(name, "sphere");
                 if (transform == null && !noInstance)
                 {
                     // legacy method of specifying transformation for spheres
@@ -906,15 +906,15 @@ namespace SunflowSharp.Core.Parser
                     if (modifiers != null)
                         api.parameter("modifiers", modifiers);
                     api.instance(name + ".instance", name);
-					// disable future auto-instancing - instance has already been created
+          // disable future auto-instancing - instance has already been created
                     noInstance = true; 
                 }
             }
-			else if (type.Equals("cylinder")) 
-			{
-				UI.printInfo(UI.Module.API, "Reading cylinder ...");
-				api.geometry(name, "cylinder");
-			}
+      else if (type.Equals("cylinder")) 
+      {
+        UI.printInfo(UI.Module.API, "Reading cylinder ...");
+        api.geometry(name, "cylinder");
+      }
             else if (type == "banchoff")
             {
                 UI.printInfo(UI.Module.API, "Reading banchoff ...");
@@ -928,16 +928,16 @@ namespace SunflowSharp.Core.Parser
                 api.parameter("radiusOuter", p.getNextFloat());
                 api.geometry(name, "torus");
             }
-			else if (type.Equals("sphereflake")) {
-				UI.printInfo(UI.Module.API, "Reading sphereflake ...");
-				if (p.peekNextToken("level"))
-					api.parameter("level", p.getNextInt());
-				if (p.peekNextToken("axis"))
-					api.parameter("axis", parseVector());
-				if (p.peekNextToken("radius"))
-					api.parameter("radius", p.getNextFloat());
-				api.geometry(name, "sphereflake");
-			}
+      else if (type.Equals("sphereflake")) {
+        UI.printInfo(UI.Module.API, "Reading sphereflake ...");
+        if (p.peekNextToken("level"))
+          api.parameter("level", p.getNextInt());
+        if (p.peekNextToken("axis"))
+          api.parameter("axis", parseVector());
+        if (p.peekNextToken("radius"))
+          api.parameter("radius", p.getNextFloat());
+        api.geometry(name, "sphereflake");
+      }
             else if (type == "plane")
             {
                 UI.printInfo(UI.Module.API, "Reading plane ...");
@@ -1001,13 +1001,13 @@ namespace SunflowSharp.Core.Parser
             else if (type == "csharp-tesselatable")
             {
                 UI.printInfo(UI.Module.API, "Reading procedural primitive: {0} ... ", name);
-				string code = p.getNextCodeBlock();
+        string code = p.getNextCodeBlock();
                 try
                 {
-					String typename = p.peekNextToken("typename") ? p.getNextToken() : PluginRegistry.tesselatablePlugins.generateUniqueName(name);
-					if (!PluginRegistry.tesselatablePlugins.registerPlugin(typename, code))
-						return;
-					api.geometry(name, typename);
+          String typename = p.peekNextToken("typename") ? p.getNextToken() : PluginRegistry.tesselatablePlugins.generateUniqueName(name);
+          if (!PluginRegistry.tesselatablePlugins.registerPlugin(typename, code))
+            return;
+          api.geometry(name, typename);
 
                 }
                 catch (Exception e)
@@ -1022,14 +1022,14 @@ namespace SunflowSharp.Core.Parser
                 UI.printInfo(UI.Module.API, "Reading teapot: {0} ... ", name);
                 if (p.peekNextToken("subdivs"))
                 {
-					api.parameter("subdivs", p.getNextInt());
+          api.parameter("subdivs", p.getNextInt());
                 }
                 if (p.peekNextToken("smooth"))
                 {
                     api.parameter("smooth", p.getNextbool());
                 }
             
-				api.geometry(name, "teapot");
+        api.geometry(name, "teapot");
             }
             else if (type == "gumbo")
             {
@@ -1065,45 +1065,45 @@ namespace SunflowSharp.Core.Parser
                 if (type == "dlasurface")
                     UI.printWarning(UI.Module.API, "Deprecated object type: \"dlasurface\" - please use \"particles\" instead");
 
-				float[] data; 
+        float[] data; 
 
-				if (p.peekNextToken("filename")) {
+        if (p.peekNextToken("filename")) {
 
-	                string filename = p.getNextToken();
-	                bool littleEndian = false;
-	                if (p.peekNextToken("little_endian"))
-	                    littleEndian = true;
-	                UI.printInfo(UI.Module.USER, "Loading particle file: {0}", filename);
-	                //File file = new File(filename);
-	                //FileInputStream stream = new FileInputStream(filename);
-	                //MappedByteBuffer map = stream.getChannel().map(FileChannel.MapMode.READ_ONLY, 0, file.Length());
-	                //if (littleEndian)
-	                //    map.order(ByteOrder.LITTLE_ENDIAN);
-	                //FloatBuffer buffer = map.asFloatBuffer();
-	                BinaryReader reader = new BinaryReader(File.OpenRead(filename));
-	                data = new float[reader.BaseStream.Length / 4];
-					if (!littleEndian) {
-						for (int i = 0; i < data.Length; i++) {
-							byte[] newBytes = reader.ReadBytes(4);
-							Array.Reverse(newBytes);
-							data[i] = BitConverter.ToSingle(newBytes, 0);//buffer.get(i);
-	//						UI.printInfo(UI.Module.USER, " particle {0}: {1}", i, data[i]);
-						}
-					} else {
-		                for (int i = 0; i < data.Length; i++) {
-		                    data[i] = BitConverter.ToSingle(reader.ReadBytes(4), 0);//buffer.get(i);
-	//					    UI.printInfo(UI.Module.USER, " particle {0}: {1}", i, data[i]);
-						}
+                  string filename = p.getNextToken();
+                  bool littleEndian = false;
+                  if (p.peekNextToken("little_endian"))
+                      littleEndian = true;
+                  UI.printInfo(UI.Module.USER, "Loading particle file: {0}", filename);
+                  //File file = new File(filename);
+                  //FileInputStream stream = new FileInputStream(filename);
+                  //MappedByteBuffer map = stream.getChannel().map(FileChannel.MapMode.READ_ONLY, 0, file.Length());
+                  //if (littleEndian)
+                  //    map.order(ByteOrder.LITTLE_ENDIAN);
+                  //FloatBuffer buffer = map.asFloatBuffer();
+                  BinaryReader reader = new BinaryReader(File.OpenRead(filename));
+                  data = new float[reader.BaseStream.Length / 4];
+          if (!littleEndian) {
+            for (int i = 0; i < data.Length; i++) {
+              byte[] newBytes = reader.ReadBytes(4);
+              Array.Reverse(newBytes);
+              data[i] = BitConverter.ToSingle(newBytes, 0);//buffer.get(i);
+  //            UI.printInfo(UI.Module.USER, " particle {0}: {1}", i, data[i]);
+            }
+          } else {
+                    for (int i = 0; i < data.Length; i++) {
+                        data[i] = BitConverter.ToSingle(reader.ReadBytes(4), 0);//buffer.get(i);
+  //              UI.printInfo(UI.Module.USER, " particle {0}: {1}", i, data[i]);
+            }
 
-					}
+          }
 
-					reader.Close();
+          reader.Close();
 
-				} else {
-					p.checkNextToken("points");
-					int n = p.getNextInt();
-					data = parseFloatArray(n * 3); // read 3n points
-				}
+        } else {
+          p.checkNextToken("points");
+          int n = p.getNextInt();
+          data = parseFloatArray(n * 3); // read 3n points
+        }
                 api.parameter("particles", "point", "vertex", data);
                 if (p.peekNextToken("num"))
                     api.parameter("num", p.getNextInt());
@@ -1156,17 +1156,17 @@ namespace SunflowSharp.Core.Parser
                 api.parameter("shaders", shaders);
                 if (modifiers != null)
                     api.parameter("modifiers", modifiers);
-				if (transform != null && transform.Length > 0) {
-					if (transform.Length == 1)
-						 api.parameter("transform", transform[0]);
-					else {
-						api.parameter("transform.steps", transform.Length);
-						api.parameter("transform.times", "float", "none", new float[] {
-							transformTime0, transformTime1 });
-						for (int i = 0; i < transform.Length; i++)
-							api.parameter(string.Format("transform[{0}]", i), transform[i]);
-					}
-				}
+        if (transform != null && transform.Length > 0) {
+          if (transform.Length == 1)
+             api.parameter("transform", transform[0]);
+          else {
+            api.parameter("transform.steps", transform.Length);
+            api.parameter("transform.times", "float", "none", new float[] {
+              transformTime0, transformTime1 });
+            for (int i = 0; i < transform.Length; i++)
+              api.parameter(string.Format("transform[{0}]", i), transform[i]);
+          }
+        }
                 api.instance(name + ".instance", name);
             }
             p.checkNextToken("}");
@@ -1181,20 +1181,20 @@ namespace SunflowSharp.Core.Parser
             p.checkNextToken("geometry");
             string geoname = p.getNextToken();
             p.checkNextToken("transform");
-			if (p.peekNextToken("steps")) {
-				int n = p.getNextInt();
-				api.parameter("transform.steps", n);
-				p.checkNextToken("times");
-				float[] times = new float[2];
-				times[0] = p.getNextFloat();
-				times[1] = p.getNextFloat();
-				api.parameter("transform.times", "float", "none", times);
-				for (int i = 0; i < n; i++)
-					api.parameter(string.Format("transform[{0}]", i), parseMatrix());
-			} else {
-					api.parameter("transform", parseMatrix());
-			}
-			string[] shaders;
+      if (p.peekNextToken("steps")) {
+        int n = p.getNextInt();
+        api.parameter("transform.steps", n);
+        p.checkNextToken("times");
+        float[] times = new float[2];
+        times[0] = p.getNextFloat();
+        times[1] = p.getNextFloat();
+        api.parameter("transform.times", "float", "none", times);
+        for (int i = 0; i < n; i++)
+          api.parameter(string.Format("transform[{0}]", i), parseMatrix());
+      } else {
+          api.parameter("transform", parseMatrix());
+      }
+      string[] shaders;
             if (p.peekNextToken("shaders"))
             {
                 int n = p.getNextInt();
@@ -1268,7 +1268,7 @@ namespace SunflowSharp.Core.Parser
                 }
                 api.parameter("points", "point", "vertex", points);
                 api.parameter("triangles", triangles);
-				api.light(name, "triangle_mesh");
+        api.light(name, "triangle_mesh");
             }
             else if (p.peekNextToken("point"))
             {
@@ -1285,12 +1285,12 @@ namespace SunflowSharp.Core.Parser
                 {
                     UI.printWarning(UI.Module.API, "Deprecated color specification - please use color and power instead");
                     p.checkNextToken("power");
-					pow = parseColor();
+          pow = parseColor();
                 }
                 p.checkNextToken("p");
                 api.parameter("center", parsePoint());
-				api.parameter("power", null , pow.getRGB());
-				api.light(generateUniqueName("pointlight"), "point");
+        api.parameter("power", null , pow.getRGB());
+        api.light(generateUniqueName("pointlight"), "point");
             }
             else if (p.peekNextToken("spherical"))
             {
@@ -1299,14 +1299,14 @@ namespace SunflowSharp.Core.Parser
                 Color pow = parseColor();
                 p.checkNextToken("radiance");
                 pow.mul(p.getNextFloat());
-				api.parameter("radiance", null, pow.getRGB());
+        api.parameter("radiance", null, pow.getRGB());
                 p.checkNextToken("center");
                 api.parameter("center", parsePoint());
                 p.checkNextToken("radius");
                 api.parameter("radius", p.getNextFloat());
                 p.checkNextToken("samples");
                 api.parameter("samples", p.getNextInt());
-				api.light (generateUniqueName("spherelight"), "sphere");
+        api.light (generateUniqueName("spherelight"), "sphere");
             }
             else if (p.peekNextToken("directional"))
             {
@@ -1328,8 +1328,8 @@ namespace SunflowSharp.Core.Parser
                 }
                 else
                     UI.printWarning(UI.Module.API, "Deprecated color specification - please use emit and intensity instead");
-				api.parameter("radiance", null, e.getRGB());
-				api.light(generateUniqueName("dirlight"), "directional");
+        api.parameter("radiance", null, e.getRGB());
+        api.light(generateUniqueName("dirlight"), "directional");
             }
             else if (p.peekNextToken("ibl"))
             {
@@ -1348,11 +1348,11 @@ namespace SunflowSharp.Core.Parser
                 else
                     UI.printWarning(UI.Module.API, "Samples keyword not found - defaulting to {0}", samples);
                 api.parameter("samples", samples);
-				if (p.peekNextToken("lowsamples"))
-					 api.parameter("lowsamples", p.getNextInt());
-				 else
-					api.parameter("lowsamples", samples);
-				api.light(generateUniqueName("ibl"), "ibl");
+        if (p.peekNextToken("lowsamples"))
+           api.parameter("lowsamples", p.getNextInt());
+         else
+          api.parameter("lowsamples", samples);
+        api.light(generateUniqueName("ibl"), "ibl");
             }
             else if (p.peekNextToken("meshlight"))
             {
@@ -1383,7 +1383,7 @@ namespace SunflowSharp.Core.Parser
                 p.checkNextToken("triangles");
                 int nt = p.getNextInt();
                 api.parameter("triangles", parseIntArray(nt * 3));
-				api.light(name, "triangle_mesh");
+        api.light(name, "triangle_mesh");
             }
             else if (p.peekNextToken("sunsky"))
             {
@@ -1397,32 +1397,32 @@ namespace SunflowSharp.Core.Parser
                 api.parameter("turbidity", p.getNextFloat());
                 if (p.peekNextToken("samples"))
                     api.parameter("samples", p.getNextInt());
-				if (p.peekNextToken("ground.extendsky"))
-					api.parameter("ground.extendsky", p.getNextbool());
-				else if (p.peekNextToken("ground.color"))
-					api.parameter("ground.color", null, parseColor().getRGB());
-				api.light(generateUniqueName("sunsky"), "sunsky");
-			} else if (p.peekNextToken("cornellbox")) {
-				UI.printInfo(UI.Module.API, "Reading cornell box ...");
-				p.checkNextToken("corner0");
-				api.parameter("corner0", parsePoint());
-				p.checkNextToken("corner1");
-				api.parameter("corner1", parsePoint());
-				p.checkNextToken("left");
-				api.parameter("leftColor", null,  parseColor().getRGB());
-				p.checkNextToken("right");
-				api.parameter("rightColor", null,  parseColor().getRGB());
-				p.checkNextToken("top");
-				api.parameter("topColor", null,  parseColor().getRGB());
-				p.checkNextToken("bottom");
-				api.parameter("bottomColor", null,  parseColor().getRGB());
-				p.checkNextToken("back");
-				api.parameter("backColor", null,  parseColor().getRGB());
-				p.checkNextToken("emit");
-				api.parameter("radiance", null, parseColor().getRGB());
-				if (p.peekNextToken("samples"))
-					api.parameter("samples", p.getNextInt());
-				api.light(generateUniqueName("cornellbox"), "cornell_box");            }
+        if (p.peekNextToken("ground.extendsky"))
+          api.parameter("ground.extendsky", p.getNextbool());
+        else if (p.peekNextToken("ground.color"))
+          api.parameter("ground.color", null, parseColor().getRGB());
+        api.light(generateUniqueName("sunsky"), "sunsky");
+      } else if (p.peekNextToken("cornellbox")) {
+        UI.printInfo(UI.Module.API, "Reading cornell box ...");
+        p.checkNextToken("corner0");
+        api.parameter("corner0", parsePoint());
+        p.checkNextToken("corner1");
+        api.parameter("corner1", parsePoint());
+        p.checkNextToken("left");
+        api.parameter("leftColor", null,  parseColor().getRGB());
+        p.checkNextToken("right");
+        api.parameter("rightColor", null,  parseColor().getRGB());
+        p.checkNextToken("top");
+        api.parameter("topColor", null,  parseColor().getRGB());
+        p.checkNextToken("bottom");
+        api.parameter("bottomColor", null,  parseColor().getRGB());
+        p.checkNextToken("back");
+        api.parameter("backColor", null,  parseColor().getRGB());
+        p.checkNextToken("emit");
+        api.parameter("radiance", null, parseColor().getRGB());
+        if (p.peekNextToken("samples"))
+          api.parameter("samples", p.getNextInt());
+        api.light(generateUniqueName("cornellbox"), "cornell_box");            }
             else
                 UI.printWarning(UI.Module.API, "Unrecognized object type: {0}", p.getNextToken());
             p.checkNextToken("}");
@@ -1430,32 +1430,32 @@ namespace SunflowSharp.Core.Parser
 
         private Color parseColor()
         {
-			if (p.peekNextToken("{")) 
-			{
-				String space = p.getNextToken();
-				int req = ColorFactory.getRequiredDataValues(space);
-				if (req == -2) 
-				{
-					UI.printWarning(UI.Module.API, "Unrecognized color space: {0}", space);
-					return null;
-				} 
-				else if (req == -1) 
-				{
-					// array required, parse how many values are required
-					req = p.getNextInt();
-				}
-				Color c = ColorFactory.createColor(space, parseFloatArray(req));
-				p.checkNextToken("}");
-				return c;
-			} 
-			else 
-			{
-				float r = p.getNextFloat();
-				float g = p.getNextFloat();
-				float b = p.getNextFloat();
-				return ColorFactory.createColor(null, r, g, b);
-			}
-		}
+      if (p.peekNextToken("{")) 
+      {
+        String space = p.getNextToken();
+        int req = ColorFactory.getRequiredDataValues(space);
+        if (req == -2) 
+        {
+          UI.printWarning(UI.Module.API, "Unrecognized color space: {0}", space);
+          return null;
+        } 
+        else if (req == -1) 
+        {
+          // array required, parse how many values are required
+          req = p.getNextInt();
+        }
+        Color c = ColorFactory.createColor(space, parseFloatArray(req));
+        p.checkNextToken("}");
+        return c;
+      } 
+      else 
+      {
+        float r = p.getNextFloat();
+        float g = p.getNextFloat();
+        float b = p.getNextFloat();
+        return ColorFactory.createColor(null, r, g, b);
+      }
+    }
 
         private Point3 parsePoint()
         {
