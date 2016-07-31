@@ -156,18 +156,21 @@ namespace SunflowSharp.Systems
 
         public static int floatToRawIntBits(float f)
         {
-//			lock(bitMem) {
-    //			if (bitMem == null) bitMem = new BitMem();
+//            lock (bitMem)
+//            {
+                if (bitMem == null) bitMem = new BitMem();
+//            }
 			    bitMem.f = f;
                 return bitMem.i;
-	//		}
+
 			//return BitConverter.ToInt32 (BitConverter.GetBytes (f), 0);
         }
 
         public static float intBitsToFloat(int i)
         {
-//			lock(bitMem) {
-//			if (bitMem == null) bitMem = new BitMem();
+//		lock(bitMem) {
+            if (bitMem == null) bitMem = new BitMem();
+      //  }
 			    bitMem.i = i;
 	            return bitMem.f;
 //			}
