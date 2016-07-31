@@ -6,6 +6,10 @@ namespace SunflowSharp.Systems
     public class ByteUtil
     {
      
+        static ByteUtil() {
+            InitByteUtil();
+        }
+
 		[ThreadStatic] 
 		private static BitMem bitMem;
 
@@ -166,21 +170,21 @@ namespace SunflowSharp.Systems
         public static int floatToRawIntBits(float f)
         {
 //			lock(bitMem) {
-//			if (bitMem == null) bitMem = new BitMem();
-			bitMem.f = f;
-            return bitMem.i;
+    //			if (bitMem == null) bitMem = new BitMem();
+			    bitMem.f = f;
+                return bitMem.i;
 	//		}
-//			return BitConverter.ToInt32 (BitConverter.GetBytes (f), 0);
+			//return BitConverter.ToInt32 (BitConverter.GetBytes (f), 0);
         }
 
         public static float intBitsToFloat(int i)
         {
 //			lock(bitMem) {
 //			if (bitMem == null) bitMem = new BitMem();
-			bitMem.i = i;
-	        return bitMem.f;
+			    bitMem.i = i;
+	            return bitMem.f;
 //			}
-//			return BitConverter.ToSingle(BitConverter.GetBytes(i), 0);
+			//return BitConverter.ToSingle(BitConverter.GetBytes(i), 0);
         }
     }
 }

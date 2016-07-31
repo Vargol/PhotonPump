@@ -24,7 +24,7 @@ namespace SunflowSharp.Gui
 
         private void Render()
         {
-			api = new GuiApi("/Users/vargol/Projects/DLA/sunflowsharp-read-only/SunflowSharp.Test/bin/Release/particle_test.sc");
+			api = new GuiApi(@"D:\Trabajo\Unity\LightmapTests\SunflowSharp\PhotonPump\examples\shader_examples\Phong001.sc");
             api.build();
             api.render(null, this);
         }
