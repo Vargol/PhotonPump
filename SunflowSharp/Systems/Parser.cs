@@ -167,7 +167,7 @@ namespace SunflowSharp.Systems
 
         public float getNextFloat()
         {
-            return float.Parse(getNextToken());
+            return float.Parse(getNextToken(), System.Globalization.CultureInfo.InvariantCulture);
         }
 
         public void checkNextToken(string token)
