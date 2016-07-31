@@ -5,13 +5,10 @@ namespace SunflowSharp.Systems
 {
     public class ByteUtil
     {
-     
-        static ByteUtil() {
-            InitByteUtil();
-        }
 
-		[ThreadStatic] 
-		private static BitMem bitMem;
+        // One static BitMen per thread (ThreadStatic should do all the magic)
+        [ThreadStatic] 
+		private static BitMem bitMem = new BitMem();
 
        [StructLayout(LayoutKind.Explicit)]
         public class BitMem
@@ -21,16 +18,6 @@ namespace SunflowSharp.Systems
             [FieldOffset(0)]
             public int i;
         }
-
-		/**
-         * ThreadStatic variables only get initialized for the first thread if
-         * created in the class body. This function should be called once from each thread
-         * so each has thread creates its own static BitMem instance.
-         */
-	    public static void InitByteUtil (){
-			bitMem = new BitMem();
-		}
-
 
         public static byte[] get2Bytes(int i)
         {

@@ -28,7 +28,7 @@ namespace SunflowSharp.Core.Parser
       objectNames = new Dictionary<string, int>();
       instanceCounter++;
       instanceNumber = instanceCounter;
-      ByteUtil.InitByteUtil();
+      //ByteUtil.InitByteUtil();
         }
 
     private string generateUniqueName(string prefix) {

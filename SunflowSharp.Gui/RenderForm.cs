@@ -24,7 +24,7 @@ namespace SunflowSharp.Gui
 
         private void Render()
         {
-			api = new GuiApi(@"D:\Trabajo\Unity\LightmapTests\SunflowSharp\PhotonPump\examples\shader_examples\Phong001.sc");
+			api = new GuiApi(@"D:\Trabajo\Unity\LightmapTests\SunflowSharp\PhotonPump\examples\sphereflake.sc");
             api.build();
             api.render(null, this);
         }
