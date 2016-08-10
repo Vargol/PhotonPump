@@ -140,7 +140,7 @@ namespace SunflowSharp.Core
 
             public void Run()
             {
-				ByteUtil.InitByteUtil();
+				//ByteUtil.InitByteUtil();
 				IntersectionState istate = new IntersectionState();
                 for (int i = start; i < end; i++)
                 {
