@@ -16,6 +16,7 @@ namespace SunflowSharp.Image.Writers
     {
 		private const byte HALF = 1;
 		private const byte FLOAT = 2;
+		private const byte ZERO = 0;
 		private const int HALF_SIZE = 2;
 		private const int FLOAT_SIZE = 4;
 
@@ -45,8 +46,10 @@ namespace SunflowSharp.Image.Writers
 
 		public EXRBitmapWriter() {
 			// default settings
-			configure("compression", "zip");
+//			configure("compression", "zip");
 			configure("channeltype", "half");
+			configure("compression", "zip");
+//			configure("channeltype", "float");
 		}
 		
 		public override void configure(string option, string value) {
@@ -89,9 +92,12 @@ namespace SunflowSharp.Image.Writers
 		}
 		
 		public override void writeTile(int x, int y, int w, int h, Color[] color, float[] alpha) {
-			int tx = x / tileSize;
-			int ty = y / tileSize;
-			writeEXRTile(tx, ty, w, h, color, alpha);
+			lock(file)
+			{
+				int tx = x / tileSize;
+				int ty = y / tileSize;
+				writeEXRTile(tx, ty, w, h, color, alpha);
+			}
 		}
 		
 		public override void closeFile() {
@@ -108,9 +114,9 @@ namespace SunflowSharp.Image.Writers
 			file.Write(ByteUtil.get4Bytes(OE_EXR_VERSION | OE_TILED_FLAG));
 			
 			file.Write(Encoding.Default.GetBytes("channels"));
-			file.Write(0);
+			file.Write(ZERO);
 			file.Write(Encoding.Default.GetBytes("chlist"));
-			file.Write(0);
+			file.Write(ZERO);
 			file.Write(ByteUtil.get4Bytes(73));
 			file.Write(Encoding.Default.GetBytes("R"));
 			file.Write(chanOut);
@@ -120,22 +126,22 @@ namespace SunflowSharp.Image.Writers
 			file.Write(chanOut);
 			file.Write(Encoding.Default.GetBytes("A"));
 			file.Write(chanOut);
-			file.Write(0);
+			file.Write(ZERO);
 			
 			// compression
 			file.Write(Encoding.Default.GetBytes("compression"));
-			file.Write(0);
+			file.Write(ZERO);
 			file.Write(Encoding.Default.GetBytes("compression"));
-			file.Write(0);
-			file.Write(1);
+			file.Write(ZERO);
+			file.Write((byte)1);
 			file.Write(ByteUtil.get4BytesInv(compression));
 			
 			// datawindow =~ image size
 			file.Write(Encoding.Default.GetBytes("dataWindow"));
-			file.Write(0);
+			file.Write(ZERO);
 			file.Write(Encoding.Default.GetBytes("box2i"));
-			file.Write(0);
-			file.Write(ByteUtil.get4Bytes(0x10));
+			file.Write(ZERO);
+			file.Write(ByteUtil.get4Bytes(16));
 			file.Write(ByteUtil.get4Bytes(0));
 			file.Write(ByteUtil.get4Bytes(0));
 			file.Write(ByteUtil.get4Bytes(w - 1));
@@ -143,10 +149,10 @@ namespace SunflowSharp.Image.Writers
 			
 			// dispwindow -> look at openexr.com for more info
 			file.Write(Encoding.Default.GetBytes("displayWindow"));
-			file.Write(0);
+			file.Write(ZERO);
 			file.Write(Encoding.Default.GetBytes("box2i"));
-			file.Write(0);
-			file.Write(ByteUtil.get4Bytes(0x10));
+			file.Write(ZERO);
+			file.Write(ByteUtil.get4Bytes(16));
 			file.Write(ByteUtil.get4Bytes(0));
 			file.Write(ByteUtil.get4Bytes(0));
 			file.Write(ByteUtil.get4Bytes(w - 1));
@@ -156,33 +162,33 @@ namespace SunflowSharp.Image.Writers
 * lines in increasing y order = 0 decreasing would be 1
 */
 			file.Write(Encoding.Default.GetBytes("lineOrder"));
-			file.Write(0);
+			file.Write(ZERO);
 			file.Write(Encoding.Default.GetBytes("lineOrder"));
-			file.Write(0);
-			file.Write(1);
-			file.Write(ByteUtil.get4BytesInv(2));
+			file.Write(ZERO);
+			file.Write(ByteUtil.get4Bytes(1));
+			file.Write((byte)2);
 			
 			file.Write(Encoding.Default.GetBytes("pixelAspectRatio"));
-			file.Write(0);
+			file.Write(ZERO);
 			file.Write(Encoding.Default.GetBytes("float"));
-			file.Write(0);
+			file.Write(ZERO);
 			file.Write(ByteUtil.get4Bytes(4));
 			file.Write (ByteUtil.get4Bytes (BitConverter.ToInt32 (BitConverter.GetBytes (1.0f), 0)));
 			
 			// meaningless to a flat (2D) image
 			file.Write(Encoding.Default.GetBytes("screenWindowCenter"));
-			file.Write(0);
+			file.Write(ZERO);
 			file.Write(Encoding.Default.GetBytes("v2f"));
-			file.Write(0);
+			file.Write(ZERO);
 			file.Write(ByteUtil.get4Bytes(8));
 			file.Write (ByteUtil.get4Bytes (BitConverter.ToInt32 (BitConverter.GetBytes (0.0f), 0)));
 			file.Write (ByteUtil.get4Bytes (BitConverter.ToInt32 (BitConverter.GetBytes (0.0f), 0)));
 
 			// meaningless to a flat (2D) image
 			file.Write(Encoding.Default.GetBytes("screenWindowWidth"));
-			file.Write(0);
+			file.Write(ZERO);
 			file.Write(Encoding.Default.GetBytes("float"));
-			file.Write(0);
+			file.Write(ZERO);
 			file.Write(ByteUtil.get4Bytes(4));
 			file.Write (ByteUtil.get4Bytes (BitConverter.ToInt32 (BitConverter.GetBytes (1.0f), 0)));
 
@@ -202,19 +208,19 @@ namespace SunflowSharp.Image.Writers
 			tileOffsets = new long[tilesX,tilesY];
 			
 			file.Write(Encoding.Default.GetBytes("tiles"));
-			file.Write(0);
+			file.Write(ZERO);
 			file.Write(Encoding.Default.GetBytes("tiledesc"));
-			file.Write(0);
+			file.Write(ZERO);
 			file.Write(ByteUtil.get4Bytes(9));
 			
 			file.Write(ByteUtil.get4Bytes(tileSize));
 			file.Write(ByteUtil.get4Bytes(tileSize));
 			
 			// ONE_LEVEL tiles, ROUNDING_MODE = not important
-			file.Write(0);
+			file.Write(ZERO);
 			
 			// an attribute with a name of 0 to end the list
-			file.Write(0);
+			file.Write(ZERO);
 			
 			// save a pointer to where the tileOffsets are stored and write dummy
 			// fillers for now
@@ -311,7 +317,7 @@ namespace SunflowSharp.Image.Writers
 				return 0;
 			
 			int t1 = 0, t2 = (inSize + 1) / 2;
-			int inPtr = 0, ret;
+			int inPtr = 0;
 			byte[] tmp = new byte[inSize];
 			
 			// zip and rle treat the data first, in the same way so I'm not
@@ -351,7 +357,8 @@ namespace SunflowSharp.Image.Writers
 				{
 					using (DeflateStream gzip = new DeflateStream(output, CompressionMode.Compress))
 					{
-						using (StreamWriter writer = new StreamWriter(gzip, System.Text.Encoding.UTF8))
+						//						using (StreamWriter writer = new StreamWriter(gzip, System.Text.Encoding.UTF8))
+						using (StreamWriter writer = new StreamWriter(gzip))
 						{
 							writer.Write(tmp);           
 						}

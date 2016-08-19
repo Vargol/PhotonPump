@@ -1,8 +1,18 @@
 ﻿<Properties StartupItem="SunflowSharp.Test/SunflowSharp.Test.csproj">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SunflowSharp/PluginRegistry.cs">
+    <Files>
+      <File FileName="SunflowSharp/Image/Writers/EXRBitmapWriter.cs" Line="15" Column="30" />
+      <File FileName="SunflowSharp.Test/Program.cs" Line="20" Column="69" />
+      <File FileName="SunflowSharp/SunflowAPI.cs" Line="4" Column="19" />
+      <File FileName="SunflowSharp/Core/Display/FileDisplay.cs" Line="21" Column="60" />
+      <File FileName="SunflowSharp/Systems/Plugins.cs" Line="52" Column="12" />
+      <File FileName="SunflowSharp/PluginRegistry.cs" Line="193" Column="56" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
-  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.SunflowSharp.Test PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>

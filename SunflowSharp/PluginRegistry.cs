@@ -190,6 +190,7 @@ namespace SunflowSharp
 			bitmapReaderPlugins.registerPlugin("bmp", typeof(SystemBitmapReader));
 			bitmapReaderPlugins.registerPlugin("igi", typeof(IGIBitmapReader));
 
+			bitmapWriterPlugins.registerPlugin("exr", typeof(EXRBitmapWriter));
 			bitmapWriterPlugins.registerPlugin("hdr", typeof(HDRBitmapWriter));
 			bitmapWriterPlugins.registerPlugin("tga", typeof(TGABitmapWriter));
 			bitmapWriterPlugins.registerPlugin("png", typeof(SystemBitmapWriter));
