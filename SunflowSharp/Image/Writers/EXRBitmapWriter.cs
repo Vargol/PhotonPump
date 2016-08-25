@@ -46,10 +46,11 @@ namespace SunflowSharp.Image.Writers
 
 		public EXRBitmapWriter() {
 			// default settings
-//			configure("compression", "zip");
+			//			configure("compression", "zip");
+			//			configure("compression", "none");
+			//			configure("channeltype", "float");
 			configure("channeltype", "half");
-			configure("compression", "rle");
-//			configure("channeltype", "float");
+			configure("compression", "zip");
 		}
 		
 		public override void configure(string option, string value) {
@@ -361,13 +362,32 @@ namespace SunflowSharp.Image.Writers
 
 				using (MemoryStream output = new MemoryStream())
 				{
-						using (DeflateStream gzip = new DeflateStream(output, CompressionMode.Compress))
+					using (DeflateStream gzip = new DeflateStream(output, CompressionMode.Compress))
 					{
 							gzip.Write(tmp, 0, tmp.Length);
 					}
+
+					byte[] bStream = output.ToArray();
+					byte[] headerBytes = new byte[] { 0x78, 0x01 };
 					
-					output.ToArray().CopyTo(outBytes, 0);
-					outLen = output.ToArray().Length;
+					int length = tmp.Length;
+
+					int a = 1;
+					int b = 0;
+					
+					for (int counter = 0; counter < length; ++counter)
+					{
+						a = (a + (tmp[counter])) % 65521;
+						b = (b + a) % 65521;
+					}
+
+					byte[] checksum = ByteUtil.get4BytesInv((b * 65536) + a);
+
+					Buffer.BlockCopy(headerBytes, 0, outBytes, 0, headerBytes.Length);
+					Buffer.BlockCopy(bStream, 0, outBytes, headerBytes.Length, bStream.Length);
+					Buffer.BlockCopy(checksum, 0, outBytes, headerBytes.Length + bStream.Length, checksum.Length);
+
+					outLen = headerBytes.Length + bStream.Length + checksum.Length;
 				}
 									 
 				return outLen;

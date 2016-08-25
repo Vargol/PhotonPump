@@ -53,7 +53,7 @@ namespace SunflowSharp.Test
 			//            parameter("filter", "catmull-rom");//catmull-rom, blackman-harris
 			//			parameter("sampler", "bucket");//ipr or fast or bucket
 			parameter("threads", Environment.ProcessorCount);
-			//parameter ("threads", 1);
+//			parameter ("threads", 1);
             options(DEFAULT_OPTIONS);
         }
     }
