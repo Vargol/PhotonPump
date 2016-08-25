@@ -20,8 +20,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Commandlineparameters>/Users/vargol/Dropbox/caustics.sc</Commandlineparameters>
-    <ConsolePause>False</ConsolePause>
+    <Commandlineparameters>particle_chau.sc</Commandlineparameters>
+    <ConsolePause>true</ConsolePause>
+    <ExternalConsole>true</ExternalConsole>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>

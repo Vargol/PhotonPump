@@ -15,202 +15,202 @@ namespace SunflowSharp.Core.Parser
      */
     public class SCParser : SceneParserBase
     {
-    private static int instanceCounter = 0;
-    private int instanceNumber;
-    private Systems.Parser p;
+	    private static int instanceCounter = 0;
+	    private int instanceNumber;
+	    private Systems.Parser p;
         private int numLightSamples;
     // used to generate unique names inside this parser
-    private Dictionary<string, int> objectNames;
+    	private Dictionary<string, int> objectNames;
 
 
         public SCParser()
         {
-      objectNames = new Dictionary<string, int>();
-      instanceCounter++;
-      instanceNumber = instanceCounter;
-      ByteUtil.InitByteUtil();
+	      objectNames = new Dictionary<string, int>();
+	      instanceCounter++;
+	      instanceNumber = instanceCounter;
+	      ByteUtil.InitByteUtil();
         }
 
-    private string generateUniqueName(string prefix) {
+	    private string generateUniqueName(string prefix) {
       
-      // generate a unique name for this class:
-      int index = 1;
+	      // generate a unique name for this class:
+	      int index = 1;
 
-      if (objectNames.ContainsKey(prefix)) {
-        index = objectNames[prefix];
-        objectNames[prefix] =  index + 1;
-      } else {
-        objectNames[prefix] =  index + 1;
-      }
-      
-      return string.Format("@sc_{0}::{1}_{2}", instanceNumber
-                                     , prefix
-                                     , index);
-      
+	      if (objectNames.ContainsKey(prefix)) {
+	        index = objectNames[prefix];
+	        objectNames[prefix] =  index + 1;
+	      } else {
+	        objectNames[prefix] =  index + 1;
+	      }
+	      
+	      return string.Format("@sc_{0}::{1}_{2}", instanceNumber
+	                                     , prefix
+	                                     , index);
+	      
     }
 
 
-        public override bool parse(Stream stream, SunflowAPI api)
+    public override bool parse(Stream stream, SunflowAPI api)
+    {
+        //string localDir = Path.GetFullPath(filename);
+        numLightSamples = 1;
+        Timer timer = new Timer();
+        timer.start();
+        UI.printInfo(UI.Module.API, "Parsing stream ...");
+        try
         {
-            //string localDir = Path.GetFullPath(filename);
-            numLightSamples = 1;
-            Timer timer = new Timer();
-            timer.start();
-            UI.printInfo(UI.Module.API, "Parsing stream ...");
-            try
+            p = new Systems.Parser(stream);
+            while (true)
             {
-                p = new Systems.Parser(stream);
-                while (true)
+                string token = p.getNextToken();
+                if (token == null)
+                    break;
+                if (token == "image")
                 {
-                    string token = p.getNextToken();
-                    if (token == null)
-                        break;
-                    if (token == "image")
-                    {
-                        UI.printInfo(UI.Module.API, "Reading image settings ...");
-                        parseImageBlock(api);
-                    }
-                    else if (token == "background")
-                    {
-                        UI.printInfo(UI.Module.API, "Reading background ...");
-                        parseBackgroundBlock(api);
-                    }
-                    else if (token == "accel")
-                    {
-                        UI.printInfo(UI.Module.API, "Reading accelerator type ...");
-                        p.getNextToken();
-                        UI.printWarning(UI.Module.API, "Setting accelerator type is not recommended - ignoring");
-                    }
-                    else if (token == "filter")
-                    {
-                        UI.printInfo(UI.Module.API, "Reading image filter type ...");
-                        parseFilter(api);
-                    }
-                    else if (token == "bucket")
-                    {
-                        UI.printInfo(UI.Module.API, "Reading bucket settings ...");
-                        api.parameter("bucket.size", p.getNextInt());
-                        api.parameter("bucket.order", p.getNextToken());
-                        api.options(SunflowAPI.DEFAULT_OPTIONS);
-                    }
-                    else if (token == "photons")
-                    {
-                        UI.printInfo(UI.Module.API, "Reading photon settings ...");
-                        parsePhotonBlock(api);
-                    }
-                    else if (token == "gi")
-                    {
-                        UI.printInfo(UI.Module.API, "Reading global illumination settings ...");
-                        parseGIBlock(api);
-                    }
-                    else if (token == "lightserver")
-                    {
-                        UI.printInfo(UI.Module.API, "Reading light server settings ...");
-                        parseLightserverBlock(api);
-                    }
-                    else if (token == "trace-depths")
-                    {
-                        UI.printInfo(UI.Module.API, "Reading trace depths ...");
-                        parseTraceBlock(api);
-                    }
-                    else if (token == "camera")
-                    {
-                        parseCamera(api);
-                    }
-                    else if (token == "shader")
-                    {
-                        if (!parseShader(api))
-                            return false;
-                    }
-                    else if (token == "modifier")
-                    {
-                        if (!parseModifier(api))
-                            return false;
-                    }
-                    else if (token == "override")
-                    {
-            api.parameter("override.shader", p.getNextToken());
-            api.parameter("override.photons", p.getNextbool());
-            api.options(SunflowAPI.DEFAULT_OPTIONS);
-                    }
-                    else if (token == "object")
-                    {
-                        parseObjectBlock(api);
-                    }
-                    else if (token == "instance")
-                    {
-                        parseInstanceBlock(api);
-                    }
-                    else if (token == "light")
-                    {
-                        parseLightBlock(api);
-                    }
-                    else if (token == "texturepath")
-                    {
-                        string path = p.getNextToken();
-                        //if (!new File(path).isAbsolute())
-                        //    path = localDir + File.separator + path;
-            api.searchpath("texture", Path.GetFullPath(path));
-                    }
-                    else if (token == "includepath")
-                    {
-                        string path = p.getNextToken();
-                        //if (!new File(path).isAbsolute())
-                        //    path = localDir + File.separator + path;
-                        api.searchpath("include", Path.GetFullPath(path));
-                    }
-                    else if (token == "include")
-                    {
-                        string file = p.getNextToken();
-                        UI.printInfo(UI.Module.API, "Including: \"{0}\" ...", file);
-                        api.include(file);
-                    }
-                    else
-                        UI.printWarning(UI.Module.API, "Unrecognized token {0}", token);
+                    UI.printInfo(UI.Module.API, "Reading image settings ...");
+                    parseImageBlock(api);
                 }
-                p.close();
+                else if (token == "background")
+                {
+                    UI.printInfo(UI.Module.API, "Reading background ...");
+                    parseBackgroundBlock(api);
+                }
+                else if (token == "accel")
+                {
+                    UI.printInfo(UI.Module.API, "Reading accelerator type ...");
+                    p.getNextToken();
+                    UI.printWarning(UI.Module.API, "Setting accelerator type is not recommended - ignoring");
+                }
+                else if (token == "filter")
+                {
+                    UI.printInfo(UI.Module.API, "Reading image filter type ...");
+                    parseFilter(api);
+                }
+                else if (token == "bucket")
+                {
+                    UI.printInfo(UI.Module.API, "Reading bucket settings ...");
+                    api.parameter("bucket.size", p.getNextInt());
+                    api.parameter("bucket.order", p.getNextToken());
+                    api.options(SunflowAPI.DEFAULT_OPTIONS);
+                }
+                else if (token == "photons")
+                {
+                    UI.printInfo(UI.Module.API, "Reading photon settings ...");
+                    parsePhotonBlock(api);
+                }
+                else if (token == "gi")
+                {
+                    UI.printInfo(UI.Module.API, "Reading global illumination settings ...");
+                    parseGIBlock(api);
+                }
+                else if (token == "lightserver")
+                {
+                    UI.printInfo(UI.Module.API, "Reading light server settings ...");
+                    parseLightserverBlock(api);
+                }
+                else if (token == "trace-depths")
+                {
+                    UI.printInfo(UI.Module.API, "Reading trace depths ...");
+                    parseTraceBlock(api);
+                }
+                else if (token == "camera")
+                {
+                    parseCamera(api);
+                }
+                else if (token == "shader")
+                {
+                    if (!parseShader(api))
+                        return false;
+                }
+                else if (token == "modifier")
+                {
+                    if (!parseModifier(api))
+                        return false;
+                }
+                else if (token == "override")
+                {
+		            api.parameter("override.shader", p.getNextToken());
+		            api.parameter("override.photons", p.getNextbool());
+		            api.options(SunflowAPI.DEFAULT_OPTIONS);
+                }
+                else if (token == "object")
+                {
+                    parseObjectBlock(api);
+                }
+                else if (token == "instance")
+                {
+                    parseInstanceBlock(api);
+                }
+                else if (token == "light")
+                {
+                    parseLightBlock(api);
+                }
+                else if (token == "texturepath")
+                {
+                    string path = p.getNextToken();
+                    //if (!new File(path).isAbsolute())
+                    //    path = localDir + File.separator + path;
+		            api.searchpath("texture", Path.GetFullPath(path));
+                }
+                else if (token == "includepath")
+                {
+                    string path = p.getNextToken();
+                    //if (!new File(path).isAbsolute())
+                    //    path = localDir + File.separator + path;
+                    api.searchpath("include", Path.GetFullPath(path));
+                }
+                else if (token == "include")
+                {
+                    string file = p.getNextToken();
+                    UI.printInfo(UI.Module.API, "Including: \"{0}\" ...", file);
+                    api.include(file);
+                }
+                else
+                    UI.printWarning(UI.Module.API, "Unrecognized token {0}", token);
             }
-            catch (Exception e)
-            {
-                UI.printError(UI.Module.API, "{0}", e);
-                return false;
-            }
-            timer.end();
-            UI.printInfo(UI.Module.API, "Done parsing.");
-            UI.printInfo(UI.Module.API, "Parsing time: {0}", timer.ToString());
-            return true;
+	        p.close();
         }
-
-        private void parseImageBlock(SunflowAPI api)
+        catch (Exception e)
         {
-            p.checkNextToken("{");
-            if (p.peekNextToken("resolution"))
-            {
-                api.parameter("resolutionX", p.getNextInt());
-                api.parameter("resolutionY", p.getNextInt());
-            }
-      if (p.peekNextToken("sampler"))
-        api.parameter("sampler", p.getNextToken());
-            if (p.peekNextToken("aa"))
-            {
-                api.parameter("aa.min", p.getNextInt());
-                api.parameter("aa.max", p.getNextInt());
-            }
-            if (p.peekNextToken("samples"))
-                api.parameter("aa.samples", p.getNextInt());
-            if (p.peekNextToken("contrast"))
-                api.parameter("aa.contrast", p.getNextFloat());
-            if (p.peekNextToken("filter"))
-                api.parameter("filter", p.getNextToken());
-            if (p.peekNextToken("jitter"))
-                api.parameter("aa.jitter", p.getNextbool());
-            if (p.peekNextToken("show-aa"))
-            {
-                UI.printWarning(UI.Module.API, "Deprecated: show-aa ignored");
-                p.getNextbool();
-            }
-      if (p.peekNextToken("cache"))
-        api.parameter("aa.cache", p.getNextbool());
+            UI.printError(UI.Module.API, "{0}", e);
+            return false;
+        }
+        timer.end();
+        UI.printInfo(UI.Module.API, "Done parsing.");
+        UI.printInfo(UI.Module.API, "Parsing time: {0}", timer.ToString());
+        return true;
+    }
+
+    private void parseImageBlock(SunflowAPI api)
+    {
+        p.checkNextToken("{");
+        if (p.peekNextToken("resolution"))
+        {
+            api.parameter("resolutionX", p.getNextInt());
+            api.parameter("resolutionY", p.getNextInt());
+        }
+	    if (p.peekNextToken("sampler"))
+        	api.parameter("sampler", p.getNextToken());
+        if (p.peekNextToken("aa"))
+        {
+            api.parameter("aa.min", p.getNextInt());
+            api.parameter("aa.max", p.getNextInt());
+        }
+        if (p.peekNextToken("samples"))
+            api.parameter("aa.samples", p.getNextInt());
+        if (p.peekNextToken("contrast"))
+            api.parameter("aa.contrast", p.getNextFloat());
+        if (p.peekNextToken("filter"))
+            api.parameter("filter", p.getNextToken());
+        if (p.peekNextToken("jitter"))
+            api.parameter("aa.jitter", p.getNextbool());
+        if (p.peekNextToken("show-aa"))
+        {
+            UI.printWarning(UI.Module.API, "Deprecated: show-aa ignored");
+            p.getNextbool();
+        }
+	    if (p.peekNextToken("cache"))
+        	api.parameter("aa.cache", p.getNextbool());
             if (p.peekNextToken("output"))
             {
                 UI.printWarning(UI.Module.API, "Deprecated: output statement ignored");

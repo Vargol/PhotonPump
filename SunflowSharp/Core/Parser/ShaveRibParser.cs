@@ -171,7 +171,7 @@ namespace SunflowSharp.Core.Parser
                     s = s.Substring(0, s.Length - 1);
                     done = true;
                 }
-                array.Add(float.Parse(s));
+                array.Add(float.Parse(s, System.Globalization.CultureInfo.InvariantCulture));
             } while (!done);
             return array.ToArray();
         }

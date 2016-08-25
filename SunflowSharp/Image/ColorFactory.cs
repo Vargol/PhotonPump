@@ -97,8 +97,8 @@ namespace SunflowSharp.Image
 				if (data.Length == 0)
 					throw new ColorSpecificationException("missing spectrum data");
 				try {
-					float lambdaMin = float.Parse(tokens[1]);
-					float lambdaMax = float.Parse(tokens[2]);
+					float lambdaMin = float.Parse(tokens[1], System.Globalization.CultureInfo.InvariantCulture);
+					float lambdaMax = float.Parse(tokens[2], System.Globalization.CultureInfo.InvariantCulture);
 					return RGBSpace.SRGB.convertXYZtoRGB(new RegularSpectralCurve(data, lambdaMin, lambdaMax).toXYZ());
 				} catch (FormatException e) {
 					throw new ColorSpecificationException(string.Format("unable to parse spectrum wavelength range: {0}", e.Message));

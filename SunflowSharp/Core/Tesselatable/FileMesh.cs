@@ -77,9 +77,9 @@ namespace SunflowSharp.Core.Tesselatable
                         if (line.StartsWith("v"))
                         {
                             string[] v = line.Split(StringConsts.Whitespace, StringSplitOptions.RemoveEmptyEntries);//"\\s+");
-                            verts.Add(float.Parse(v[1]));
-                            verts.Add(float.Parse(v[2]));
-                            verts.Add(float.Parse(v[3]));
+                            verts.Add(float.Parse(v[1], System.Globalization.CultureInfo.InvariantCulture));
+                            verts.Add(float.Parse(v[2], System.Globalization.CultureInfo.InvariantCulture));
+                            verts.Add(float.Parse(v[3], System.Globalization.CultureInfo.InvariantCulture));
                         }
                         else if (line.StartsWith("f"))
                         {

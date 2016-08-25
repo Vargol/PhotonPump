@@ -1,15 +1,27 @@
 ﻿<Properties StartupItem="SunflowSharp.Test/SunflowSharp.Test.csproj">
-  <MonoDevelop.Ide.Workbench ActiveDocument="SunflowSharp/PluginRegistry.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SunflowSharp/Core/AccelerationStructureFactory.cs">
     <Files>
-      <File FileName="SunflowSharp/Image/Writers/EXRBitmapWriter.cs" Line="15" Column="30" />
-      <File FileName="SunflowSharp.Test/Program.cs" Line="20" Column="69" />
-      <File FileName="SunflowSharp/SunflowAPI.cs" Line="4" Column="19" />
-      <File FileName="SunflowSharp/Core/Display/FileDisplay.cs" Line="21" Column="60" />
-      <File FileName="SunflowSharp/Systems/Plugins.cs" Line="52" Column="12" />
-      <File FileName="SunflowSharp/PluginRegistry.cs" Line="193" Column="56" />
+      <File FileName="SunflowSharp/Image/Writers/EXRBitmapWriter.cs" Line="230" Column="20" />
+      <File FileName="SunflowSharp/Maths/BoundingBox.cs" Line="79" Column="1" />
+      <File FileName="SunflowSharp/Core/Primitive/JuliaFractal.cs" Line="115" Column="1" />
+      <File FileName="SunflowSharp/Systems/ByteUtil.cs" Line="176" Column="43" />
+      <File FileName="SunflowSharp/Image/ColorFactory.cs" Line="102" Column="96" />
+      <File FileName="SunflowSharp/Core/Tesselatable/FileMesh.cs" Line="82" Column="106" />
+      <File FileName="SunflowSharp/Core/Tesselatable/Gumbo.cs" Line="98" Column="91" />
+      <File FileName="SunflowSharp/Systems/Parser.cs" Line="175" Column="43" />
+      <File FileName="SunflowSharp/Core/Parser/ShaveRibParser.cs" Line="174" Column="94" />
+      <File FileName="SunflowSharp/Core/Renderer/BucketRenderer.cs" Line="195" Column="7" />
+      <File FileName="SunflowSharp/Core/LightServer.cs" Line="143" Column="7" />
+      <File FileName="SunflowSharp/Core/Renderer/MultipassRenderer.cs" Line="125" Column="7" />
+      <File FileName="SunflowSharp/Core/Renderer/ProgressiveRenderer.cs" Line="99" Column="7" />
+      <File FileName="SunflowSharp/Core/Parser/SCParser.cs" Line="31" Column="9" />
+      <File FileName="SunflowSharp/Core/Renderer/SimpleRenderer.cs" Line="80" Column="17" />
+      <File FileName="SunflowSharp/Maths/MathUtils.cs" Line="138" Column="36" />
+      <File FileName="SunflowSharp/Core/Accel/KDTree.cs" Line="28" Column="45" />
+      <File FileName="SunflowSharp/Core/AccelerationStructureFactory.cs" Line="21" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -17,7 +17,7 @@ namespace SunflowSharp.Test
             {
                 test test = new test(args.Length > 0 ? args[0] : null);
                 test.build();
-                test.render("::options", new FileDisplay("output.exr"));//new FileDisplay("output.tga"));
+				test.render("::options", new FileDisplay(string.Format("output{0:yyyy-MM-dd_hh-mm-ss-tt}.exr", DateTime.Now)));//new FileDisplay("output.tga"));
             }
             catch (Exception ex)
             {
@@ -43,16 +43,17 @@ namespace SunflowSharp.Test
             // just copy this file to the same directory as your main .sc file, and swap
             // the fileanme in the line below
             include(sc != null ? sc : "bump_demo.sc.gz");
-//            shaderOverride("ao_wire", true);
+			//            shaderOverride("ao_wire", true);
 
-            // this may need to be tweaked if you want really fine lines
-            // this is higher than most scenes need so if you render with ambocc = false, make sure you turn down
-            // the sampling rates of dof/lights/gi/reflections accordingly
-//            parameter("aa.min", 1);
-//            parameter("aa.max", 2);
-//            parameter("filter", "catmull-rom");//catmull-rom, blackman-harris
-//			parameter("sampler", "bucket");//ipr or fast or bucket
-			parameter ("threads", Environment.ProcessorCount);
+			// this may need to be tweaked if you want really fine lines
+			// this is higher than most scenes need so if you render with ambocc = false, make sure you turn down
+			// the sampling rates of dof/lights/gi/reflections accordingly
+			//            parameter("aa.min", 1);
+			//            parameter("aa.max", 2);
+			//            parameter("filter", "catmull-rom");//catmull-rom, blackman-harris
+			//			parameter("sampler", "bucket");//ipr or fast or bucket
+			parameter("threads", Environment.ProcessorCount);
+			//parameter ("threads", 1);
             options(DEFAULT_OPTIONS);
         }
     }

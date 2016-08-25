@@ -24,9 +24,9 @@ namespace SunflowSharp.Image.Writers
 		private const int OE_EXR_VERSION = 2;
 		private const int OE_TILED_FLAG = 0x00000200;
 
-		private const int NO_COMPRESSION = 0;
-		private const int RLE_COMPRESSION = 1;
-        private const int ZIP_COMPRESSION = 3;
+		private const byte NO_COMPRESSION = 0;
+		private const byte RLE_COMPRESSION = 1;
+        private const byte ZIP_COMPRESSION = 3;
 
 		private const int RLE_MIN_RUN = 3;
 		private const int RLE_MAX_RUN = 127;
@@ -38,7 +38,7 @@ namespace SunflowSharp.Image.Writers
         private int tilesX;
         private int tilesY;
         private int tileSize;
-        private int compression;
+        private byte compression;
         private byte channelType;
         private int channelSize;
         private byte[] tmpbuf;
@@ -48,7 +48,7 @@ namespace SunflowSharp.Image.Writers
 			// default settings
 //			configure("compression", "zip");
 			configure("channeltype", "half");
-			configure("compression", "zip");
+			configure("compression", "rle");
 //			configure("channeltype", "float");
 		}
 		
@@ -133,9 +133,10 @@ namespace SunflowSharp.Image.Writers
 			file.Write(ZERO);
 			file.Write(Encoding.Default.GetBytes("compression"));
 			file.Write(ZERO);
-			file.Write((byte)1);
-			file.Write(ByteUtil.get4BytesInv(compression));
-			
+			file.Write(ByteUtil.get4Bytes(1));
+			file.Write(compression);
+//			file.Write(ByteUtil.get4BytesInv(compression));
+
 			// datawindow =~ image size
 			file.Write(Encoding.Default.GetBytes("dataWindow"));
 			file.Write(ZERO);
@@ -211,6 +212,7 @@ namespace SunflowSharp.Image.Writers
 			file.Write(ZERO);
 			file.Write(Encoding.Default.GetBytes("tiledesc"));
 			file.Write(ZERO);
+
 			file.Write(ByteUtil.get4Bytes(9));
 			
 			file.Write(ByteUtil.get4Bytes(tileSize));
@@ -312,12 +314,16 @@ namespace SunflowSharp.Image.Writers
 			}
 		}
 		
-		private static int compress(int tp, byte[] inBytes, int inSize, byte[] outBytes) {
+		private static int compress(byte tp, byte[] inBytes, int inSize, byte[] outBytes) {
 			if (inSize == 0)
 				return 0;
-			
+
+
+
 			int t1 = 0, t2 = (inSize + 1) / 2;
 			int inPtr = 0;
+			int outLen;
+
 			byte[] tmp = new byte[inSize];
 			
 			// zip and rle treat the data first, in the same way so I'm not
@@ -355,18 +361,16 @@ namespace SunflowSharp.Image.Writers
 
 				using (MemoryStream output = new MemoryStream())
 				{
-					using (DeflateStream gzip = new DeflateStream(output, CompressionMode.Compress))
+						using (DeflateStream gzip = new DeflateStream(output, CompressionMode.Compress))
 					{
-						//						using (StreamWriter writer = new StreamWriter(gzip, System.Text.Encoding.UTF8))
-						using (StreamWriter writer = new StreamWriter(gzip))
-						{
-							writer.Write(tmp);           
-						}
+							gzip.Write(tmp, 0, tmp.Length);
 					}
 					
-					outBytes = output.ToArray();
+					output.ToArray().CopyTo(outBytes, 0);
+					outLen = output.ToArray().Length;
 				}
-				return outBytes.Length;
+									 
+				return outLen;
 			case RLE_COMPRESSION:
 				return rleCompress(tmp, inSize, outBytes);
 			default:
@@ -376,6 +380,7 @@ namespace SunflowSharp.Image.Writers
 		
 		private static int rleCompress(byte[] inBytes, int inLen, byte[] outBytes) {
 			int runStart = 0, runEnd = 1, outWrite = 0;
+
 			while (runStart < inLen) {
 				while (runEnd < inLen && inBytes[runStart] == inBytes[runEnd] && (runEnd - runStart - 1) < RLE_MAX_RUN)
 					runEnd++;
