@@ -1,19 +1,25 @@
-﻿<Properties StartupItem="SunflowSharp.Test/SunflowSharp.Test.csproj">
-  <MonoDevelop.Ide.Workbench ActiveDocument="SunflowSharp.Test/Program.cs">
+﻿<Properties StartupConfiguration="{0D4A4CCF-CEB7-48CF-9BD1-E68733369DDD}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PhotonPump Status">
     <Files>
+      <File FileName="SunflowSharp/Core/Camera/SphericalLens3D.cs" Line="12" Column="50" />
+      <File FileName="SunflowSharp/Core/Ray.cs" Line="38" Column="16" />
+      <File FileName="SunflowSharp/Core/Camera/PinholeLens.cs" Line="27" Column="31" />
       <File FileName="PhotonPump Status" />
-      <File FileName="SunflowSharp/Systems/ByteUtil.cs" Line="53" Column="30" />
-      <File FileName="SunflowSharp.Test/Program.cs" Line="56" Column="4" />
-      <File FileName="SunflowSharp/Image/Writers/EXRBitmapWriter.cs" Line="381" Column="45" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/davidburnett/Documents/Source/C#/Projects/PhotonPump/SunflowSharp/Image/Writers/EXRBitmapWriter.cs" line="369" column="1" />
-      <Breakpoint file="/Users/davidburnett/Documents/Source/C#/Projects/PhotonPump/SunflowSharp/Image/Writers/EXRBitmapWriter.cs" line="387" column="1" />
+      <Breakpoint file="/Users/davidburnett/Documents/Source/C#/Projects/PhotonPump/SunflowSharp/Core/Camera/SphericalLens3D.cs" relfile="SunflowSharp/Core/Camera/SphericalLens3D.cs" line="12" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.SunflowSharp.Test PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations>
+    <MultiItemSolutionRunConfiguration Id="Degug Shere3d" Name="Degug Shere3d">
+      <Items>
+        <StartupItem ItemId="{0D4A4CCF-CEB7-48CF-9BD1-E68733369DDD}" ConfigurationId="Default" />
+      </Items>
+    </MultiItemSolutionRunConfiguration>
+  </MultiItemStartupConfigurations>
 </Properties>

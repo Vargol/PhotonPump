@@ -130,6 +130,7 @@ namespace SunflowSharp
 			cameraLensPlugins.registerPlugin("thinlens", typeof(ThinLens));
 			cameraLensPlugins.registerPlugin("fisheye", typeof(FisheyeLens));
 			cameraLensPlugins.registerPlugin("spherical", typeof(SphericalLens));
+			cameraLensPlugins.registerPlugin("spherical3d", typeof(Spherical3DLens));
 
 			// accels
 			accelPlugins.registerPlugin("bih", typeof(BoundingIntervalHierarchy));

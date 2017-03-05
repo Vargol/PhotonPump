@@ -31,19 +31,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Drawing">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Windows.Forms">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Xml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
   </ItemGroup>
   <ItemGroup>
