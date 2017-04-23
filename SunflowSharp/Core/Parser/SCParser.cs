@@ -477,11 +477,11 @@ namespace SunflowSharp.Core.Parser
                 // no extra arguments
                 api.camera(name, "spherical");
             }
-			else if (type == "spherical3d")
+			else if (type == "spherical3d" || type == "spherical1803d" )
 			{
 				p.checkNextToken("eyegap");
 				api.parameter("lens.eyegap", p.getNextFloat());
-				api.camera(name, "spherical3d");
+				api.camera(name, type);
 			}
 			else if (type == "fisheye")
             {

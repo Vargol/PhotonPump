@@ -3,7 +3,7 @@ using SunflowSharp.Core;
 
 namespace SunflowSharp.Core.Camera
 {
-    public class Spherical3DLens : CameraLens
+    public class Spherical1803DLens : CameraLens
     {
 		float eyegap = 0;
 
@@ -29,7 +29,7 @@ namespace SunflowSharp.Core.Camera
 			y = y % halfHeight * 2.0f;
 
 			// Generate environment camera ray direction
-      		double theta = 2 * Math.PI * x / imageWidth + Math.PI / 2;
+            double theta = Math.PI * x / imageWidth + Math.PI ;
             double phi = Math.PI * (imageHeight - 1 - y) / imageHeight;
 			return new Ray(eyeoffset, 0, 0, (float)(Math.Cos(theta) * Math.Sin(phi)), (float)(Math.Cos(phi)), (float)(Math.Sin(theta) * Math.Sin(phi)));
         }
