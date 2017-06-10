@@ -24,6 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		examples\textures\reptileskin_bump.png = examples\textures\reptileskin_bump.png
 		examples\textures\shiphull_bump.png = examples\textures\shiphull_bump.png
 		examples\textures\slime_bump.jpg = examples\textures\slime_bump.jpg
+		examples\aliens_shiny_180.sc.gz = examples\aliens_shiny_180.sc.gz
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhysicsSim", "PhysicsSim\PhysicsSim.csproj", "{2EAC6C30-9143-46C5-A7BD-57EF8466A451}"
