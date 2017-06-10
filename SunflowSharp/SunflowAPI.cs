@@ -58,7 +58,8 @@ namespace SunflowSharp
          */
         public SunflowAPI()
         {
-            reset();
+			ByteUtil.InitByteUtil(); // ensure this done in the main thread.
+			reset();
         }
 
         /**

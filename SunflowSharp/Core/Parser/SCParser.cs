@@ -916,12 +916,17 @@ namespace SunflowSharp.Core.Parser
                     noInstance = true; 
                 }
             }
-      else if (type.Equals("cylinder")) 
-      {
-        UI.printInfo(UI.Module.API, "Reading cylinder ...");
-        api.geometry(name, "cylinder");
-      }
-            else if (type == "banchoff")
+		    else if (type.Equals("cylinder")) 
+		    {
+		        UI.printInfo(UI.Module.API, "Reading cylinder ...");
+		        api.geometry(name, "cylinder");
+		    }
+			else if (type.Equals("box"))
+			{
+				UI.printInfo(UI.Module.API, "Reading box ...");
+				api.geometry(name, "box");
+			}
+			else if (type == "banchoff")
             {
                 UI.printInfo(UI.Module.API, "Reading banchoff ...");
                 api.geometry(name, "banchoff");
