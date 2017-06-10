@@ -22,7 +22,7 @@ public class LParser {
 	static Regex thickness  = new Regex(@"^#thickness\s+(?'thickness'\d+\.?\d*)");
 	static Regex seed  		= new Regex(@"^#seed\s+(?'seed'\d+)");
 	static Regex ignore  	= new Regex(@"^#ignore\s+(?'ignore'.+)");
-	static Regex angle  		= new Regex(@"^#angle\s+(?'angle'[+-]?\d+\.?\d*)");
+	static Regex angle  	= new Regex(@"^#angle\s+(?'angle'[+-]?\d+\.?\d*)");
 	static Regex comment  	= new Regex(@"^\/\*");
 
 	public LParser() {}

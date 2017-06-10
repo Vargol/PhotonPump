@@ -569,6 +569,40 @@ namespace SunflowSharp.Maths
         }
 
 		/**
+         * Creates a rotation matrix from a vector orientation.
+         * 
+         * @param u
+         * @param v
+         * @param w
+         */
+		public static Matrix4 vectorOrientation(Vector3 forward, Vector3 left, Vector3 up)
+		{
+			Matrix4 m = new Matrix4();
+			/*
+			m.m00 = forward.x;
+            m.m01 = forward.y;
+            m.m02 = forward.z;
+			m.m10 = left.x;
+            m.m11 = left.y;
+            m.m12 = left.z;
+			m.m20 = up.x;
+			m.m21 = up.y;
+			m.m22 = up.z;
+			*/
+			m.m00 = forward.x;
+            m.m01 = left.x;
+            m.m02 = up.x;
+			m.m10 = forward.y;
+            m.m11 = left.y;
+			m.m12 = up.y;
+			m.m20 = forward.z;
+            m.m21 = left.z;
+			m.m22 = up.z;
+
+			return m;
+		}
+
+		/**
 		* Creates a camera positioning matrix from the given eye and target points
 		* and up vector.
 		*

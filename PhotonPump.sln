@@ -1,5 +1,5 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
+Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SunflowSharp", "SunflowSharp\SunflowSharp.csproj", "{A6F840FB-74C5-4F9F-9106-B8AE359AB0CB}"
 EndProject
@@ -26,6 +26,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		examples\textures\slime_bump.jpg = examples\textures\slime_bump.jpg
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhysicsSim", "PhysicsSim\PhysicsSim.csproj", "{2EAC6C30-9143-46C5-A7BD-57EF8466A451}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "L-System", "L-System\L-System.csproj", "{07D39F87-A712-4AE1-B822-1552FE0D5553}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -44,6 +48,14 @@ Global
 		{A6F840FB-74C5-4F9F-9106-B8AE359AB0CB}.Debug|x86.Build.0 = Debug|Any CPU
 		{A6F840FB-74C5-4F9F-9106-B8AE359AB0CB}.Release|x86.ActiveCfg = Release|Any CPU
 		{A6F840FB-74C5-4F9F-9106-B8AE359AB0CB}.Release|x86.Build.0 = Release|Any CPU
+		{2EAC6C30-9143-46C5-A7BD-57EF8466A451}.Debug|x86.ActiveCfg = Debug|x86
+		{2EAC6C30-9143-46C5-A7BD-57EF8466A451}.Debug|x86.Build.0 = Debug|x86
+		{2EAC6C30-9143-46C5-A7BD-57EF8466A451}.Release|x86.ActiveCfg = Release|x86
+		{2EAC6C30-9143-46C5-A7BD-57EF8466A451}.Release|x86.Build.0 = Release|x86
+		{07D39F87-A712-4AE1-B822-1552FE0D5553}.Debug|x86.ActiveCfg = Debug|x86
+		{07D39F87-A712-4AE1-B822-1552FE0D5553}.Debug|x86.Build.0 = Debug|x86
+		{07D39F87-A712-4AE1-B822-1552FE0D5553}.Release|x86.ActiveCfg = Release|x86
+		{07D39F87-A712-4AE1-B822-1552FE0D5553}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
@@ -51,7 +63,5 @@ Global
 		StartupItem = SunflowSharp.Test\SunflowSharp.Test.csproj
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
-		$1.DirectoryNamespaceAssociation = None
-		$1.ResourceNamePolicy = FileFormatDefault
 	EndGlobalSection
 EndGlobal
