@@ -214,7 +214,6 @@
     <Compile Include="PluginRegistry.cs" />
     <Compile Include="Core\ShadingCache.cs" />
     <Compile Include="Core\Camera\ThinLens.cs">
-      <DependentUpon>SphericalLens.cs</DependentUpon>
     </Compile>
     <Compile Include="Image\ColorFactory.cs" />
     <Compile Include="Image\Formats\BitmapBlack.cs" />

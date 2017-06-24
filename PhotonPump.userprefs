@@ -1,12 +1,6 @@
 ﻿<Properties StartupConfiguration="{07D39F87-A712-4AE1-B822-1552FE0D5553}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="PhotonPump Status">
     <Files>
-      <File FileName="PhysicsSim/PhysicsSim.cs" Line="5" Column="32" />
-      <File FileName="L-System/LParser.cs" Line="1" Column="1" />
-      <File FileName="L-System/LSystem.cs" Line="423" Column="1" />
-      <File FileName="SunflowSharp/Maths/Matrix4.cs" Line="593" Column="28" />
-      <File FileName="SunflowSharp/Core/Parser/SCParser.cs" Line="910" Column="1" />
-      <File FileName="SunflowSharp/Maths/OrthoNormalBasis.cs" Line="126" Column="50" />
       <File FileName="PhotonPump Status" />
     </Files>
   </MonoDevelop.Ide.Workbench>
@@ -15,6 +9,7 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/davidburnett/Documents/Source/C#/Projects/PhotonPump/L-System/LSystem.cs" relfile="L-System/LSystem.cs" line="145" column="112" />
+      <Breakpoint file="/Users/davidburnett/Documents/Source/C#/Projects/PhotonPump/SunflowSharp/Core/CameraBase.cs" relfile="SunflowSharp/Core/CameraBase.cs" line="35" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

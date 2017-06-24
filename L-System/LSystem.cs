@@ -379,8 +379,11 @@ public class LSystem {
 		//The render's resolution. 1920 by 1080 is full HD.
 		int resolutionX = 3840;
 		int resolutionY = 1920;
-//		int resolutionX = 768;
-//		int resolutionY = 384;
+
+//        resolutionX = 384;
+//		resolutionY = 192;
+//		      int resolutionX = 3840;
+//		      int resolutionY = 960;
 		a.parameter("resolutionX", resolutionX);
 		a.parameter("resolutionY", resolutionY);
 
@@ -401,14 +404,18 @@ public class LSystem {
 		a.parameter("filter", "mitchell");
 		a.options(SunflowAPI.DEFAULT_OPTIONS);
 
-		//Set up the camera.
-		Point3 eye = new Point3(-10.0f, -13.0f, -0.0f);
-		Point3 target = new Point3(7.0f, -13.0f, -7.0f);
-		Vector3 up = new Vector3(0, 1, 0);
+		
 
-		//            a.parameter("eye", new Point3(0.0f, 0.0f, 0.0f));
-		//          a.parameter("target", new Point3(0, -16, 0));
-		//          a.parameter("up", new Vector3(0, 1, 0));
+				Point3 eye = new Point3(7.0f, -7.0f, -7.0f);
+				Point3 target = new Point3(0.0f, -7.0f, 0.0f);
+		
+/*
+		Point3 target = new Point3(7.0f, -7.0f, -7.0f);
+		Point3 eye = new Point3(-6.0f, -2.0f, 2.0f);
+
+*/
+
+        Vector3 up = new Vector3(0, 1, 0);
 
 		a.parameter("transform", Matrix4.lookAt(eye, target, up));
 
