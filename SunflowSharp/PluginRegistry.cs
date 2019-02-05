@@ -64,6 +64,7 @@ namespace SunflowSharp
 			primitivePlugins.registerPlugin("sphere", typeof(Sphere));
 			primitivePlugins.registerPlugin("cylinder", typeof(Cylinder));
 			primitivePlugins.registerPlugin("box", typeof(Box));
+            primitivePlugins.registerPlugin("ubox", typeof(UnitBox));
 			primitivePlugins.registerPlugin("banchoff", typeof(BanchoffSurface));
 			primitivePlugins.registerPlugin("hair", typeof(Hair));
 			primitivePlugins.registerPlugin("julia", typeof(JuliaFractal));
@@ -129,7 +130,8 @@ namespace SunflowSharp
 			cameraLensPlugins.registerPlugin("pinhole", typeof(PinholeLens));
 			cameraLensPlugins.registerPlugin("thinlens", typeof(ThinLens));
 			cameraLensPlugins.registerPlugin("fisheye", typeof(FisheyeLens));
-			cameraLensPlugins.registerPlugin("spherical", typeof(SphericalLens));
+            cameraLensPlugins.registerPlugin("vr180fisheye", typeof(FisheyeLensVR180));
+            cameraLensPlugins.registerPlugin("spherical", typeof(SphericalLens));
 			cameraLensPlugins.registerPlugin("spherical3d", typeof(Spherical3DLens));
 			cameraLensPlugins.registerPlugin("spherical1803d", typeof(Spherical1803DLens));
 

@@ -247,8 +247,11 @@
     <Compile Include="Core\Tesselatable\FunctionPipe.cs" />
     <Compile Include="Core\PhotonMap\Photon.cs" />
     <Compile Include="Core\Camera\SphericalLens3D.cs" />
-    <Compile Include="Core\Camera\SphericalLens1803D.cs" />
+    <Compile Include="Core\Camera\SphericalLensODS.cs" />
     <None Include="packages.config" />
+    <Compile Include="Core\Camera\SphericalLens1803D.cs" />
+    <Compile Include="Core\Primitive\UnitBox.cs" />
+    <Compile Include="Core\Camera\FisheyeLensVR180.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

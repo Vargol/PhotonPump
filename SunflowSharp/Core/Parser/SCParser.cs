@@ -488,6 +488,12 @@ namespace SunflowSharp.Core.Parser
                 // no extra arguments
                 api.camera(name, "fisheye");
             }
+            else if (type == "vr180fisheye")
+            {
+                p.checkNextToken("eyegap");
+                api.parameter("lens.eyegap", p.getNextFloat());
+                api.camera(name, type);
+            }
             else
             {
                 UI.printWarning(UI.Module.API, "Unrecognized camera type: {0}", p.getNextToken());
@@ -926,6 +932,11 @@ namespace SunflowSharp.Core.Parser
 				UI.printInfo(UI.Module.API, "Reading box ...");
 				api.geometry(name, "box");
 			}
+            else if (type.Equals("ubox"))
+            {
+                UI.printInfo(UI.Module.API, "Reading ubox ...");
+                api.geometry(name, "ubox");
+            }
 			else if (type == "banchoff")
             {
                 UI.printInfo(UI.Module.API, "Reading banchoff ...");

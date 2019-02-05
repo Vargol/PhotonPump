@@ -7,8 +7,8 @@ namespace SunflowSharp.Core.Primitive
 
     public class Box : PrimitiveList
     {
-        private float minX, minY, minZ;
-        private float maxX, maxY, maxZ;
+        protected float minX, minY, minZ;
+        protected float maxX, maxY, maxZ;
 
         public Box()
         {

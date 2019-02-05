@@ -36,7 +36,9 @@ namespace SunflowSharp.Core
                 UI.printWarning(UI.Module.ACCEL, "Unrecognized intersection accelerator \"{0}\" - using auto", name);
                 return create(null, n, primitives);
             }
-			UI.printInfo(UI.Module.ACCEL, "Building {0} acceleration structure...", name);
+            if (name != "null") {
+                UI.printInfo(UI.Module.ACCEL, "Building {0} acceleration structure...", name);
+            }
 			return accel;
         }
     }

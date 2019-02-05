@@ -28,12 +28,13 @@ namespace SunflowSharp.Core.Camera
 			}
 			y = y % halfHeight * 2.0f;
 
-            double theta = 2 * Math.PI * x / imageWidth;
+            double theta = 2.0 * Math.PI * (x / imageWidth);
 
             // generate camera position
 
 			double stc = Math.Sin(theta);
 			double ctc = Math.Cos(theta);
+            double odsOffset = Math.Sin((imageHeight - y / imageHeight) * Math.PI);
 
 
 			// Generate environment camera ray direction
@@ -43,9 +44,9 @@ namespace SunflowSharp.Core.Camera
             double spe = Math.Sin(phi);
 
             return new Ray(
-                           (float)(eyeOffset * ctc), 
+                           (float)(eyeOffset * ctc * odsOffset), 
                            0, 
-                           (float)(eyeOffset * stc),
+                           (float)(eyeOffset * stc * odsOffset),
 						   (float)((Math.Cos(theta) * spe)),
 						   (float)(Math.Cos(phi)),
 						   (float)((Math.Sin(theta) * spe))

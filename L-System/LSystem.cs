@@ -178,7 +178,7 @@ public class LSystem {
 						moveLength = currentParameters.length;
 					}
 	        			
-					Console.WriteLine("moveLength: " + moveLength);
+//					Console.WriteLine("moveLength: " + moveLength);
 
 							//sunflow.geometry("sphere" + currentParameters.objectCount, "sphere");
 							//sunflow.parameter("shaders", "sps");
@@ -380,6 +380,9 @@ public class LSystem {
 		int resolutionX = 3840;
 		int resolutionY = 1920;
 
+  //      resolutionX = 1920;
+    //    resolutionY = 1920;
+
 //        resolutionX = 384;
 //		resolutionY = 192;
 //		      int resolutionX = 3840;
@@ -406,15 +409,12 @@ public class LSystem {
 
 		
 
-				Point3 eye = new Point3(7.0f, -7.0f, -7.0f);
-				Point3 target = new Point3(0.0f, -7.0f, 0.0f);
+//				Point3 eye = new Point3(7.0f, -7.0f, -7.0f);
+//				Point3 target = new Point3(0.0f, -7.0f, 0.0f);
 		
-/*
+
 		Point3 target = new Point3(7.0f, -7.0f, -7.0f);
-		Point3 eye = new Point3(-6.0f, -2.0f, 2.0f);
-
-*/
-
+		Point3 eye = new Point3(-6.0f, -10.0f, 2.0f);
         Vector3 up = new Vector3(0, 1, 0);
 
 		a.parameter("transform", Matrix4.lookAt(eye, target, up));
@@ -422,18 +422,26 @@ public class LSystem {
         String name = "Camera";
 
 
-/*     thinlens camera */
-/*
-		//Aspect Ratio.
-		float aspect = ((float)resolutionX) / ((float)resolutionY);
-		a.parameter("aspect", aspect);
-		a.camera(name, "thinlens");
-*/
+        /*     thinlens camera */
+        /*
+                //Aspect Ratio.
+                float aspect = ((float)resolutionX) / ((float)resolutionY);
+                a.parameter("aspect", aspect);
+                a.camera(name, "thinlens");
+        */
 
-		/* 360 3D VR camera */
+        /* 360 3D VR camera */
+        /*
 
-		a.parameter("lens.eyegap", 0.5f);
-		a.camera(name, "spherical3d");
+                a.parameter("lens.eyegap", 0.5f);
+        //		a.camera(name, "spherical3d");
+
+                a.camera(name, "spherical1803d");
+
+
+        */
+        a.parameter("lens.eyegap", 0.1f);
+        a.camera(name, "vr180fisheye");
 
 
         a.parameter("camera", name);

@@ -1,24 +1,14 @@
-﻿<Properties StartupConfiguration="{07D39F87-A712-4AE1-B822-1552FE0D5553}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="PhotonPump Status">
+﻿<Properties StartupConfiguration="{15FC09D6-0066-4D43-A7B5-59D99BF7B443}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SunflowSharp.Test/Program.cs">
     <Files>
-      <File FileName="PhotonPump Status" />
+      <File FileName="SunflowSharp.Test/Program.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
-  <MonoDevelop.Ide.ItemProperties.L-System PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/davidburnett/Documents/Source/C#/Projects/PhotonPump/L-System/LSystem.cs" relfile="L-System/LSystem.cs" line="145" column="112" />
-      <Breakpoint file="/Users/davidburnett/Documents/Source/C#/Projects/PhotonPump/SunflowSharp/Core/CameraBase.cs" relfile="SunflowSharp/Core/CameraBase.cs" line="35" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.SunflowSharp.Test PreferredExecutionTarget="MonoDevelop.Default" />
-  <MultiItemStartupConfigurations>
-    <MultiItemSolutionRunConfiguration Id="Degug Shere3d" Name="Degug Shere3d">
-      <Items>
-        <StartupItem ItemId="{0D4A4CCF-CEB7-48CF-9BD1-E68733369DDD}" ItemName="SunflowSharp.Test" ConfigurationId="Default" />
-      </Items>
-    </MultiItemSolutionRunConfiguration>
-  </MultiItemStartupConfigurations>
+  <MonoDevelop.Ide.ItemProperties.SunflowSharp.Gui PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
 </Properties>

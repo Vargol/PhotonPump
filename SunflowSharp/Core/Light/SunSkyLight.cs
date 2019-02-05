@@ -67,7 +67,7 @@ namespace SunflowSharp.Core.Light
             sunDirWorld = new Vector3(1, 1, 1);
             turbidity = 6;
             basis = OrthoNormalBasis.makeFromWV(new Vector3(0, 0, 1), new Vector3(0, 1, 0));
-			groundExtendSky = false;
+			groundExtendSky = true;
 			groundColor = Color.BLACK;
             initSunSky();
         }
