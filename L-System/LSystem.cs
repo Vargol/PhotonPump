@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using SunflowSharp.Core;
 using SunflowSharp;
 using SunflowSharp.Core.Display;
 using SunflowSharp.Maths;
@@ -383,8 +381,8 @@ public class LSystem {
   //      resolutionX = 1920;
     //    resolutionY = 1920;
 
-//        resolutionX = 384;
-//		resolutionY = 192;
+        resolutionX = 384*4;
+		resolutionY = 192*4;
 //		      int resolutionX = 3840;
 //		      int resolutionY = 960;
 		a.parameter("resolutionX", resolutionX);
@@ -448,7 +446,7 @@ public class LSystem {
 		a.options(SunflowAPI.DEFAULT_OPTIONS);
 
 		//Trace depths. Higher numbers look better.
-		a.parameter("depths.diffuse", 1);
+		a.parameter("depths.diffuse", 3);
 		a.parameter("depths.reflection", 2);
 		a.parameter("depths.refraction", 2);
 		a.options(SunflowAPI.DEFAULT_OPTIONS);
@@ -467,7 +465,7 @@ public class LSystem {
 
 
 		//Setting up the shader for the cube of spheres.
-		a.parameter("diffuse", null, 1.0f, 1.0f, 1.0f);
+		a.parameter("diffuse", null, 1.0f, 0.0f, 0.0f);
 		a.shader("sps", "diffuse");
 		a.options(SunflowAPI.DEFAULT_OPTIONS);
 
@@ -486,7 +484,7 @@ public class LSystem {
 		//          a.parameter("sundir", new Vector3((float)Math.Cos(sunRad), (float)Math.Sin(sunRad), (float)(.5 * Math.Sin(sunRad))).normalize());
 		a.parameter("sundir", new Vector3(0.8f, 0.8f, 0.5f).normalize());
 		a.parameter("turbidity", 4f);
-		a.parameter("samples", 4);
+		a.parameter("samples", 128);
 		a.light("sunsky", "sunsky");
 		a.options(SunflowAPI.DEFAULT_OPTIONS);
 

@@ -10,6 +10,12 @@ namespace SunflowSharp.Core.Primitive
         protected float minX, minY, minZ;
         protected float maxX, maxY, maxZ;
 
+        static Vector3[] normalVectors = { new Vector3(1, 0, 0),
+                                           new Vector3(-1, 0, 0),
+                                           new Vector3(0, 1, 0),
+                                           new Vector3(0, -1, 0),
+                                           new Vector3(0, 0, 1),
+                                           new Vector3(0, 0, -1) };
         public Box()
         {
             minX = minY = minZ = -1;
@@ -40,6 +46,10 @@ namespace SunflowSharp.Core.Primitive
             state.init();
             state.getRay().getPoint(state.getPoint());
             int n = state.getPrimitiveID();
+
+            /*
+
+
             switch (n)
             {
                 case 0:
@@ -64,6 +74,11 @@ namespace SunflowSharp.Core.Primitive
                     state.getNormal().set(new Vector3(0, 0, 0));
                     break;
             }
+
+            */
+
+            state.getNormal().set(normalVectors[n]);
+
             state.getGeoNormal().set(state.getNormal());
             state.setBasis(OrthoNormalBasis.makeFromW(state.getNormal()));
             state.setShader(state.getInstance().getShader(0));

@@ -38,9 +38,6 @@
     </Reference>
     <Reference Include="System.Xml">
     </Reference>
-    <Reference Include="Jitter">
-      <HintPath>..\packages\Jitter.Redpoint.0.3.0\lib\net45\Jitter.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Benchmark.cs" />
@@ -248,7 +245,6 @@
     <Compile Include="Core\PhotonMap\Photon.cs" />
     <Compile Include="Core\Camera\SphericalLens3D.cs" />
     <Compile Include="Core\Camera\SphericalLensODS.cs" />
-    <None Include="packages.config" />
     <Compile Include="Core\Camera\SphericalLens1803D.cs" />
     <Compile Include="Core\Primitive\UnitBox.cs" />
     <Compile Include="Core\Camera\FisheyeLensVR180.cs" />
